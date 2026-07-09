@@ -3,88 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Evaluación de Competencias - Física Universitaria</title>
+    <title>¿Quién Quiere Ser Millonario? - Razonamiento Lógico</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div class="app-container">
-    <header class="app-header">
-        <div class="header-content">
-            <span class="institution-brand">Simulador Oficial — Componente de Ciencias Exactas</span>
-            <div class="hud-badge">Progreso: <span id="solved-count">0</span> / 100 Reactivos</div>
-        </div>
-    </header>
-    
-    <main class="main-viewport">
-        <!-- Pantalla de Bienvenida -->
-        <div id="screen-start" class="view-panel active">
-            <div class="institutional-card centered-content">
-                <h2>EVALUACIÓN DE FÍSICA</h2>
-                <p class="intro-text">Bienvenido al simulador institucional. Esta plataforma ha sido diseñada bajo estándares rigurosos de evaluación técnica.</p>
-                <div class="features-list">
-                    <div class="feature-item"><strong>✦ Navegación Libre:</strong> Usa el panel lateral para saltar a cualquier pregunta en el orden que desees.</div>
-                    <div class="feature-item"><strong>✦ Reactivos Únicos:</strong> 100 ejercicios sin duplicados de Cinemática, Dinámica y Energía.</div>
-                    <div class="feature-item"><strong>✦ Aleatorización Total:</strong> Las opciones se mezclan dinámicamente; no existen patrones fijos de respuesta.</div>
-                </div>
-                <button class="btn-action" onclick="startGame()">Comenzar Evaluación</button>
+    <div class="contenedor-juego">
+        <div id="pantalla-inicio" class="pantalla activa">
+            <h1>RAZONAMIENTO LÓGICO</h1>
+            <p class="subtitulo">Demuestra tu agilidad mental para el ingreso a la Universidad</p>
+            <div class="caja-bienvenida">
+                <p class="texto-destacado">¡Bienvenido al desafío definitivo de la mente!</p>
+                <p class="descripcion-reglas">
+                    Te enfrentarás a un banco de 100 preguntas reales sobre secuencias numéricas, alfabéticas, analogías y lógica matemática. Tienes 4 comodines a tu disposición. ¡Consigue la máxima puntuación!
+                </p>
             </div>
+            <button id="btn-jugar" class="btn-principal">¡Jugar!</button>
         </div>
 
-        <!-- Pantalla del Simulador Activo -->
-        <div id="screen-game" class="view-panel">
-            <div class="game-layout">
-                
-                <!-- PANEL IZQUIERDO: RECUADRO DE SELECCIÓN LIBRE -->
-                <aside class="sidebar-navigation">
-                    <div class="institutional-card navigation-card">
-                        <h3>Matriz de Navegación</h3>
-                        <p class="nav-help-text">Haz clic en cualquier número para cargar o retomar ese reactivo inmediatamente:</p>
-                        
-                        <div id="questions-grid" class="matrix-grid"></div>
-                        
-                        <div class="metric-block">
-                            <span class="metric-label">Calificación Actual</span>
-                            <div class="metric-value"><span id="hud-score">0</span> / 100 Pts</div>
-                        </div>
-                    </div>
-                </aside>
-                
-                <!-- PANEL DERECHO: INTERFAZ DINÁMICA -->
-                <div class="interactive-area">
-                    <div class="institutional-card question-box">
-                        <div class="card-meta">
-                            <span id="question-category" class="topic-tag">Cargando...</span>
-                            <span id="question-index-tag" class="index-tag">Pregunta --</span>
-                        </div>
-                        <div id="question-text" class="formal-question">Cargando enunciado del reactivo...</div>
-                    </div>
-                    
-                    <div class="options-stack">
-                        <button class="option-row" id="opt-A" onclick="submitAnswer('A')"><span class="letter-index">A</span><span id="txt-A" class="option-payload"></span></button>
-                        <button class="option-row" id="opt-B" onclick="submitAnswer('B')"><span class="letter-index">B</span><span id="txt-B" class="option-payload"></span></button>
-                        <button class="option-row" id="opt-C" onclick="submitAnswer('C')"><span class="letter-index">C</span><span id="txt-C" class="option-payload"></span></button>
-                        <button class="option-row" id="opt-D" onclick="submitAnswer('D')"><span class="letter-index">D</span><span id="txt-D" class="option-payload"></span></button>
-                    </div>
-                    
-                    <div class="lifelines-bar">
-                        <button id="btn-5050" class="btn-tool" onclick="use5050()">50/50</button>
-                        <button id="btn-remove-one" class="btn-tool" onclick="useRemoveOne()">Descartar una</button>
-                        <button id="btn-phone" class="btn-tool" onclick="usePhone()">Sugerencia Tutor</button>
-                        <button id="btn-audience" class="btn-tool" onclick="useAudience()">Estadística</button>
-                    </div>
-                    
-                    <div id="help-display" class="help-callout"></div>
-                    
-                    <div id="feedback-box" class="feedback-panel">
-                        <h4 id="feedback-title">Análisis de Justificación Técnica</h4>
-                        <p id="feedback-text"></p>
-                    </div>
+        <div id="pantalla-juego" class="pantalla">
+            <div class="panel-superior">
+                <div class="marcador-puntos">Premio: <span id="puntos-actuales">0</span> PTS</div>
+                <div class="contenedor-comodines">
+                    <button id="comodin-5050" class="btn-comodin">50/50</button>
+                    <button id="comodin-eliminar" class="btn-comodin">Eliminar 1</button>
+                    <button id="comodin-llamada" class="btn-comodin">📞 Llamada</button>
+                    <button id="comodin-publico" class="btn-comodin">👥 Público</button>
                 </div>
-
             </div>
+
+            <div id="consola-comodin" class="consola-comodin"></div>
+
+            <div class="bloque-pregunta">
+                <span id="categoria-txt" class="categoria-etiqueta">Categoría</span>
+                <div id="pregunta-txt" class="texto-pregunta">Cargando pregunta...</div>
+                <p id="contador-pregunta" class="contador-pregunta"></p>
+            </div>
+
+            <div class="cuadricula-opciones">
+                <button class="btn-opcion" data-opcion="A"><span class="letra">A</span><span class="txt-opc" id="opc-A"></span></button>
+                <button class="btn-opcion" data-opcion="B"><span class="letra">B</span><span class="txt-opc" id="opc-B"></span></button>
+                <button class="btn-opcion" data-opcion="C"><span class="letra">C</span><span class="txt-opc" id="opc-C"></span></button>
+                <button class="btn-opcion" data-opcion="D"><span class="letra">D</span><span class="txt-opc" id="opc-D"></span></button>
+            </div>
+
+            <div id="panel-retro" class="panel-retroalimentacion">
+                <div id="titulo-retro" class="titulo-retro"></div>
+                <p id="explicacion-txt"></p>
+            </div>
+
+            <button id="btn-siguiente" class="btn-principal btn-siguiente">Siguiente Pregunta</button>
         </div>
-    </main>
-</div>
-<script src="index.js"></script>
+
+        <div id="pantalla-final" class="pantalla">
+            <h1>¡JUEGO TERMINADO!</h1>
+            <div class="caja-puntuacion-final">
+                <p class="puntuacion-etiqueta">Puntaje Acumulado:</p>
+                <p id="puntos-finales" class="puntos-finales">0</p>
+            </div>
+            <button id="btn-reiniciar" class="btn-principal">Jugar de Nuevo</button>
+        </div>
+    </div>
+    <script src="index.js"></script>
 </body>
 </html>
