@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIMULADOR DE FÍSICA UNIVERSITARIA - MODELO PRO</title>
-    <!-- Tailwind CSS para diseño responsivo moderno y ultra-rápido -->
+    <title>Simulador de Física Universitaria - Modelo Pro</title>
+    <!-- Tailwind CSS para diseño responsivo moderno -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- KaTeX para renderizar ecuaciones matemáticas de calidad editorial -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
@@ -18,15 +18,15 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* Estilo para simular un pizarrón o visor científico de LaTeX */
+        /* Estilo simulador científico */
         .latex-display {
             font-family: 'KaTeX_Main', 'Times New Roman', serif;
-            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-            border-left: 5px solid #2563eb;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-left: 5px solid #1e3a8a;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
-        /* Barra de scroll personalizada y estética para la matriz inferior */
+        /* Scrollbar personalizado para la matriz */
         .custom-scrollbar::-webkit-scrollbar {
             height: 8px;
             width: 8px;
@@ -43,24 +43,13 @@
             background: #94a3b8;
         }
 
-        /* Tarjetas de opción con transiciones e interacciones fluidas */
         .option-card {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .option-card:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
-            border-color: #2563eb;
-        }
-        .option-card.correct-choice {
-            border-color: #10b981 !important;
-            background-color: #ecfdf5 !important;
-            color: #065f46 !important;
-        }
-        .option-card.incorrect-choice {
-            border-color: #ef4444 !important;
-            background-color: #fef2f2 !important;
-            color: #991b1b !important;
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.08);
+            border-color: #1e3a8a;
         }
         .option-card:disabled {
             cursor: not-allowed;
@@ -74,39 +63,39 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
 
-    <!-- Pantalla de Inicio / Bienvenida -->
+    <!-- PANTALLA DE INGRESO -->
     <div id="welcome-screen" class="fixed inset-0 bg-slate-900 text-white z-50 flex flex-col items-center justify-center p-6 text-center">
         <div class="max-w-2xl bg-slate-800 border border-slate-700 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
             <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500 rounded-full blur-3xl opacity-20"></div>
             
-            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">Admisión Universitaria</span>
+            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">Simulador Oficial</span>
             <h1 class="text-4xl md:text-5xl font-black mt-4 mb-3 tracking-tight bg-gradient-to-r from-blue-400 via-indigo-200 to-emerald-400 bg-clip-text text-transparent">
-                SIMULADOR DE FÍSICA
+                FÍSICA UNIVERSITARIA
             </h1>
             <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-8">
-                Bienvenido al <strong class="text-white">Modelo Pro</strong> de admisión académica. Pon a prueba tus habilidades físicas y analíticas resolviendo 150 reactivos exclusivos e interactivos.
+                Bienvenido al <strong class="text-white">Modelo Pro</strong> interactivo de admisión y entrenamiento de física. Pon a prueba tus habilidades resolviendo 150 reactivos escalares y teóricos.
             </p>
             
             <div class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-8 text-left text-xs md:text-sm">
                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                    <span class="text-emerald-400 font-bold">✓ 150 Preguntas</span> Sin repeticiones
+                    <span class="text-emerald-400 font-bold">✓ 150 Reactivos</span> Sin repeticiones
                 </div>
                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                    <span class="text-blue-400 font-bold">✓ Gravedad Real</span> \(g = 9.8 \text{ m/s}^2\)
+                    <span class="text-blue-400 font-bold">✓ Constantes Reales</span> \(g = 9.8 \text{ m/s}^2\)
                 </div>
                 <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50 col-span-2">
-                    <span class="text-amber-400 font-bold">✓ Vectores Reales</span> Notación \((-30\hat{i} + 50\hat{j})\text{ km}\)
+                    <span class="text-amber-400 font-bold">✓ Vectores Resueltos</span> Desplazamientos analizados en magnitudes escalares
                 </div>
             </div>
 
-            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
+            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
                 Iniciar Simulador Modelo Pro
             </button>
         </div>
     </div>
 
-    <!-- Header Principal -->
+    <!-- ENCABEZADO -->
     <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
@@ -115,7 +104,7 @@
                 </div>
                 <div>
                     <h1 class="font-extrabold text-lg leading-none tracking-tight">Portal de Física</h1>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1">Simulador de Admisión • Modelo Pro</p>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1">Evaluación de Diagnóstico • 150 Preguntas</p>
                 </div>
             </div>
             
@@ -126,30 +115,30 @@
         </div>
     </header>
 
-    <!-- Área Dinámica Principal -->
+    <!-- ÁREA PRINCIPAL -->
     <main class="flex-grow max-w-5xl mx-auto px-6 py-6 w-full flex flex-col gap-6 justify-center">
         
         <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm relative overflow-hidden">
             <div class="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
-                <span id="active-category" class="text-xs font-bold text-blue-600 bg-blue-50 px-3.5 py-1.5 rounded-full uppercase tracking-wider">Eje Temático</span>
-                <span id="active-number" class="text-sm font-bold text-slate-500">Reactivo 1 de 150</span>
+                <span id="active-category" class="text-xs font-bold text-blue-800 bg-blue-50 px-3.5 py-1.5 rounded-full uppercase tracking-wider">Cargando...</span>
+                <span id="active-number" class="text-sm font-bold text-slate-500">Reactivo -- de 150</span>
             </div>
 
-            <!-- Contenedor del enunciado científico (Renderizado KaTeX) -->
+            <!-- Contenedor del enunciado científico -->
             <div id="question-text-container" class="latex-display p-6 rounded-2xl mb-6 text-slate-800 text-base md:text-lg font-medium leading-relaxed">
-                <!-- Enunciado se inyecta dinámicamente -->
+                <!-- Se inyecta por JS -->
             </div>
 
             <!-- Opciones de Respuesta -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="options-stack">
-                <!-- Opciones se inyectan dinámicamente -->
+                <!-- Se inyectan por JS -->
             </div>
 
-            <!-- Comodines Académicos de Apoyo -->
+            <!-- Comodines -->
             <div class="border-t border-slate-100 pt-6">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Comodines de Apoyo</h3>
-                    <span class="text-[10px] bg-indigo-50 text-indigo-600 font-bold px-2 py-0.5 rounded uppercase tracking-wider">Un solo uso por partida</span>
+                    <span class="text-[10px] bg-indigo-50 text-indigo-600 font-bold px-2 py-0.5 rounded uppercase tracking-wider">Un solo uso por examen</span>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <button id="comodin-5050" class="comodin-btn bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2">
@@ -159,23 +148,23 @@
                         🗑️ Eliminar Una
                     </button>
                     <button id="comodin-llamada" class="comodin-btn bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2">
-                        📞 Llamada
+                        📞 Tutor Pista
                     </button>
                     <button id="comodin-publico" class="comodin-btn bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2">
-                        📊 Público
+                        📊 Estadística
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- PANEL DE FEEDBACK POSTERIOR A LA RESPUESTA -->
+        <!-- PANEL DE RETROALIMENTACIÓN -->
         <div id="feedback-panel" class="hidden bg-emerald-50 border border-emerald-200 rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300">
             <div class="flex items-center gap-3 mb-3">
                 <div id="feedback-icon" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-lg">✓</div>
                 <h3 id="feedback-title" class="font-extrabold text-emerald-950 text-lg">¡Respuesta Correcta!</h3>
             </div>
-            <div id="explanation-box" class="text-sm md:text-base text-emerald-900 leading-relaxed mb-6 p-5 bg-white/90 rounded-2xl border border-emerald-100 font-mono">
-                <!-- Solución del ejercicio -->
+            <div id="explanation-box" class="text-sm md:text-base text-emerald-900 leading-relaxed mb-6 p-5 bg-white/90 rounded-2xl border border-emerald-100 font-sans">
+                <!-- Se inyecta por JS -->
             </div>
             <div class="flex justify-end">
                 <button id="btn-next-question" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-6 py-3 rounded-xl transition shadow">
@@ -185,13 +174,13 @@
         </div>
     </main>
 
-    <!-- PANEL INFERIOR: Matriz interactiva de 150 preguntas -->
+    <!-- MATRIZ DE NAVEGACIÓN INFERIOR (MODELO PRO) -->
     <section class="bg-white border-t border-slate-200 py-6 px-6 mt-8">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                 <div>
-                    <h2 class="font-extrabold text-slate-900 text-base md:text-lg">Panel de Navegación del Simulador (Matriz 1-150)</h2>
-                    <p class="text-xs text-slate-500">Haz clic libremente en cualquier reactivo para cargarlo o revisar tu progreso:</p>
+                    <h2 class="font-extrabold text-slate-900 text-base md:text-lg font-bold">Matriz de Navegación del Simulador (Reactivos 1 al 150)</h2>
+                    <p class="text-xs text-slate-500">Haz clic libremente en cualquier número de casilla para cargar ese reactivo directamente:</p>
                 </div>
                 <div class="flex gap-4 text-[10px] md:text-xs font-semibold">
                     <span class="flex items-center gap-1.5 text-slate-500"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 block border border-slate-300"></span> Pendiente</span>
@@ -201,41 +190,41 @@
             </div>
             
             <div id="matrix-grid" class="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-15 gap-2 max-h-[220px] overflow-y-auto p-1.5 custom-scrollbar">
-                <!-- Matriz generada por JS -->
+                <!-- Matriz dinámica (150 casillas) -->
             </div>
         </div>
     </section>
 
-    <!-- Modales de Asistencias (Llamada, Público) -->
+    <!-- MODAL DE ASISTENCIAS -->
     <div id="custom-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl border border-slate-200 max-w-md w-full shadow-2xl p-6 transform transition-all">
             <div class="flex items-center gap-3 mb-4">
                 <span class="text-3xl" id="modal-emoji">📞</span>
                 <div>
                     <h4 class="font-extrabold text-slate-900 text-lg" id="modal-title">Asistencia</h4>
-                    <p class="text-xs text-slate-500" id="modal-subtitle">Comodín activado</p>
+                    <p class="text-xs text-slate-500" id="modal-subtitle">Sugerencia Académica</p>
                 </div>
             </div>
             <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-sm text-slate-700 mb-6 leading-relaxed font-semibold" id="modal-content">
-                <!-- Contenido Dinámico -->
+                <!-- Se inyecta por JS -->
             </div>
             <button id="btn-close-modal" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-sm">
-                Volver a la evaluación
+                Volver a la Evaluación
             </button>
         </div>
     </div>
 
-    <!-- Modal Final de Resultados -->
+    <!-- MODAL FINAL DE RESULTADOS -->
     <div id="final-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl p-8 text-center border border-slate-200">
             <span class="text-6xl mb-4 block">🎓</span>
             <h2 class="text-3xl font-black text-slate-900 tracking-tight">Evaluación Concluida</h2>
-            <p class="text-slate-500 text-sm mt-1 max-w-xs mx-auto">Tu resultado global ha sido procesado de acuerdo con los estándares de admisión de la universidad:</p>
+            <p class="text-slate-500 text-sm mt-1 max-w-xs mx-auto">Tu resultado global ha sido procesado de acuerdo con los estándares del Modelo Pro:</p>
             
             <div class="my-8 bg-slate-50 border border-slate-100 rounded-2xl p-6">
                 <span class="text-slate-400 uppercase tracking-widest text-[10px] font-bold block mb-1">Puntaje Final</span>
                 <span class="text-6xl font-black text-blue-900" id="final-score">0 / 150</span>
-                <p class="text-xs font-bold text-slate-500 mt-2">Puntos de ingreso registrados</p>
+                <p class="text-xs font-bold text-slate-500 mt-2">Respuestas correctas obtenidas</p>
             </div>
 
             <button id="btn-restart-quiz" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 rounded-xl transition shadow-lg">
@@ -244,28 +233,29 @@
         </div>
     </div>
 
+    <!-- LÓGICA DE CONTROL DEL SIMULADOR -->
     <script>
         const GRAVITY = 9.8;
         let questions = [];
-        let userAnswers = {}; // Almacena { questionIndex: { chosen, isCorrect, answered, shuffledOptions, correctShuffledKey } }
+        let userAnswers = {}; // { questionIndex: { chosen, isCorrect, answered, shuffledOptions, correctShuffledKey } }
         let activeIndex = 0;
         let usedComodines = { "5050": false, "eliminar": false, "llamada": false, "publico": false };
 
-        /**
-         * Generación del banco de 150 reactivos de física reales de alta variedad (prácticos y teóricos).
-         */
+        // GENERACIÓN DETERMINISTA DE 150 REACTIVOS SIN REPETICIÓN
         function generateQuestionBank() {
             questions = [];
             const categories = [
-                "Cinemática - MRU (Vectorial & Escalar)",
-                "Cinemática - MRUV (Vectorial & Escalar)",
+                "Cinemática - MRU",
+                "Cinemática - MRUV",
+                "Cinemática - MCU",
                 "Cinemática - Caída Libre",
                 "Cinemática - Movimiento Vertical",
                 "Cinemática - Movimiento Compuesto",
-                "Cinemática - MCU",
                 "Dinámica - Leyes de Newton",
-                "Dinámica - Fuerzas",
-                "Trabajo, Potencia y Energía",
+                "Dinámica - Planos Inclinados",
+                "Trabajo Mecánico",
+                "Potencia Mecánica",
+                "Conservación de la Energía",
                 "Teoría General de la Física"
             ];
 
@@ -275,253 +265,274 @@
                     id: i,
                     categoria: cat,
                     pregunta: "",
-                    opciones: {}, // Respuestas iniciales de control (La opción A siempre será la correcta original antes de mezclar)
+                    opciones: {}, // Clave A es siempre la correcta antes de barajar
                     correcta: "A",
                     explicacion: ""
                 };
 
-                // Modificadores numéricos basados estrictamente en el índice "i" para evitar duplicados
-                let val1 = ((i * 3) % 15) + 6; 
-                let val2 = ((i * 2) % 8) + 3; 
-                let m = ((i * 4) % 20) + 8;   
+                // Semillas numéricas para asegurar unicidad
+                let s1 = ((i * 4) % 15) + 3;
+                let s2 = ((i * 3) % 12) + 2;
+                let mass = ((i * 5) % 25) + 4;
+                let angle = 30; // Ángulo constante para facilitar los cálculos de plano inclinado y tiro parabólico
 
                 switch (cat) {
-                    case "Cinemática - MRU (Vectorial & Escalar)":
+                    case "Cinemática - MRU": {
                         if (i % 2 === 0) {
-                            let rx = -val1 * 5;
-                            let ry = val2 * 10;
-                            let t = 5;
-                            let vx = rx / t;
-                            let vy = ry / t;
-                            q.pregunta = `Un móvil se desplaza con movimiento rectilíneo uniforme desde el origen hasta el punto final \\( \\vec{r} = (${rx}\\hat{i} + ${ry}\\hat{j}) \\text{ km} \\) en un intervalo temporal de \\( t = ${t} \\text{ h} \\). Determine el vector velocidad media de la partícula.`;
+                            let vx = s1;
+                            let vy = s2;
+                            let t = ((i * 2) % 5) + 2;
+                            let dx = vx * t;
+                            let dy = vy * t;
+                            let d_total = Math.sqrt(dx*dx + dy*dy).toFixed(2);
+                            let v_med = (d_total / t).toFixed(2);
+                            
+                            q.pregunta = `Una partícula realiza un movimiento rectilíneo uniforme desde el origen, recorriendo un vector de desplazamiento de \\( \\vec{r} = (${dx}\\hat{i} + ${dy}\\hat{j}) \\text{ km} \\) en un tiempo exacto de \\( t = ${t} \\text{ h} \\). Calcule la velocidad (rapidez media) de la partícula.`;
                             q.opciones = {
-                                A: `\\( \\vec{v} = (${vx.toFixed(2)}\\hat{i} + ${vy.toFixed(2)}\\hat{j}) \\text{ km/h} \\)`,
-                                B: `\\( \\vec{v} = (${(vx + 4).toFixed(2)}\\hat{i} + ${(vy - 3).toFixed(2)}\\hat{j}) \\text{ km/h} \\)`,
-                                C: `\\( \\vec{v} = (${(vx * 2).toFixed(2)}\\hat{i} + ${(vy * 2).toFixed(2)}\\hat{j}) \\text{ km/h} \\)`,
-                                D: `\\( \\vec{v} = (${rx}\\hat{i} + ${ry}\\hat{j}) \\text{ km/h} \\)`
+                                A: `\\( ${v_med} \\text{ km/h} \\)`,
+                                B: `\\( ${(parseFloat(v_med) + 3.10).toFixed(2)} \\text{ km/h} \\)`,
+                                C: `\\( ${(parseFloat(v_med) * 1.5).toFixed(2)} \\text{ km/h} \\)`,
+                                D: `\\( ${(vx + vy).toFixed(2)} \\text{ km/h} \\)`
                             };
+                            q.explicacion = `Se calcula primero la magnitud o módulo del desplazamiento escalar: \\( d = \\sqrt{(${dx})^2 + (${dy})^2} = ${d_total} \\text{ km} \\). Posteriormente, dividimos el desplazamiento total entre el tiempo para obtener el módulo de la velocidad: \\( v = \\frac{d}{t} = \\frac{${d_total}}{${t}} = ${v_med} \\text{ km/h} \\).`;
                         } else {
-                            let d = val1 * 10;
-                            let v = val2;
-                            let t = (d / v).toFixed(2);
-                            q.pregunta = `Un móvil se desplaza en trayectoria rectilínea a velocidad constante de \\( v = ${v} \\text{ m/s} \\). Calcule el tiempo necesario en segundos para recorrer una distancia lineal de \\( d = ${d} \\text{ m} \\).`;
-                            q.opciones = {
-                                A: `\\( t = ${t} \\text{ s} \\)`,
-                                B: `\\( t = ${(parseFloat(t) + 3.2).toFixed(2)} \\text{ s} \\)`,
-                                C: `\\( t = ${(parseFloat(t) * 0.5).toFixed(2)} \\text{ s} \\)`,
-                                D: `\\( t = ${(d * v).toFixed(2)} \\text{ s} \\)`
-                            };
-                        }
-                        q.explicacion = "En el MRU, la velocidad es una magnitud constante. El desplazamiento vectorial o el tiempo escalar se calculan mediante su relación de proporcionalidad directa lineal.";
-                        break;
-
-                    case "Cinemática - MRUV (Vectorial & Escalar)":
-                        if (i % 2 === 0) {
-                            let v0x = -val1;
-                            let v0y = val2;
-                            let ax = 2;
-                            let ay = -1;
+                            let rx = -s1 * 10;
+                            let ry = s2 * 10;
                             let t = 4;
-                            let vfx = v0x + ax * t;
-                            let vfy = v0y + ay * t;
-                            q.pregunta = `Una partícula ingresa a un deflector con velocidad inicial \\( \\vec{v}_0 = (${v0x}\\hat{i} + ${v0y}\\hat{j}) \\text{ m/s} \\) y experimenta una aceleración constante de \\( \\vec{a} = (${ax}\\hat{i} ${ay >= 0 ? "+" : ""}${ay}\\hat{j}) \\text{ m/s}^2 \\). Calcule su velocidad final al cabo de \\( t = ${t} \\text{ s} \\).`;
+                            let d_mod = Math.sqrt(rx*rx + ry*ry).toFixed(2);
+                            let rap = (d_mod / t).toFixed(2);
+                            
+                            q.pregunta = `Un móvil de pruebas se desplaza en línea recta desde una posición de reposo inicial recorriendo la trayectoria \\( \\vec{r} = (${rx}\\hat{i} + ${ry}\\hat{j}) \\text{ m} \\) en un tiempo de \\( t = ${t} \\text{ s} \\). Calcule el módulo de su velocidad media.`;
                             q.opciones = {
-                                A: `\\( \\vec{v}_f = (${vfx.toFixed(2)}\\hat{i} ${vfy >= 0 ? "+" : ""}${vfy.toFixed(2)}\\hat{j}) \\text{ m/s} \\)`,
-                                B: `\\( \\vec{v}_f = (${(vfx + 2).toFixed(2)}\\hat{i} + ${(vfy + 3).toFixed(2)}\\hat{j}) \\text{ m/s} \\)`,
-                                C: `\\( \\vec{v}_f = (${(v0x).toFixed(2)}\\hat{i} + ${(v0y).toFixed(2)}\\hat{j}) \\text{ m/s} \\)`,
-                                D: `\\( \\vec{v}_f = (0\\hat{i} + 0\\hat{j}) \\text{ m/s} \\)`
+                                A: `\\( ${rap} \\text{ m/s} \\)`,
+                                B: `\\( ${(parseFloat(rap) + 2.50).toFixed(2)} \\text{ m/s} \\)`,
+                                C: `\\( ${(parseFloat(rap) * 0.8).toFixed(2)} \\text{ m/s} \\)`,
+                                D: `\\( ${(parseFloat(rap) + 10).toFixed(2)} \\text{ m/s} \\)`
                             };
-                        } else {
-                            let v0 = val1;
-                            let a = val2;
-                            let t = 5;
-                            let d = (v0 * t + 0.5 * a * t * t).toFixed(2);
-                            q.pregunta = `Un protón acelera con aceleración constante de \\( a = ${a} \\text{ m/s}^2 \\). Si parte con velocidad inicial de \\( v_0 = ${v0} \\text{ m/s} \\), determine la distancia recorrida en los primeros \\( t = ${t} \\text{ s} \\).`;
-                            q.opciones = {
-                                A: `\\( d = ${d} \\text{ m} \\)`,
-                                B: `\\( d = ${(parseFloat(d) * 1.5).toFixed(2)} \\text{ m} \\)`,
-                                C: `\\( d = ${(parseFloat(d) * 0.5).toFixed(2)} \\text{ m} \\)`,
-                                D: `\\( d = ${(v0 * t).toFixed(2)} \\text{ m} \\)`
-                            };
-                        }
-                        q.explicacion = "En el MRUV, la aceleración es constante. Se evalúan las ecuaciones de posición final integrando o analizando los componentes rectangulares independientes de forma analítica.";
-                        break;
-
-                    case "Cinemática - Caída Libre":
-                        let h_cl = (0.5 * GRAVITY * val1 * val1).toFixed(2);
-                        q.pregunta = `Se deja caer una esfera metálica desde el reposo desde la terraza de un edificio. Si choca contra el suelo después de transcurrir exactamente \\( t = ${val1} \\text{ s} \\), determine la altura del edificio. Considere la gravedad estándar de \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
-                        q.opciones = {
-                            A: `\\( h = ${h_cl} \\text{ m} \\)`,
-                            B: `\\( h = ${(h_cl * 0.5).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( h = ${(GRAVITY * val1).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( h = ${(h_cl * 1.35).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = "Dado que el objeto se suelta desde el reposo, su altura se evalúa como: \\( h = \\frac{1}{2}g t^2 \\) utilizando el valor exacto de la gravedad estándar.";
-                        break;
-
-                    case "Cinemática - Movimiento Vertical":
-                        let v0_mv = (GRAVITY * val2).toFixed(1);
-                        let h_max = (0.5 * v0_mv * v0_mv / GRAVITY).toFixed(2);
-                        q.pregunta = `Un proyectil de calibración es disparado verticalmente hacia arriba desde el suelo con una rapidez inicial de \\( v_0 = ${v0_mv} \\text{ m/s} \\). Calcule la altura máxima alcanzada sobre el punto de partida (Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\)).`;
-                        q.opciones = {
-                            A: `\\( H_{max} = ${h_max} \\text{ m} \\)`,
-                            B: `\\( H_{max} = ${(h_max * 1.5).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( H_{max} = ${(h_max * 0.5).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( H_{max} = ${(v0_mv * 2).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = "Al alcanzar la altura máxima, la velocidad instantánea del objeto se reduce transitoriamente a cero. Por ende: \\( H_{max} = \\frac{v_0^2}{2g} \\).";
-                        break;
-
-                    case "Cinemática - Movimiento Compuesto":
-                        let v0_p = val1 + 10;
-                        let alc_p = ((v0_p * v0_p * Math.sin(2 * 45 * Math.PI / 180)) / GRAVITY).toFixed(2);
-                        q.pregunta = `Un proyectil es lanzado con una velocidad inicial de \\( v_0 = ${v0_p} \\text{ m/s} \\) y un ángulo de inclinación de \\( \\theta = 45^\\circ \\). Determine el alcance horizontal de la trayectoria parabólica. Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
-                        q.opciones = {
-                            A: `\\( R = ${alc_p} \\text{ m} \\)`,
-                            B: `\\( R = ${(alc_p * 1.25).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( R = ${(alc_p * 0.5).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( R = ${(v0_p * 2).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = "El alcance horizontal máximo en tiro parabólico se obtiene mediante la ecuación simplificada: \\( R = \\frac{v_0^2 \\cdot \\sin(2\\theta)}{g} \\).";
-                        break;
-
-                    case "Cinemática - MCU":
-                        let radio_mcu = val2;
-                        let periodo_mcu = val1 / 2;
-                        let vt = ((2 * Math.PI * radio_mcu) / periodo_mcu).toFixed(2);
-                        q.pregunta = `Un volante de inercia gira con movimiento circular uniforme con un radio constante de \\( R = ${radio_mcu} \\text{ m} \\). Si tarda un periodo de \\( T = ${periodo_mcu} \\text{ s} \\) por cada vuelta completa, calcule la velocidad tangencial lineal de los puntos extremos del disco.`;
-                        q.opciones = {
-                            A: `\\( v_t = ${vt} \\text{ m/s} \\)`,
-                            B: `\\( v_t = ${(vt * 1.5).toFixed(2)} \\text{ m/s} \\)`,
-                            C: `\\( v_t = ${(vt * 0.5).toFixed(2)} \\text{ m/s} \\)`,
-                            D: `\\( v_t = ${(radio_mcu / periodo_mcu).toFixed(2)} \\text{ m/s} \\)`
-                        };
-                        q.explicacion = "La velocidad tangencial lineal describe la rapidez con la que se recorre el perímetro de la trayectoria: \\( v_t = \\frac{2\\pi R}{T} \\).";
-                        break;
-
-                    case "Dinámica - Leyes de Newton":
-                        let f_newton = val1 * 10;
-                        let a_newton = (f_newton / m).toFixed(2);
-                        q.pregunta = `Un bloque de metal con masa de \\( m = ${m} \\text{ kg} \\) se encuentra sobre una rampa lisa horizontal sin fricción. Si se le imprime una fuerza constante de \\( F = ${f_newton} \\text{ N} \\), ¿qué aceleración lineal adquirirá?`;
-                        q.opciones = {
-                            A: `\\( a = ${a_newton} \\text{ m/s}^2 \\)`,
-                            B: `\\( a = ${(a_newton * 1.4).toFixed(2)} \\text{ m/s}^2 \\)`,
-                            C: `\\( a = ${(a_newton * 0.6).toFixed(2)} \\text{ m/s}^2 \\)`,
-                            D: `\\( a = ${(f_newton * m).toFixed(2)} \\text{ m/s}^2 \\)`
-                        };
-                        q.explicacion = "Basándonos en la Segunda Ley de Newton, la aceleración se despeja de la fuerza neta y masa: \\( a = \\frac{F}{m} \\).";
-                        break;
-
-                    case "Dinámica - Fuerzas":
-                        let normal = (m * GRAVITY * Math.cos(30 * Math.PI / 180)).toFixed(2);
-                        q.pregunta = `Un bloque pesado de masa \\( m = ${m} \\text{ kg} \\) reposa sobre un plano inclinado pulido libre de fricción que forma un ángulo de \\( \\theta = 30^\\circ \\) respecto al plano horizontal. Determine la magnitud de la fuerza normal ejercida por la superficie sobre el bloque. Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
-                        q.opciones = {
-                            A: `\\( N = ${normal} \\text{ N} \\)`,
-                            B: `\\( N = ${(m * GRAVITY).toFixed(2)} \\text{ N} \\)`,
-                            C: `\\( N = ${(m * GRAVITY * 0.5).toFixed(2)} \\text{ N} \\)`,
-                            D: `\\( N = ${(normal * 1.5).toFixed(2)} \\text{ N} \\)`
-                        };
-                        q.explicacion = "La fuerza normal en un plano inclinado equilibra la componente del peso perpendicular a la rampa: \\( N = m \\cdot g \\cdot \\cos(\\theta) \\).";
-                        break;
-
-                    case "Trabajo, Potencia y Energía":
-                        let workSub = i % 3;
-                        if (workSub === 0) {
-                            let f_t = val1 * 10;
-                            let d_t = val2;
-                            let w_t = (f_t * d_t).toFixed(2);
-                            q.pregunta = `Un bloque es empujado sobre un piso horizontal libre de rozamiento por una fuerza constante de \\( F = ${f_t} \\text{ N} \\). Si se desplaza una distancia lineal de \\( d = ${d_t} \\text{ m} \\) de manera colineal, calcule el trabajo mecánico realizado.`;
-                            q.opciones = {
-                                A: `\\( W = ${w_t} \\text{ J} \\)`,
-                                B: `\\( W = ${(w_t * 1.3).toFixed(2)} \\text{ J} \\)`,
-                                C: `\\( W = ${(w_t * 0.5).toFixed(2)} \\text{ J} \\)`,
-                                D: `\\( W = 0 \\text{ J} \\)`
-                            };
-                            q.explicacion = "El trabajo mecánico realizado por una fuerza paralela al desplazamiento se define por el producto directo de la fuerza y la distancia de arrastre: \\( W = F \\cdot d \\).";
-                        } else if (workSub === 1) {
-                            let work_p = val1 * 150;
-                            let time_p = val2;
-                            let power_val = (work_p / time_p).toFixed(2);
-                            q.pregunta = `Una grúa de carga realiza un trabajo mecánico de \\( W = ${work_p} \\text{ J} \\) para elevar un bloque en un lapso de tiempo exacto de \\( t = ${time_p} \\text{ s} \\). Calcule la potencia mecánica desarrollada por el motor.`;
-                            q.opciones = {
-                                A: `\\( P = ${power_val} \\text{ W} \\)`,
-                                B: `\\( P = ${(power_val * 1.5).toFixed(2)} \\text{ W} \\)`,
-                                C: `\\( P = ${(power_val * 0.6).toFixed(2)} \\text{ W} \\)`,
-                                D: `\\( P = ${(work_p * time_p).toFixed(2)} \\text{ W} \\)`
-                            };
-                            q.explicacion = "La potencia mecánica representa la rapidez o tasa temporal con la que se realiza un trabajo útil: \\( P = \\frac{W}{t} \\).";
-                        } else {
-                            let h_cons = val1 + 5;
-                            let speed_cons = Math.sqrt(2 * GRAVITY * h_cons).toFixed(2);
-                            q.pregunta = `Se deja caer una esfera metálica desde una plataforma a una altura de \\( h = ${h_cons} \\text{ m} \\). Utilizando la conservación de la energía mecánica, determine su velocidad de impacto en el suelo. Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
-                            q.opciones = {
-                                A: `\\( v = ${speed_cons} \\text{ m/s} \\)`,
-                                B: `\\( v = ${(speed_cons * 1.5).toFixed(2)} \\text{ m/s} \\)`,
-                                C: `\\( v = ${(speed_cons * 0.5).toFixed(2)} \\text{ m/s} \\)`,
-                                D: `\\( v = ${(2 * GRAVITY * h_cons).toFixed(2)} \\text{ m/s} \\)`
-                            };
-                            q.explicacion = "Por conservación de la energía, la energía potencial gravitatoria inicial se transforma íntegramente en cinética: \\( mgh = \\frac{1}{2}mv^2 \\implies v = \\sqrt{2gh} \\).";
+                            q.explicacion = `Primero obtenemos el módulo escalar del desplazamiento: \\( |\\vec{r}| = \\sqrt{(${rx})^2 + (${ry})^2} = ${d_mod} \\text{ m} \\). Luego, obtenemos la rapidez media mediante la fórmula escalar básica de cinemática: \\( v = \\frac{d}{t} = \\frac{${d_mod}}{${t}} = ${rap} \\text{ m/s} \\).`;
                         }
                         break;
+                    }
 
-                    case "Teoría General de la Física":
-                        let theorySub = i % 5;
-                        if (theorySub === 0) {
-                            q.pregunta = "¿Cuál de las siguientes magnitudes físicas se clasifica rigurosamente como una magnitud escalar en la física general?";
+                    case "Cinemática - MRUV": {
+                        let v0x = s1;
+                        let v0y = -s2;
+                        let ax = 2;
+                        let ay = 1;
+                        let t_mruv = 3;
+                        let vfx = v0x + ax * t_mruv;
+                        let vfy = v0y + ay * t_mruv;
+                        let v0_mag = Math.sqrt(v0x*v0x + v0y*v0y).toFixed(2);
+                        let vf_mag = Math.sqrt(vfx*vfx + vfy*vfy).toFixed(2);
+                        
+                        q.pregunta = `Un cuerpo móvil con velocidad inicial \\( \\vec{v}_0 = (${v0x}\\hat{i} ${v0y >= 0 ? "+" : ""}${v0y}\\hat{j}) \\text{ m/s} \\) acelera de forma constante a razón de \\( \\vec{a} = (${ax}\\hat{i} + ${ay}\\hat{j}) \\text{ m/s}^2 \\) durante un intervalo de \\( t = ${t_mruv} \\text{ s} \\). Determine el módulo de la velocidad final alcanzada.`;
+                        q.opciones = {
+                            A: `\\( ${vf_mag} \\text{ m/s} \\)`,
+                            B: `\\( ${v0_mag} \\text{ m/s} \\)`,
+                            C: `\\( ${(parseFloat(vf_mag) + 4.25).toFixed(2)} \\text{ m/s} \\)`,
+                            D: `\\( ${(vfx + vfy).toFixed(2)} \\text{ m/s} \\)`
+                        };
+                        q.explicacion = `Calculamos primero las componentes cartesianas de la velocidad final: \\( v_{fx} = v_{0x} + a_x t = ${v0x} + (${ax})(${t_mruv}) = ${vfx} \\text{ m/s} \\), y \\( v_{fy} = v_{0y} + a_y t = ${v0y} + (${ay})(${t_mruv}) = ${vfy} \\text{ m/s} \\). El módulo de esta velocidad final es: \\( v_f = \\sqrt{(${vfx})^2 + (${vfy})^2} = ${vf_mag} \\text{ m/s} \\).`;
+                        break;
+                    }
+
+                    case "Cinemática - MCU": {
+                        let r_mcu = s1;
+                        let omega = (s2 / 2).toFixed(2);
+                        let ac = (omega * omega * r_mcu).toFixed(2);
+                        
+                        q.pregunta = `Un satélite en órbita circular uniforme alrededor de un centro de atracción posee un radio de trayectoria de \\( R = ${r_mcu} \\text{ m} \\) y una rapidez angular de \\( \\omega = ${omega} \\text{ rad/s} \\). Determine el valor de su aceleración centrípeta.`;
+                        q.opciones = {
+                            A: `\\( ${ac} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(ac) + 3.15).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(parseFloat(ac) * 0.5).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(omega * r_mcu).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `La aceleración centrípeta se obtiene multiplicando la rapidez angular al cuadrado por el radio de giro: \\( a_c = \\omega^2 \\cdot R = (${omega})^2 \\cdot ${r_mcu} = ${ac} \\text{ m/s}^2 \\).`;
+                        break;
+                    }
+
+                    case "Cinemática - Caída Libre": {
+                        let t_caida = s1;
+                        let h_caida = (0.5 * GRAVITY * t_caida * t_caida).toFixed(2);
+                        
+                        q.pregunta = `Se suelta desde el reposo una esfera metálica en condiciones de vacío desde lo alto de una torre. Si el impacto contra el suelo ocurre a los \\( t = ${t_caida} \\text{ s} \\), determine la altura total de la caída. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${h_caida} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(h_caida) + 15.5).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(GRAVITY * t_caida).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(h_caida) * 0.5).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `Para un objeto soltado desde el reposo en caída libre, la altura recorrida se determina a través del tiempo con la ecuación: \\( h = \\frac{1}{2}g t^2 = 0.5 \\cdot 9.8 \\cdot (${t_caida})^2 = ${h_caida} \\text{ m} \\).`;
+                        break;
+                    }
+
+                    case "Cinemática - Movimiento Vertical": {
+                        let v0_vert = s1 * 10;
+                        let h_max = (v0_vert * v0_vert / (2 * GRAVITY)).toFixed(2);
+                        
+                        q.pregunta = `Se dispara verticalmente hacia arriba un proyectil meteorológico con una rapidez inicial de \\( v_0 = ${v0_vert} \\text{ m/s} \\). Calcule la altura máxima respecto al punto de lanzamiento. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${h_max} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(h_max) + 20).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(v0_vert / GRAVITY).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(h_max) * 2).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `En el punto más alto de la trayectoria vertical, la velocidad del objeto se anula. Usamos la fórmula de altura máxima: \\( H_{max} = \\frac{v_0^2}{2g} = \\frac{(${v0_vert})^2}{2 \\cdot 9.8} = ${h_max} \\text{ m} \\).`;
+                        break;
+                    }
+
+                    case "Cinemática - Movimiento Compuesto": {
+                        let v0_comp = s1 * 12;
+                        let angle_rad = (angle * Math.PI) / 180;
+                        let dist_hor = ((v0_comp * v0_comp * Math.sin(2 * angle_rad)) / GRAVITY).toFixed(2);
+                        let t_comp_alt = 3.5; // Solución al ReferenceError: usamos una variable local de tiempo específica para este bloque
+                        
+                        q.pregunta = `Un cañón de entrenamiento dispara una salva con rapidez inicial de \\( v_0 = ${v0_comp} \\text{ m/s} \\) y un ángulo de tiro de \\( \\theta = ${angle}^\\circ \\) sobre la horizontal. Determine el alcance horizontal de la salva. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${dist_hor} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(dist_hor) + 35).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(v0_comp * t_comp_alt).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(dist_hor) * 0.5).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `El alcance horizontal máximo en tiro parabólico simétrico sobre un terreno llano se calcula con la expresión: \\( R = \\frac{v_0^2 \\sin(2\\theta)}{g} = \\frac{(${v0_comp})^2 \\cdot \\sin(60^\\circ)}{9.8} = ${dist_hor} \\text{ m} \\).`;
+                        break;
+                    }
+
+                    case "Dinámica - Leyes de Newton": {
+                        let f_neta = mass * s1;
+                        let acel = (f_neta / mass).toFixed(2);
+                        
+                        q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) es arrastrado en un plano horizontal sin rozamiento mediante una fuerza externa constante de \\( F = ${f_neta} \\text{ N} \\). Calcule la aceleración lineal que adquiere.`;
+                        q.opciones = {
+                            A: `\\( ${acel} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(acel) + 1.2).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(f_neta * mass).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(parseFloat(acel) * 0.5).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `De acuerdo con la Segunda Ley de Newton, la aceleración es proporcional a la fuerza aplicada sobre el cuerpo: \\( a = \\frac{F}{m} = \\frac{${f_neta}}{${mass}} = ${acel} \\text{ m/s}^2 \\).`;
+                        break;
+                    }
+
+                    case "Dinámica - Planos Inclinados": {
+                        let rad_plano = (angle * Math.PI) / 180;
+                        let aceleracion_plano = (GRAVITY * Math.sin(rad_plano)).toFixed(2);
+                        
+                        q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) se desliza hacia abajo en una rampa lisa (sin fricción) inclinada a un ángulo de \\( \\theta = ${angle}^\\circ \\) sobre la horizontal. Calcule la aceleración de bajada del bloque. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${aceleracion_plano} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(GRAVITY).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(GRAVITY * Math.cos(rad_plano)).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(parseFloat(aceleracion_plano) + 2.1).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `En un plano inclinado liso, la aceleración de descenso depende únicamente de la componente del peso paralela a la superficie: \\( a = g \\sin(\\theta) = 9.8 \\cdot \\sin(${angle}^\\circ) = 9.8 \\cdot 0.5 = ${aceleracion_plano} \\text{ m/s}^2 \\).`;
+                        break;
+                    }
+
+                    case "Trabajo Mecánico": {
+                        let force_work = s1 * 10;
+                        let dist_work = s2 + 2;
+                        let work = (force_work * dist_work).toFixed(2);
+                        
+                        q.pregunta = `Un operario arrastra horizontalmente un embalaje de suministros aplicando una fuerza paralela al suelo de \\( F = ${force_work} \\text{ N} \\) a lo largo de una trayectoria rectilínea de \\( d = ${dist_work} \\text{ m} \\). Calcule el trabajo mecánico útil realizado.`;
+                        q.opciones = {
+                            A: `\\( ${work} \\text{ J} \\)`,
+                            B: `\\( ${(parseFloat(work) * 1.5).toFixed(2)} \\text{ J} \\)`,
+                            C: `\\( ${(parseFloat(work) - 50).toFixed(2)} \\text{ J} \\)`,
+                            D: `\\( 0.00 \\text{ J} \\)`
+                        };
+                        q.explicacion = `Dado que la fuerza es colineal con el desplazamiento del objeto, el trabajo mecánico útil se calcula directamente mediante el producto escalar resuelto: \\( W = F \\cdot d = ${force_work} \\cdot ${dist_work} = ${work} \\text{ J} \\).`;
+                        break;
+                    }
+
+                    case "Potencia Mecánica": {
+                        let work_pot = s1 * 120;
+                        let t_pot = s2 + 1;
+                        let power = (work_pot / t_pot).toFixed(2);
+                        
+                        q.pregunta = `Un motor eléctrico realiza un trabajo neto de \\( W = ${work_pot} \\text{ J} \\) para desplazar de forma constante una carga pesada en un lapso de \\( t = ${t_pot} \\text{ s} \\). Halle la potencia promedio del motor.`;
+                        q.opciones = {
+                            A: `\\( ${power} \\text{ W} \\)`,
+                            B: `\\( ${(parseFloat(power) + 45).toFixed(2)} \\text{ W} \\)`,
+                            C: `\\( ${(parseFloat(power) * 0.5).toFixed(2)} \\text{ W} \\)`,
+                            D: `\\( ${(work_pot * t_pot).toFixed(2)} \\text{ W} \\)`
+                        };
+                        q.explicacion = `La potencia mecánica mide la rapidez o tasa temporal con la que se efectúa el trabajo útil: \\( P = \\frac{W}{t} = \\frac{${work_pot}}{${t_pot}} = ${power} \\text{ W} \\).`;
+                        break;
+                    }
+
+                    case "Conservación de la Energía": {
+                        let h_pot = s1 + 4;
+                        let speed_cons = Math.sqrt(2 * GRAVITY * h_pot).toFixed(2);
+                        
+                        q.pregunta = `Se deja caer una pequeña esfera de metal desde una plataforma a una altura de \\( h = ${h_pot} \\text{ m} \\) con respecto al suelo. Despreciando la fricción con el aire, calcule la rapidez de impacto final aplicando la ley de conservación de energía. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${speed_cons} \\text{ m/s} \\)`,
+                            B: `\\( ${(parseFloat(speed_cons) + 3.5).toFixed(2)} \\text{ m/s} \\)`,
+                            C: `\\( ${(2 * GRAVITY * h_pot).toFixed(2)} \\text{ m/s} \\)`,
+                            D: `\\( ${(parseFloat(speed_cons) * 0.5).toFixed(2)} \\text{ m/s} \\)`
+                        };
+                        q.explicacion = `Por conservación de la energía mecánica, la energía potencial gravitatoria inicial se convierte íntegramente en energía cinética en el fondo: \\( m g h = \\frac{1}{2} m v^2 \\implies v = \\sqrt{2 g h} = \\sqrt{2 \\cdot 9.8 \\cdot ${h_pot}} = ${speed_cons} \\text{ m/s} \\).`;
+                        break;
+                    }
+
+                    case "Teoría General de la Física": {
+                        let t_sub = i % 5;
+                        if (t_sub === 0) {
+                            q.pregunta = "¿Cuál de las siguientes propiedades físicas se define rigurosamente como una magnitud de carácter puramente escalar?";
                             q.opciones = {
-                                A: "La energía mecánica total del sistema",
-                                B: "La aceleración centrípeta del movimiento",
-                                C: "La velocidad vectorial instantánea",
-                                D: "La fuerza normal en un plano inclinado"
+                                A: "La energía mecánica total",
+                                B: "La fuerza normal",
+                                C: "La velocidad de traslación",
+                                D: "La aceleración centrípeta"
                             };
-                            q.explicacion = "La energía es una cantidad escalar ya que se define completamente por su magnitud numérica y unidad física, sin requerir una dirección ni sentido en el espacio.";
-                        } else if (theorySub === 1) {
-                            q.pregunta = "De acuerdo con la Primera Ley de Newton (Inercia), si la fuerza neta que actúa sobre una partícula es exactamente nula, ¿qué se puede afirmar sobre su estado de movimiento?";
+                            q.explicacion = "La energía es una magnitud escalar dado que se define por completo con un número real y su unidad de medida, sin requerir coordenadas espaciales o dirección.";
+                        } else if (t_sub === 1) {
+                            q.pregunta = "De acuerdo con la Primera Ley de Newton (Ley de Inercia), si la resultant de todas las fuerzas externas ejercidas sobre un cuerpo es nula, ¿cuál es el estado mecánico del objeto?";
                             q.opciones = {
-                                A: "Permanecerá en reposo absoluto o continuará en movimiento rectilíneo uniforme.",
-                                B: "Se detendrá inmediatamente debido a la ausencia de fuerzas impulsoras.",
-                                C: "Experimentará un aumento lineal y continuo de su aceleración centrípeta.",
-                                D: "Incrementará su energía potencial gravitatoria de forma exponencial."
+                                A: "El cuerpo permanece en reposo o continúa en movimiento rectilíneo con velocidad constante.",
+                                B: "El cuerpo frena gradualmente hasta quedar detenido.",
+                                C: "El cuerpo adquiere inmediatamente una aceleración constante.",
+                                D: "El cuerpo se moverá describiendo una trayectoria perfectamente circular."
                             };
-                            q.explicacion = "La inercia postula que un cuerpo libre de fuerzas netas externas mantiene su estado de movimiento rectilíneo uniforme (MRU) o reposo absoluto.";
-                        } else if (theorySub === 2) {
-                            q.pregunta = "En un Movimiento Circular Uniforme (MCU), ¿cuál es el comportamiento físico del vector aceleración centrípeta?";
+                            q.explicacion = "La ley de inercia establece que si la fuerza neta es nula, el sistema preservará inalterado su estado actual de reposo o movimiento a velocidad rectilínea constante.";
+                        } else if (t_sub === 2) {
+                            q.pregunta = "En un Movimiento Circular Uniforme (MCU), describa la naturaleza de la aceleración centrípeta.";
                             q.opciones = {
-                                A: "Su magnitud es constante, pero su dirección cambia continuamente apuntando al centro de la trayectoria.",
-                                B: "Tanto su magnitud como su dirección angular son completamente constantes.",
-                                C: "Su magnitud cambia linealmente en el tiempo, pero su dirección es fija en el plano.",
-                                D: "Es nula, ya que la rapidez lineal de la partícula no sufre variaciones."
+                                A: "Su magnitud es constante, pero su dirección cambia de manera constante apuntando siempre al centro orbital.",
+                                B: "Tanto su dirección como su magnitud se mantienen completamente estables.",
+                                C: "Es igual a cero debido a que la rapidez lineal de la partícula no varía.",
+                                D: "Apunta de manera tangente al sentido del movimiento."
                             };
-                            q.explicacion = "La aceleración centrípeta actúa alterando únicamente la dirección del vector de velocidad, apuntando siempre hacia el centro orbital.";
-                        } else if (theorySub === 3) {
-                            q.pregunta = "Según la Tercera Ley de Newton (Acción y Reacción), ¿cuál es la razón por la cual las fuerzas de acción y reacción nunca se anulan recíprocamente?";
+                            q.explicacion = "La aceleración centrípeta es perpendicular a la velocidad lineal en todo instante, variando su vector de orientación para curvar la trayectoria del móvil hacia el centro.";
+                        } else if (t_sub === 3) {
+                            q.pregunta = "Basándonos en la Tercera Ley de Newton (Acción y Reacción), ¿por qué las fuerzas de interacción simétrica que actúan sobre un par físico no se anulan mutuamente?";
                             q.opciones = {
-                                A: "Porque actúan simultáneamente sobre cuerpos completamente distintos.",
-                                B: "Porque poseen magnitudes diferentes dependiendo de la masa de cada objeto.",
-                                C: "Porque actúan en instantes de tiempo separados de forma infinitesimal.",
-                                D: "Porque se propagan de manera ortogonal entre sí en planos cartesianos."
+                                A: "Porque actúan sobre dos cuerpos físicos completamente distintos.",
+                                B: "Porque poseen intensidades distintas dependiendo de la masa de cada objeto.",
+                                C: "Porque ocurren de manera desfasada en el tiempo.",
+                                D: "Porque se aplican en direcciones ortogonales."
                             };
-                            q.explicacion = "Las fuerzas de acción y reacción forman pares de interacción simétrica, pero al actuar en dos cuerpos físicos distintos, nunca pueden equilibrarse en un solo sistema de fuerzas.";
+                            q.explicacion = "El par de acción y reacción está compuesto por dos fuerzas de igual magnitud pero ejercidas sobre objetos distintos, por lo cual no se anulan en un diagrama de cuerpo único.";
                         } else {
-                            q.pregunta = "¿Qué propiedad física fundamental de un sistema mecánico se asocia directamente a la existencia de fuerzas conservativas?";
+                            q.pregunta = "¿Qué propiedad fundamental se asocia a la existencia de fuerzas puramente conservativas?";
                             q.opciones = {
-                                A: "La conservación de la energía mecánica total del sistema.",
-                                B: "La anulación de la fuerza normal en rampa inclinada.",
-                                C: "La disipación de calor mediante rozamiento molecular.",
-                                D: "El incremento indefinido del momento lineal en reposo."
+                                A: "La conservación de la energía mecánica total de un sistema cerrado.",
+                                B: "La anulación de la fuerza normal.",
+                                C: "La disipación total de la energía en forma de calor.",
+                                D: "El aumento constante del momento de inercia."
                             };
-                            q.explicacion = "Las fuerzas conservativas (como la gravedad o la fuerza elástica) permiten que el trabajo realizado a lo largo de un ciclo cerrado sea nulo, conservando la energía mecánica total.";
+                            q.explicacion = "Las fuerzas conservativas (como la gravitatoria o elástica) conservan la energía mecánica útil de un sistema al realizar un trabajo neto nulo sobre ciclos cerrados.";
                         }
                         break;
+                    }
                 }
 
                 questions.push(q);
             }
         }
 
-        /**
-         * Mezclado aleatorio de opciones para romper cualquier patrón sistemático
-         */
+        // SISTEMA ROMPE-PATRONES FISHER-YATES
         function getShuffledOptionsForQuestion(q) {
             let rawOptions = [
                 { originalKey: "A", text: q.opciones.A },
@@ -530,7 +541,7 @@
                 { originalKey: "D", text: q.opciones.D }
             ];
 
-            // Barajado Fisher-Yates
+            // Mezclado Fisher-Yates
             for (let i = rawOptions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [rawOptions[i], rawOptions[j]] = [rawOptions[j], rawOptions[i]];
@@ -554,18 +565,13 @@
             };
         }
 
-        /**
-         * Inicialización e inicio de la simulación interactiva
-         */
-        window.startQuiz = function() {
+        // CONTROL DE INTERACCIONES Y CARGA
+        function startQuiz() {
             document.getElementById("welcome-screen").classList.add("hidden");
             renderMatrix();
             loadQuestion(0);
         }
 
-        /**
-         * Generación de la barra de navegación interactiva inferior (1-150)
-         */
         function renderMatrix() {
             const grid = document.getElementById("matrix-grid");
             grid.innerHTML = "";
@@ -581,24 +587,19 @@
             });
         }
 
-        /**
-         * Carga de una pregunta con renderización dinámica
-         */
         function loadQuestion(idx) {
             activeIndex = idx;
             const q = questions[idx];
             
-            // Resaltar elemento activo en la matriz inferior
+            // Resaltado de celda activa
             document.querySelectorAll(".cell-nav").forEach(btn => btn.classList.remove("ring-4", "ring-blue-500/30", "scale-95", "border-blue-500"));
             const activeCell = document.getElementById(`matrix-btn-${idx}`);
             if (activeCell) activeCell.classList.add("ring-4", "ring-blue-500/30", "scale-95", "border-blue-500");
 
-            // Cargar datos del reactivo
             document.getElementById("active-category").textContent = q.categoria;
             document.getElementById("active-number").textContent = `Reactivo ${q.id} de 150`;
             document.getElementById("question-text-container").innerHTML = q.pregunta;
 
-            // Verificar si ya ha sido respondido o ya se ha barajado
             if (!userAnswers[idx]) {
                 let shuffleData = getShuffledOptionsForQuestion(q);
                 userAnswers[idx] = {
@@ -611,8 +612,6 @@
             }
 
             const state = userAnswers[idx];
-
-            // Renderizar opciones barajadas
             const stack = document.getElementById("options-stack");
             stack.innerHTML = "";
 
@@ -631,7 +630,6 @@
                 stack.appendChild(btn);
             });
 
-            // Validar visualización si ya se respondió previamente
             const feedback = document.getElementById("feedback-panel");
             if (state.answered) {
                 feedback.classList.remove("hidden");
@@ -644,7 +642,6 @@
 
             updateComodinesUI();
 
-            // Renderizar KaTeX
             if (typeof renderMathInElement === "function") {
                 renderMathInElement(document.body, {
                     delimiters: [
@@ -657,9 +654,6 @@
             }
         }
 
-        /**
-         * Comprobación y evaluación de la respuesta seleccionada
-         */
         function checkAnswer(chosenKey) {
             const state = userAnswers[activeIndex];
             if (state.answered) return;
@@ -673,7 +667,6 @@
             revealCorrectStyles(activeIndex);
             disableOptions(true);
 
-            // Reflejar estado cromático en la matriz inferior
             const matrixBtn = document.getElementById(`matrix-btn-${activeIndex}`);
             if (matrixBtn) {
                 matrixBtn.classList.remove("bg-slate-100", "border-slate-200", "text-slate-500");
@@ -687,9 +680,6 @@
             updateScore();
         }
 
-        /**
-         * Muestra la retroalimentación científica tras responder
-         */
         function revealCorrectStyles(idx) {
             const q = questions[idx];
             const state = userAnswers[idx];
@@ -699,7 +689,7 @@
             const fIcon = document.getElementById("feedback-icon");
 
             feedback.classList.remove("hidden");
-            explanation.innerHTML = `<strong>Análisis Científico:</strong><br>${q.explicacion}`;
+            explanation.innerHTML = `<strong>Justificación Técnica:</strong><br>${q.explicacion}`;
 
             if (state.isCorrect) {
                 feedback.className = "bg-emerald-50 border border-emerald-200 rounded-3xl p-6 shadow-sm transition-all duration-300";
@@ -709,13 +699,12 @@
                 fIcon.textContent = "✓";
             } else {
                 feedback.className = "bg-rose-50 border border-rose-200 rounded-3xl p-6 shadow-sm transition-all duration-300";
-                fTitle.textContent = `Respuesta Incorrecta. La opción correcta era la (${state.correctShuffledKey})`;
+                fTitle.textContent = `Respuesta Incorrecta. La opción científica era la (${state.correctShuffledKey})`;
                 fTitle.className = "font-extrabold text-rose-950 text-base md:text-lg";
                 fIcon.className = "w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-lg";
                 fIcon.textContent = "✗";
             }
 
-            // Pintar tarjetas (Verde/Rojo)
             const optionKeys = ["A", "B", "C", "D"];
             optionKeys.forEach(key => {
                 const card = document.getElementById(`option-${key}`);
@@ -757,7 +746,7 @@
             document.getElementById("final-score").textContent = `${score} / 150`;
         }
 
-        window.goToNextQuestion = function() {
+        function goToNextQuestion() {
             let found = false;
             for (let i = 0; i < 150; i++) {
                 let checkIdx = (activeIndex + i + 1) % 150;
@@ -772,16 +761,13 @@
             }
         }
 
-        /**
-         * Comodín 50/50: Despeja exactamente dos respuestas erróneas
-         */
-        window.use5050 = function() {
+        // COMODINES INTERACTIVOS
+        function use5050() {
             if (usedComodines["5050"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
             const incorrectKeys = ["A", "B", "C", "D"].filter(key => key !== state.correctShuffledKey);
             
-            // Mezclar opciones incorrectas para ocultar 2 aleatorias
             for (let i = incorrectKeys.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [incorrectKeys[i], incorrectKeys[j]] = [incorrectKeys[j], incorrectKeys[i]];
@@ -794,10 +780,7 @@
             updateComodinesUI();
         }
 
-        /**
-         * Comodín Eliminar Una: Remueve una opción incorrecta
-         */
-        window.useEliminateOne = function() {
+        function useEliminateOne() {
             if (usedComodines["eliminar"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
@@ -810,32 +793,26 @@
             updateComodinesUI();
         }
 
-        /**
-         * Comodín Llamada: El Tutor Académico te asiste
-         */
-        window.useCallFriend = function() {
+        function useCallFriend() {
             if (usedComodines["llamada"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
-            const tutorExplanation = `«¡Hola! He estado analizando detalladamente este modelo matemático de física. Te sugiero marcar la opción <strong>(${state.correctShuffledKey})</strong>. Si aplicas directamente el despeje de variables correspondientes al tema, verás que es totalmente congruente.»`;
+            const tutorExplanation = `«Estimado alumno, analizando detenidamente el comportamiento físico y aplicando la fórmula de este reactivo, te sugiero enfocar tu atención en el literal de la opción <strong>(${state.correctShuffledKey})</strong>. Recuerda verificar las unidades finales del cálculo.»`;
 
-            openModal("📞 Llamada al Tutor Académico", "Recomendación analítica", tutorExplanation);
+            openModal("📞 Sugerencia del Tutor Académico", "Ayuda didáctica", tutorExplanation);
 
             usedComodines["llamada"] = true;
             updateComodinesUI();
         }
 
-        /**
-         * Comodín Público: Muestra porcentajes sesgados al acierto
-         */
-        window.useAudienceHelp = function() {
+        function useAudienceHelp() {
             if (usedComodines["publico"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
             const keys = ["A", "B", "C", "D"];
             let stats = {};
             
-            let correctPercentage = Math.floor(Math.random() * 20) + 65; // Sesgo de probabilidad (65% - 85%)
+            let correctPercentage = Math.floor(Math.random() * 20) + 65; 
             let remaining = 100 - correctPercentage;
 
             keys.forEach(key => {
@@ -857,7 +834,7 @@
 
             let displayHTML = `
                 <div class="space-y-3">
-                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución porcentual de los votos:</p>
+                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución porcentual del grupo de estudio para este reactivo:</p>
                     ${keys.map(key => `
                         <div>
                             <div class="flex justify-between text-xs font-bold mb-1">
@@ -865,14 +842,14 @@
                                 <span>${stats[key]}%</span>
                             </div>
                             <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                                <div class="bg-blue-600 h-2.5 rounded-full transition-all" style="width: ${stats[key]}%"></div>
+                                <div class="bg-blue-900 h-2.5 rounded-full" style="width: ${stats[key]}%"></div>
                             </div>
                         </div>
                     `).join('')}
                 </div>
             `;
 
-            openModal("📊 Sondeo de Audiencia", "Resultados del grupo de estudio", displayHTML);
+            openModal("📊 Sondeo de Estadística", "Resultados del grupo", displayHTML);
 
             usedComodines["publico"] = true;
             updateComodinesUI();
@@ -900,14 +877,14 @@
             });
         }
 
-        window.openModal = function(title, subtitle, content) {
+        function openModal(title, subtitle, content) {
             document.getElementById("modal-title").textContent = title;
             document.getElementById("modal-subtitle").textContent = subtitle;
             document.getElementById("modal-content").innerHTML = content;
             document.getElementById("custom-modal").classList.remove("hidden");
         }
 
-        window.closeModal = function() {
+        function closeModal() {
             document.getElementById("custom-modal").classList.add("hidden");
         }
 
@@ -915,12 +892,11 @@
             document.getElementById("final-modal").classList.remove("hidden");
         }
 
-        window.restartQuiz = function() {
+        function restartQuiz() {
             userAnswers = {};
             usedComodines = { "5050": false, "eliminar": false, "llamada": false, "publico": false };
             document.getElementById("final-modal").classList.add("hidden");
             
-            // Limpiar clases de la matriz inferior
             for(let i=0; i<150; i++){
                 const matrixBtn = document.getElementById(`matrix-btn-${i}`);
                 if (matrixBtn) {
@@ -932,23 +908,21 @@
             loadQuestion(0);
         }
 
+        // INICIALIZACIÓN
         document.addEventListener("DOMContentLoaded", () => {
             generateQuestionBank();
 
-            // Eventos de botones principales con asignación directa para garantizar respuesta inmediata
             document.getElementById("btn-start-quiz").addEventListener("click", startQuiz);
             document.getElementById("btn-next-question").addEventListener("click", goToNextQuestion);
             document.getElementById("btn-close-modal").addEventListener("click", closeModal);
             document.getElementById("btn-restart-quiz").addEventListener("click", restartQuiz);
 
-            // Eventos de comodines
             document.getElementById("comodin-5050").addEventListener("click", use5050);
             document.getElementById("comodin-eliminar").addEventListener("click", useEliminateOne);
             document.getElementById("comodin-llamada").addEventListener("click", useCallFriend);
             document.getElementById("comodin-publico").addEventListener("click", useAudienceHelp);
         });
 
-        // Navegación accesible por teclado (Enter en tarjetas de respuestas enfocadas)
         document.addEventListener("keydown", (e) => {
             if (e.key === "Enter") {
                 const activeElement = document.activeElement;
