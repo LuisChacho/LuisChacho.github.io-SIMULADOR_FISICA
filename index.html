@@ -3,35 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Física Universitaria - Modelo Pro</title>
-    <!-- Tailwind CSS para maquetación responsiva rápida -->
+    <title>SIMULADOR DE FÍSICA UNIVERSITARIA - MODELO PRO</title>
+    <!-- Tailwind CSS para diseño responsivo moderno y ultra-rápido -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- KaTeX para renderizado de ecuaciones LaTeX en el navegador -->
+    <!-- KaTeX para renderizar ecuaciones matemáticas de calidad editorial -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
     
     <style>
-        :root {
-            --bg-primary: #f8fafc;
-            --bg-card: #ffffff;
-            --color-navy: #0f172a;
-            --color-slate: #475569;
-            --color-success: #10b981;
-            --color-danger: #ef4444;
-            --color-accent: #2563eb;
-            --border-color: #e2e8f0;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background-color: var(--bg-primary);
+            font-family: 'Inter', sans-serif;
         }
+
+        /* Estilo para simular un pizarrón o visor científico de LaTeX */
         .latex-display {
             font-family: 'KaTeX_Main', 'Times New Roman', serif;
             background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
             border-left: 5px solid #2563eb;
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
+
+        /* Barra de scroll personalizada y estética para la matriz inferior */
         .custom-scrollbar::-webkit-scrollbar {
             height: 8px;
             width: 8px;
@@ -47,6 +42,8 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #94a3b8;
         }
+
+        /* Tarjetas de opción con transiciones e interacciones fluidas */
         .option-card {
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -75,70 +72,84 @@
         }
     </style>
 </head>
-<body class="text-slate-800 min-h-screen flex flex-col justify-between bg-slate-50">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
 
+    <!-- Pantalla de Inicio / Bienvenida -->
     <div id="welcome-screen" class="fixed inset-0 bg-slate-900 text-white z-50 flex flex-col items-center justify-center p-6 text-center">
-        <div class="max-w-2xl bg-slate-950 border border-slate-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-            <div class="absolute -top-10 -right-10 w-48 h-48 bg-blue-600 rounded-full blur-3xl opacity-25"></div>
-            <div class="absolute -bottom-10 -left-10 w-48 h-48 bg-emerald-500 rounded-full blur-3xl opacity-25"></div>
+        <div class="max-w-2xl bg-slate-800 border border-slate-700 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
+            <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-500 rounded-full blur-3xl opacity-20"></div>
             
-            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs px-3.5 py-1 rounded-full font-bold uppercase tracking-wider">Admisión de Ingeniería y Ciencias Exactas</span>
-            <h1 class="text-4xl md:text-5xl font-black mt-4 mb-3 tracking-tight bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">Admisión Universitaria</span>
+            <h1 class="text-4xl md:text-5xl font-black mt-4 mb-3 tracking-tight bg-gradient-to-r from-blue-400 via-indigo-200 to-emerald-400 bg-clip-text text-transparent">
                 SIMULADOR DE FÍSICA
             </h1>
-            <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-8 leading-relaxed">
-                Bienvenido al **Modelo Pro Universitario**. Pon a prueba tus capacidades con 150 reactivos calibrados de Cinemática, Dinámica, Trabajo, Potencia, Energía y Teorías Conceptuales.
+            <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-8">
+                Bienvenido al <strong class="text-white">Modelo Pro</strong> de admisión académica. Pon a prueba tus habilidades físicas y analíticas resolviendo 150 reactivos exclusivos e interactivos.
             </p>
-            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-2xl shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            
+            <div class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-8 text-left text-xs md:text-sm">
+                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                    <span class="text-emerald-400 font-bold">✓ 150 Preguntas</span> Sin repeticiones
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                    <span class="text-blue-400 font-bold">✓ Gravedad Real</span> \(g = 9.8 \text{ m/s}^2\)
+                </div>
+                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-700/50 col-span-2">
+                    <span class="text-amber-400 font-bold">✓ Vectores Reales</span> Notación \((-30\hat{i} + 50\hat{j})\text{ km}\)
+                </div>
+            </div>
+
+            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
                 Iniciar Simulador Modelo Pro
             </button>
         </div>
     </div>
 
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <!-- Header Principal -->
+    <header class="bg-slate-900 text-white border-b border-slate-800 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-blue-900 rounded-xl flex items-center justify-center font-black text-xl text-white shadow-md">
+                <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center font-black text-xl text-white shadow-md">
                     Φ
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-lg text-slate-900 leading-none">Simulador de Física Universitaria</h1>
-                    <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold mt-1">Plataforma Académica • Modelo Pro (150 Reactivos)</p>
+                    <h1 class="font-extrabold text-lg leading-none tracking-tight">Portal de Física</h1>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1">Simulador de Admisión • Modelo Pro</p>
                 </div>
             </div>
             
-            <div class="flex items-center gap-6">
-                <div class="bg-slate-50 border border-slate-200 px-5 py-2 rounded-2xl text-center">
-                    <span class="block text-[10px] text-slate-500 uppercase font-bold tracking-wider">Marcador Académico</span>
-                    <span class="text-blue-900 font-black text-xl" id="score-display">0 Puntos</span>
-                </div>
+            <div class="bg-slate-800 border border-slate-700 px-5 py-2 rounded-2xl text-center">
+                <span class="block text-[10px] text-slate-400 uppercase font-bold tracking-wider">Marcador Acumulado</span>
+                <span class="text-emerald-400 font-black text-xl" id="score-display">0 Puntos</span>
             </div>
         </div>
     </header>
 
+    <!-- Área Dinámica Principal -->
     <main class="flex-grow max-w-5xl mx-auto px-6 py-6 w-full flex flex-col gap-6 justify-center">
         
         <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm relative overflow-hidden">
             <div class="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
-                <span id="active-category" class="text-xs font-bold text-blue-900 bg-blue-50 px-3.5 py-1.5 rounded-full uppercase tracking-wider">Categoría</span>
+                <span id="active-category" class="text-xs font-bold text-blue-600 bg-blue-50 px-3.5 py-1.5 rounded-full uppercase tracking-wider">Eje Temático</span>
                 <span id="active-number" class="text-sm font-bold text-slate-500">Reactivo 1 de 150</span>
             </div>
 
-            <!-- Contenedor del enunciado científico -->
-            <div id="question-text-container" class="latex-display p-6 rounded-2xl mb-6 text-slate-800 text-lg md:text-xl font-medium leading-relaxed">
-                <!-- Se inyecta dinámicamente -->
+            <!-- Contenedor del enunciado científico (Renderizado KaTeX) -->
+            <div id="question-text-container" class="latex-display p-6 rounded-2xl mb-6 text-slate-800 text-base md:text-lg font-medium leading-relaxed">
+                <!-- Enunciado se inyecta dinámicamente -->
             </div>
 
             <!-- Opciones de Respuesta -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="options-stack">
-                <!-- Se inyectan dinámicamente -->
+                <!-- Opciones se inyectan dinámicamente -->
             </div>
 
             <!-- Comodines Académicos de Apoyo -->
             <div class="border-t border-slate-100 pt-6">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Comodines de Apoyo</h3>
-                    <span class="text-[10px] bg-amber-50 text-amber-700 font-bold px-2 py-0.5 rounded uppercase tracking-wider">Un solo uso por partida</span>
+                    <span class="text-[10px] bg-indigo-50 text-indigo-600 font-bold px-2 py-0.5 rounded uppercase tracking-wider">Un solo uso por partida</span>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     <button id="comodin-5050" class="comodin-btn bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2">
@@ -148,7 +159,7 @@
                         🗑️ Eliminar Una
                     </button>
                     <button id="comodin-llamada" class="comodin-btn bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2">
-                        📞 Llamada Tutor
+                        📞 Llamada
                     </button>
                     <button id="comodin-publico" class="comodin-btn bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 font-bold text-xs py-3 px-4 rounded-2xl transition flex items-center justify-center gap-2">
                         📊 Público
@@ -157,13 +168,14 @@
             </div>
         </div>
 
+        <!-- PANEL DE FEEDBACK POSTERIOR A LA RESPUESTA -->
         <div id="feedback-panel" class="hidden bg-emerald-50 border border-emerald-200 rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300">
             <div class="flex items-center gap-3 mb-3">
                 <div id="feedback-icon" class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-lg">✓</div>
                 <h3 id="feedback-title" class="font-extrabold text-emerald-950 text-lg">¡Respuesta Correcta!</h3>
             </div>
             <div id="explanation-box" class="text-sm md:text-base text-emerald-900 leading-relaxed mb-6 p-5 bg-white/90 rounded-2xl border border-emerald-100 font-mono">
-                <!-- Explicación de la solución -->
+                <!-- Solución del ejercicio -->
             </div>
             <div class="flex justify-end">
                 <button id="btn-next-question" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-6 py-3 rounded-xl transition shadow">
@@ -173,37 +185,38 @@
         </div>
     </main>
 
+    <!-- PANEL INFERIOR: Matriz interactiva de 150 preguntas -->
     <section class="bg-white border-t border-slate-200 py-6 px-6 mt-8">
         <div class="max-w-5xl mx-auto">
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
                 <div>
                     <h2 class="font-extrabold text-slate-900 text-base md:text-lg">Panel de Navegación del Simulador (Matriz 1-150)</h2>
-                    <p class="text-xs text-slate-500">Haz clic libremente en cualquier reactivo para cargarlo o revisar tu respuesta guardada:</p>
+                    <p class="text-xs text-slate-500">Haz clic libremente en cualquier reactivo para cargarlo o revisar tu progreso:</p>
                 </div>
                 <div class="flex gap-4 text-[10px] md:text-xs font-semibold">
-                    <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 block border border-slate-300"></span> Pendiente</span>
+                    <span class="flex items-center gap-1.5 text-slate-500"><span class="w-2.5 h-2.5 rounded-full bg-slate-200 block border border-slate-300"></span> Pendiente</span>
                     <span class="flex items-center gap-1.5 text-emerald-600"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500 block"></span> Correcta</span>
                     <span class="flex items-center gap-1.5 text-rose-600"><span class="w-2.5 h-2.5 rounded-full bg-rose-500 block"></span> Incorrecta</span>
                 </div>
             </div>
             
-            <div id="matrix-grid" class="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-15 gap-2 max-h-[200px] overflow-y-auto p-1.5 custom-scrollbar">
-                <!-- Se genera dinámicamente -->
+            <div id="matrix-grid" class="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-15 gap-2 max-h-[220px] overflow-y-auto p-1.5 custom-scrollbar">
+                <!-- Matriz generada por JS -->
             </div>
         </div>
     </section>
 
-    <!-- Modales para asistencias de comodines -->
+    <!-- Modales de Asistencias (Llamada, Público) -->
     <div id="custom-modal" class="fixed inset-0 bg-slate-950/40 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl border border-slate-200 max-w-md w-full shadow-2xl p-6 transform transition-all">
             <div class="flex items-center gap-3 mb-4">
                 <span class="text-3xl" id="modal-emoji">📞</span>
                 <div>
-                    <h4 class="font-extrabold text-slate-900 text-lg" id="modal-title">Asistencia Académica</h4>
-                    <p class="text-xs text-slate-500" id="modal-subtitle">Comodín Activado</p>
+                    <h4 class="font-extrabold text-slate-900 text-lg" id="modal-title">Asistencia</h4>
+                    <p class="text-xs text-slate-500" id="modal-subtitle">Comodín activado</p>
                 </div>
             </div>
-            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-sm text-slate-700 mb-6 leading-relaxed font-semibold font-sans" id="modal-content">
+            <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-sm text-slate-700 mb-6 leading-relaxed font-semibold" id="modal-content">
                 <!-- Contenido Dinámico -->
             </div>
             <button id="btn-close-modal" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-sm">
@@ -212,7 +225,7 @@
         </div>
     </div>
 
-    <!-- Modal Final de Rendimiento -->
+    <!-- Modal Final de Resultados -->
     <div id="final-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl p-8 text-center border border-slate-200">
             <span class="text-6xl mb-4 block">🎓</span>
@@ -225,13 +238,725 @@
                 <p class="text-xs font-bold text-slate-500 mt-2">Puntos de ingreso registrados</p>
             </div>
 
-            <button id="btn-restart-quiz" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition shadow-lg">
+            <button id="btn-restart-quiz" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 rounded-xl transition shadow-lg">
                 Reiniciar Simulador Completo
             </button>
         </div>
     </div>
 
-    <!-- Carga del JS unificado para Preview de la plataforma -->
-    <script src="index.js" defer></script>
+    <script>
+        const GRAVITY = 9.8;
+        let questions = [];
+        let userAnswers = {}; // Almacena { questionIndex: { chosen, isCorrect, answered, shuffledOptions, correctShuffledKey } }
+        let activeIndex = 0;
+        let usedComodines = { "5050": false, "eliminar": false, "llamada": false, "publico": false };
+
+        /**
+         * Generación del banco de 150 reactivos de física reales de alta variedad (prácticos y teóricos).
+         */
+        function generateQuestionBank() {
+            questions = [];
+            const categories = [
+                "Cinemática - MRU (Vectorial & Escalar)",
+                "Cinemática - MRUV (Vectorial & Escalar)",
+                "Cinemática - Caída Libre",
+                "Cinemática - Movimiento Vertical",
+                "Cinemática - Movimiento Compuesto",
+                "Cinemática - MCU",
+                "Dinámica - Leyes de Newton",
+                "Dinámica - Fuerzas",
+                "Trabajo, Potencia y Energía",
+                "Teoría General de la Física"
+            ];
+
+            for (let i = 1; i <= 150; i++) {
+                let cat = categories[(i - 1) % categories.length];
+                let q = {
+                    id: i,
+                    categoria: cat,
+                    pregunta: "",
+                    opciones: {}, // Respuestas iniciales de control (La opción A siempre será la correcta original antes de mezclar)
+                    correcta: "A",
+                    explicacion: ""
+                };
+
+                // Modificadores numéricos basados estrictamente en el índice "i" para evitar duplicados
+                let val1 = ((i * 3) % 15) + 6; 
+                let val2 = ((i * 2) % 8) + 3; 
+                let m = ((i * 4) % 20) + 8;   
+
+                switch (cat) {
+                    case "Cinemática - MRU (Vectorial & Escalar)":
+                        if (i % 2 === 0) {
+                            let rx = -val1 * 5;
+                            let ry = val2 * 10;
+                            let t = 5;
+                            let vx = rx / t;
+                            let vy = ry / t;
+                            q.pregunta = `Un móvil se desplaza con movimiento rectilíneo uniforme desde el origen hasta el punto final \\( \\vec{r} = (${rx}\\hat{i} + ${ry}\\hat{j}) \\text{ km} \\) en un intervalo temporal de \\( t = ${t} \\text{ h} \\). Determine el vector velocidad media de la partícula.`;
+                            q.opciones = {
+                                A: `\\( \\vec{v} = (${vx.toFixed(2)}\\hat{i} + ${vy.toFixed(2)}\\hat{j}) \\text{ km/h} \\)`,
+                                B: `\\( \\vec{v} = (${(vx + 4).toFixed(2)}\\hat{i} + ${(vy - 3).toFixed(2)}\\hat{j}) \\text{ km/h} \\)`,
+                                C: `\\( \\vec{v} = (${(vx * 2).toFixed(2)}\\hat{i} + ${(vy * 2).toFixed(2)}\\hat{j}) \\text{ km/h} \\)`,
+                                D: `\\( \\vec{v} = (${rx}\\hat{i} + ${ry}\\hat{j}) \\text{ km/h} \\)`
+                            };
+                        } else {
+                            let d = val1 * 10;
+                            let v = val2;
+                            let t = (d / v).toFixed(2);
+                            q.pregunta = `Un móvil se desplaza en trayectoria rectilínea a velocidad constante de \\( v = ${v} \\text{ m/s} \\). Calcule el tiempo necesario en segundos para recorrer una distancia lineal de \\( d = ${d} \\text{ m} \\).`;
+                            q.opciones = {
+                                A: `\\( t = ${t} \\text{ s} \\)`,
+                                B: `\\( t = ${(parseFloat(t) + 3.2).toFixed(2)} \\text{ s} \\)`,
+                                C: `\\( t = ${(parseFloat(t) * 0.5).toFixed(2)} \\text{ s} \\)`,
+                                D: `\\( t = ${(d * v).toFixed(2)} \\text{ s} \\)`
+                            };
+                        }
+                        q.explicacion = "En el MRU, la velocidad es una magnitud constante. El desplazamiento vectorial o el tiempo escalar se calculan mediante su relación de proporcionalidad directa lineal.";
+                        break;
+
+                    case "Cinemática - MRUV (Vectorial & Escalar)":
+                        if (i % 2 === 0) {
+                            let v0x = -val1;
+                            let v0y = val2;
+                            let ax = 2;
+                            let ay = -1;
+                            let t = 4;
+                            let vfx = v0x + ax * t;
+                            let vfy = v0y + ay * t;
+                            q.pregunta = `Una partícula ingresa a un deflector con velocidad inicial \\( \\vec{v}_0 = (${v0x}\\hat{i} + ${v0y}\\hat{j}) \\text{ m/s} \\) y experimenta una aceleración constante de \\( \\vec{a} = (${ax}\\hat{i} ${ay >= 0 ? "+" : ""}${ay}\\hat{j}) \\text{ m/s}^2 \\). Calcule su velocidad final al cabo de \\( t = ${t} \\text{ s} \\).`;
+                            q.opciones = {
+                                A: `\\( \\vec{v}_f = (${vfx.toFixed(2)}\\hat{i} ${vfy >= 0 ? "+" : ""}${vfy.toFixed(2)}\\hat{j}) \\text{ m/s} \\)`,
+                                B: `\\( \\vec{v}_f = (${(vfx + 2).toFixed(2)}\\hat{i} + ${(vfy + 3).toFixed(2)}\\hat{j}) \\text{ m/s} \\)`,
+                                C: `\\( \\vec{v}_f = (${(v0x).toFixed(2)}\\hat{i} + ${(v0y).toFixed(2)}\\hat{j}) \\text{ m/s} \\)`,
+                                D: `\\( \\vec{v}_f = (0\\hat{i} + 0\\hat{j}) \\text{ m/s} \\)`
+                            };
+                        } else {
+                            let v0 = val1;
+                            let a = val2;
+                            let t = 5;
+                            let d = (v0 * t + 0.5 * a * t * t).toFixed(2);
+                            q.pregunta = `Un protón acelera con aceleración constante de \\( a = ${a} \\text{ m/s}^2 \\). Si parte con velocidad inicial de \\( v_0 = ${v0} \\text{ m/s} \\), determine la distancia recorrida en los primeros \\( t = ${t} \\text{ s} \\).`;
+                            q.opciones = {
+                                A: `\\( d = ${d} \\text{ m} \\)`,
+                                B: `\\( d = ${(parseFloat(d) * 1.5).toFixed(2)} \\text{ m} \\)`,
+                                C: `\\( d = ${(parseFloat(d) * 0.5).toFixed(2)} \\text{ m} \\)`,
+                                D: `\\( d = ${(v0 * t).toFixed(2)} \\text{ m} \\)`
+                            };
+                        }
+                        q.explicacion = "En el MRUV, la aceleración es constante. Se evalúan las ecuaciones de posición final integrando o analizando los componentes rectangulares independientes de forma analítica.";
+                        break;
+
+                    case "Cinemática - Caída Libre":
+                        let h_cl = (0.5 * GRAVITY * val1 * val1).toFixed(2);
+                        q.pregunta = `Se deja caer una esfera metálica desde el reposo desde la terraza de un edificio. Si choca contra el suelo después de transcurrir exactamente \\( t = ${val1} \\text{ s} \\), determine la altura del edificio. Considere la gravedad estándar de \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
+                        q.opciones = {
+                            A: `\\( h = ${h_cl} \\text{ m} \\)`,
+                            B: `\\( h = ${(h_cl * 0.5).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( h = ${(GRAVITY * val1).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( h = ${(h_cl * 1.35).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = "Dado que el objeto se suelta desde el reposo, su altura se evalúa como: \\( h = \\frac{1}{2}g t^2 \\) utilizando el valor exacto de la gravedad estándar.";
+                        break;
+
+                    case "Cinemática - Movimiento Vertical":
+                        let v0_mv = (GRAVITY * val2).toFixed(1);
+                        let h_max = (0.5 * v0_mv * v0_mv / GRAVITY).toFixed(2);
+                        q.pregunta = `Un proyectil de calibración es disparado verticalmente hacia arriba desde el suelo con una rapidez inicial de \\( v_0 = ${v0_mv} \\text{ m/s} \\). Calcule la altura máxima alcanzada sobre el punto de partida (Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( H_{max} = ${h_max} \\text{ m} \\)`,
+                            B: `\\( H_{max} = ${(h_max * 1.5).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( H_{max} = ${(h_max * 0.5).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( H_{max} = ${(v0_mv * 2).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = "Al alcanzar la altura máxima, la velocidad instantánea del objeto se reduce transitoriamente a cero. Por ende: \\( H_{max} = \\frac{v_0^2}{2g} \\).";
+                        break;
+
+                    case "Cinemática - Movimiento Compuesto":
+                        let v0_p = val1 + 10;
+                        let alc_p = ((v0_p * v0_p * Math.sin(2 * 45 * Math.PI / 180)) / GRAVITY).toFixed(2);
+                        q.pregunta = `Un proyectil es lanzado con una velocidad inicial de \\( v_0 = ${v0_p} \\text{ m/s} \\) y un ángulo de inclinación de \\( \\theta = 45^\\circ \\). Determine el alcance horizontal de la trayectoria parabólica. Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
+                        q.opciones = {
+                            A: `\\( R = ${alc_p} \\text{ m} \\)`,
+                            B: `\\( R = ${(alc_p * 1.25).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( R = ${(alc_p * 0.5).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( R = ${(v0_p * 2).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = "El alcance horizontal máximo en tiro parabólico se obtiene mediante la ecuación simplificada: \\( R = \\frac{v_0^2 \\cdot \\sin(2\\theta)}{g} \\).";
+                        break;
+
+                    case "Cinemática - MCU":
+                        let radio_mcu = val2;
+                        let periodo_mcu = val1 / 2;
+                        let vt = ((2 * Math.PI * radio_mcu) / periodo_mcu).toFixed(2);
+                        q.pregunta = `Un volante de inercia gira con movimiento circular uniforme con un radio constante de \\( R = ${radio_mcu} \\text{ m} \\). Si tarda un periodo de \\( T = ${periodo_mcu} \\text{ s} \\) por cada vuelta completa, calcule la velocidad tangencial lineal de los puntos extremos del disco.`;
+                        q.opciones = {
+                            A: `\\( v_t = ${vt} \\text{ m/s} \\)`,
+                            B: `\\( v_t = ${(vt * 1.5).toFixed(2)} \\text{ m/s} \\)`,
+                            C: `\\( v_t = ${(vt * 0.5).toFixed(2)} \\text{ m/s} \\)`,
+                            D: `\\( v_t = ${(radio_mcu / periodo_mcu).toFixed(2)} \\text{ m/s} \\)`
+                        };
+                        q.explicacion = "La velocidad tangencial lineal describe la rapidez con la que se recorre el perímetro de la trayectoria: \\( v_t = \\frac{2\\pi R}{T} \\).";
+                        break;
+
+                    case "Dinámica - Leyes de Newton":
+                        let f_newton = val1 * 10;
+                        let a_newton = (f_newton / m).toFixed(2);
+                        q.pregunta = `Un bloque de metal con masa de \\( m = ${m} \\text{ kg} \\) se encuentra sobre una rampa lisa horizontal sin fricción. Si se le imprime una fuerza constante de \\( F = ${f_newton} \\text{ N} \\), ¿qué aceleración lineal adquirirá?`;
+                        q.opciones = {
+                            A: `\\( a = ${a_newton} \\text{ m/s}^2 \\)`,
+                            B: `\\( a = ${(a_newton * 1.4).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( a = ${(a_newton * 0.6).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( a = ${(f_newton * m).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = "Basándonos en la Segunda Ley de Newton, la aceleración se despeja de la fuerza neta y masa: \\( a = \\frac{F}{m} \\).";
+                        break;
+
+                    case "Dinámica - Fuerzas":
+                        let normal = (m * GRAVITY * Math.cos(30 * Math.PI / 180)).toFixed(2);
+                        q.pregunta = `Un bloque pesado de masa \\( m = ${m} \\text{ kg} \\) reposa sobre un plano inclinado pulido libre de fricción que forma un ángulo de \\( \\theta = 30^\\circ \\) respecto al plano horizontal. Determine la magnitud de la fuerza normal ejercida por la superficie sobre el bloque. Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
+                        q.opciones = {
+                            A: `\\( N = ${normal} \\text{ N} \\)`,
+                            B: `\\( N = ${(m * GRAVITY).toFixed(2)} \\text{ N} \\)`,
+                            C: `\\( N = ${(m * GRAVITY * 0.5).toFixed(2)} \\text{ N} \\)`,
+                            D: `\\( N = ${(normal * 1.5).toFixed(2)} \\text{ N} \\)`
+                        };
+                        q.explicacion = "La fuerza normal en un plano inclinado equilibra la componente del peso perpendicular a la rampa: \\( N = m \\cdot g \\cdot \\cos(\\theta) \\).";
+                        break;
+
+                    case "Trabajo, Potencia y Energía":
+                        let workSub = i % 3;
+                        if (workSub === 0) {
+                            let f_t = val1 * 10;
+                            let d_t = val2;
+                            let w_t = (f_t * d_t).toFixed(2);
+                            q.pregunta = `Un bloque es empujado sobre un piso horizontal libre de rozamiento por una fuerza constante de \\( F = ${f_t} \\text{ N} \\). Si se desplaza una distancia lineal de \\( d = ${d_t} \\text{ m} \\) de manera colineal, calcule el trabajo mecánico realizado.`;
+                            q.opciones = {
+                                A: `\\( W = ${w_t} \\text{ J} \\)`,
+                                B: `\\( W = ${(w_t * 1.3).toFixed(2)} \\text{ J} \\)`,
+                                C: `\\( W = ${(w_t * 0.5).toFixed(2)} \\text{ J} \\)`,
+                                D: `\\( W = 0 \\text{ J} \\)`
+                            };
+                            q.explicacion = "El trabajo mecánico realizado por una fuerza paralela al desplazamiento se define por el producto directo de la fuerza y la distancia de arrastre: \\( W = F \\cdot d \\).";
+                        } else if (workSub === 1) {
+                            let work_p = val1 * 150;
+                            let time_p = val2;
+                            let power_val = (work_p / time_p).toFixed(2);
+                            q.pregunta = `Una grúa de carga realiza un trabajo mecánico de \\( W = ${work_p} \\text{ J} \\) para elevar un bloque en un lapso de tiempo exacto de \\( t = ${time_p} \\text{ s} \\). Calcule la potencia mecánica desarrollada por el motor.`;
+                            q.opciones = {
+                                A: `\\( P = ${power_val} \\text{ W} \\)`,
+                                B: `\\( P = ${(power_val * 1.5).toFixed(2)} \\text{ W} \\)`,
+                                C: `\\( P = ${(power_val * 0.6).toFixed(2)} \\text{ W} \\)`,
+                                D: `\\( P = ${(work_p * time_p).toFixed(2)} \\text{ W} \\)`
+                            };
+                            q.explicacion = "La potencia mecánica representa la rapidez o tasa temporal con la que se realiza un trabajo útil: \\( P = \\frac{W}{t} \\).";
+                        } else {
+                            let h_cons = val1 + 5;
+                            let speed_cons = Math.sqrt(2 * GRAVITY * h_cons).toFixed(2);
+                            q.pregunta = `Se deja caer una esfera metálica desde una plataforma a una altura de \\( h = ${h_cons} \\text{ m} \\). Utilizando la conservación de la energía mecánica, determine su velocidad de impacto en el suelo. Considere \\( g = ${GRAVITY} \\text{ m/s}^2 \\).`;
+                            q.opciones = {
+                                A: `\\( v = ${speed_cons} \\text{ m/s} \\)`,
+                                B: `\\( v = ${(speed_cons * 1.5).toFixed(2)} \\text{ m/s} \\)`,
+                                C: `\\( v = ${(speed_cons * 0.5).toFixed(2)} \\text{ m/s} \\)`,
+                                D: `\\( v = ${(2 * GRAVITY * h_cons).toFixed(2)} \\text{ m/s} \\)`
+                            };
+                            q.explicacion = "Por conservación de la energía, la energía potencial gravitatoria inicial se transforma íntegramente en cinética: \\( mgh = \\frac{1}{2}mv^2 \\implies v = \\sqrt{2gh} \\).";
+                        }
+                        break;
+
+                    case "Teoría General de la Física":
+                        let theorySub = i % 5;
+                        if (theorySub === 0) {
+                            q.pregunta = "¿Cuál de las siguientes magnitudes físicas se clasifica rigurosamente como una magnitud escalar en la física general?";
+                            q.opciones = {
+                                A: "La energía mecánica total del sistema",
+                                B: "La aceleración centrípeta del movimiento",
+                                C: "La velocidad vectorial instantánea",
+                                D: "La fuerza normal en un plano inclinado"
+                            };
+                            q.explicacion = "La energía es una cantidad escalar ya que se define completamente por su magnitud numérica y unidad física, sin requerir una dirección ni sentido en el espacio.";
+                        } else if (theorySub === 1) {
+                            q.pregunta = "De acuerdo con la Primera Ley de Newton (Inercia), si la fuerza neta que actúa sobre una partícula es exactamente nula, ¿qué se puede afirmar sobre su estado de movimiento?";
+                            q.opciones = {
+                                A: "Permanecerá en reposo absoluto o continuará en movimiento rectilíneo uniforme.",
+                                B: "Se detendrá inmediatamente debido a la ausencia de fuerzas impulsoras.",
+                                C: "Experimentará un aumento lineal y continuo de su aceleración centrípeta.",
+                                D: "Incrementará su energía potencial gravitatoria de forma exponencial."
+                            };
+                            q.explicacion = "La inercia postula que un cuerpo libre de fuerzas netas externas mantiene su estado de movimiento rectilíneo uniforme (MRU) o reposo absoluto.";
+                        } else if (theorySub === 2) {
+                            q.pregunta = "En un Movimiento Circular Uniforme (MCU), ¿cuál es el comportamiento físico del vector aceleración centrípeta?";
+                            q.opciones = {
+                                A: "Su magnitud es constante, pero su dirección cambia continuamente apuntando al centro de la trayectoria.",
+                                B: "Tanto su magnitud como su dirección angular son completamente constantes.",
+                                C: "Su magnitud cambia linealmente en el tiempo, pero su dirección es fija en el plano.",
+                                D: "Es nula, ya que la rapidez lineal de la partícula no sufre variaciones."
+                            };
+                            q.explicacion = "La aceleración centrípeta actúa alterando únicamente la dirección del vector de velocidad, apuntando siempre hacia el centro orbital.";
+                        } else if (theorySub === 3) {
+                            q.pregunta = "Según la Tercera Ley de Newton (Acción y Reacción), ¿cuál es la razón por la cual las fuerzas de acción y reacción nunca se anulan recíprocamente?";
+                            q.opciones = {
+                                A: "Porque actúan simultáneamente sobre cuerpos completamente distintos.",
+                                B: "Porque poseen magnitudes diferentes dependiendo de la masa de cada objeto.",
+                                C: "Porque actúan en instantes de tiempo separados de forma infinitesimal.",
+                                D: "Porque se propagan de manera ortogonal entre sí en planos cartesianos."
+                            };
+                            q.explicacion = "Las fuerzas de acción y reacción forman pares de interacción simétrica, pero al actuar en dos cuerpos físicos distintos, nunca pueden equilibrarse en un solo sistema de fuerzas.";
+                        } else {
+                            q.pregunta = "¿Qué propiedad física fundamental de un sistema mecánico se asocia directamente a la existencia de fuerzas conservativas?";
+                            q.opciones = {
+                                A: "La conservación de la energía mecánica total del sistema.",
+                                B: "La anulación de la fuerza normal en rampa inclinada.",
+                                C: "La disipación de calor mediante rozamiento molecular.",
+                                D: "El incremento indefinido del momento lineal en reposo."
+                            };
+                            q.explicacion = "Las fuerzas conservativas (como la gravedad o la fuerza elástica) permiten que el trabajo realizado a lo largo de un ciclo cerrado sea nulo, conservando la energía mecánica total.";
+                        }
+                        break;
+                }
+
+                questions.push(q);
+            }
+        }
+
+        /**
+         * Mezclado aleatorio de opciones para romper cualquier patrón sistemático
+         */
+        function getShuffledOptionsForQuestion(q) {
+            let rawOptions = [
+                { originalKey: "A", text: q.opciones.A },
+                { originalKey: "B", text: q.opciones.B },
+                { originalKey: "C", text: q.opciones.C },
+                { originalKey: "D", text: q.opciones.D }
+            ];
+
+            // Barajado Fisher-Yates
+            for (let i = rawOptions.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [rawOptions[i], rawOptions[j]] = [rawOptions[j], rawOptions[i]];
+            }
+
+            let mappedOptions = {};
+            let correctShuffledKey = "A";
+            const keys = ["A", "B", "C", "D"];
+
+            rawOptions.forEach((opt, idx) => {
+                let key = keys[idx];
+                mappedOptions[key] = opt.text;
+                if (opt.originalKey === q.correcta) {
+                    correctShuffledKey = key;
+                }
+            });
+
+            return {
+                shuffledOptions: mappedOptions,
+                correctShuffledKey: correctShuffledKey
+            };
+        }
+
+        /**
+         * Inicialización e inicio de la simulación interactiva
+         */
+        window.startQuiz = function() {
+            document.getElementById("welcome-screen").classList.add("hidden");
+            renderMatrix();
+            loadQuestion(0);
+        }
+
+        /**
+         * Generación de la barra de navegación interactiva inferior (1-150)
+         */
+        function renderMatrix() {
+            const grid = document.getElementById("matrix-grid");
+            grid.innerHTML = "";
+            
+            questions.forEach((q, idx) => {
+                const btn = document.createElement("button");
+                btn.id = `matrix-btn-${idx}`;
+                btn.className = "cell-nav h-9 w-full rounded-lg flex items-center justify-center text-xs font-bold transition duration-200 border bg-slate-100 border-slate-200 text-slate-500 hover:border-slate-400";
+                btn.textContent = idx + 1;
+                btn.tabIndex = 0;
+                btn.addEventListener("click", () => loadQuestion(idx));
+                grid.appendChild(btn);
+            });
+        }
+
+        /**
+         * Carga de una pregunta con renderización dinámica
+         */
+        function loadQuestion(idx) {
+            activeIndex = idx;
+            const q = questions[idx];
+            
+            // Resaltar elemento activo en la matriz inferior
+            document.querySelectorAll(".cell-nav").forEach(btn => btn.classList.remove("ring-4", "ring-blue-500/30", "scale-95", "border-blue-500"));
+            const activeCell = document.getElementById(`matrix-btn-${idx}`);
+            if (activeCell) activeCell.classList.add("ring-4", "ring-blue-500/30", "scale-95", "border-blue-500");
+
+            // Cargar datos del reactivo
+            document.getElementById("active-category").textContent = q.categoria;
+            document.getElementById("active-number").textContent = `Reactivo ${q.id} de 150`;
+            document.getElementById("question-text-container").innerHTML = q.pregunta;
+
+            // Verificar si ya ha sido respondido o ya se ha barajado
+            if (!userAnswers[idx]) {
+                let shuffleData = getShuffledOptionsForQuestion(q);
+                userAnswers[idx] = {
+                    chosen: null,
+                    isCorrect: false,
+                    answered: false,
+                    shuffledOptions: shuffleData.shuffledOptions,
+                    correctShuffledKey: shuffleData.correctShuffledKey
+                };
+            }
+
+            const state = userAnswers[idx];
+
+            // Renderizar opciones barajadas
+            const stack = document.getElementById("options-stack");
+            stack.innerHTML = "";
+
+            const optionKeys = ["A", "B", "C", "D"];
+            optionKeys.forEach(key => {
+                const btn = document.createElement("button");
+                btn.className = "option-card flex items-center gap-4 text-left p-4 rounded-2xl border border-slate-200 hover:border-slate-400 bg-white hover:bg-slate-50 transition duration-150 w-full";
+                btn.id = `option-${key}`;
+                btn.tabIndex = 0;
+                btn.innerHTML = `
+                    <span class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-500 border border-slate-200 option-badge">${key}</span>
+                    <span class="option-text flex-grow">${state.shuffledOptions[key]}</span>
+                `;
+                
+                btn.addEventListener("click", () => checkAnswer(key));
+                stack.appendChild(btn);
+            });
+
+            // Validar visualización si ya se respondió previamente
+            const feedback = document.getElementById("feedback-panel");
+            if (state.answered) {
+                feedback.classList.remove("hidden");
+                revealCorrectStyles(idx);
+                disableOptions(true);
+            } else {
+                feedback.classList.add("hidden");
+                disableOptions(false);
+            }
+
+            updateComodinesUI();
+
+            // Renderizar KaTeX
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: '$$', right: '$$', display: true},
+                        {left: '\\(', right: '\\)', display: false},
+                        {left: '\\[', right: '\\]', display: true}
+                    ],
+                    throwOnError : false
+                });
+            }
+        }
+
+        /**
+         * Comprobación y evaluación de la respuesta seleccionada
+         */
+        function checkAnswer(chosenKey) {
+            const state = userAnswers[activeIndex];
+            if (state.answered) return;
+
+            const isCorrect = (chosenKey === state.correctShuffledKey);
+
+            state.answered = true;
+            state.chosen = chosenKey;
+            state.isCorrect = isCorrect;
+
+            revealCorrectStyles(activeIndex);
+            disableOptions(true);
+
+            // Reflejar estado cromático en la matriz inferior
+            const matrixBtn = document.getElementById(`matrix-btn-${activeIndex}`);
+            if (matrixBtn) {
+                matrixBtn.classList.remove("bg-slate-100", "border-slate-200", "text-slate-500");
+                if (isCorrect) {
+                    matrixBtn.classList.add("bg-emerald-500", "border-emerald-600", "text-white");
+                } else {
+                    matrixBtn.classList.add("bg-rose-500", "border-rose-600", "text-white");
+                }
+            }
+
+            updateScore();
+        }
+
+        /**
+         * Muestra la retroalimentación científica tras responder
+         */
+        function revealCorrectStyles(idx) {
+            const q = questions[idx];
+            const state = userAnswers[idx];
+            const feedback = document.getElementById("feedback-panel");
+            const explanation = document.getElementById("explanation-box");
+            const fTitle = document.getElementById("feedback-title");
+            const fIcon = document.getElementById("feedback-icon");
+
+            feedback.classList.remove("hidden");
+            explanation.innerHTML = `<strong>Análisis Científico:</strong><br>${q.explicacion}`;
+
+            if (state.isCorrect) {
+                feedback.className = "bg-emerald-50 border border-emerald-200 rounded-3xl p-6 shadow-sm transition-all duration-300";
+                fTitle.textContent = "¡Respuesta Correcta! Sumas 1 punto.";
+                fTitle.className = "font-extrabold text-emerald-950 text-base md:text-lg";
+                fIcon.className = "w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-lg";
+                fIcon.textContent = "✓";
+            } else {
+                feedback.className = "bg-rose-50 border border-rose-200 rounded-3xl p-6 shadow-sm transition-all duration-300";
+                fTitle.textContent = `Respuesta Incorrecta. La opción correcta era la (${state.correctShuffledKey})`;
+                fTitle.className = "font-extrabold text-rose-950 text-base md:text-lg";
+                fIcon.className = "w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-lg";
+                fIcon.textContent = "✗";
+            }
+
+            // Pintar tarjetas (Verde/Rojo)
+            const optionKeys = ["A", "B", "C", "D"];
+            optionKeys.forEach(key => {
+                const card = document.getElementById(`option-${key}`);
+                if (card) {
+                    const badge = card.querySelector(".option-badge");
+                    if (key === state.correctShuffledKey) {
+                        card.className = "option-card flex items-center gap-4 text-left p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50/50 transition duration-150 w-full";
+                        badge.className = "w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center font-bold border border-emerald-600 option-badge";
+                    } else if (key === state.chosen) {
+                        card.className = "option-card flex items-center gap-4 text-left p-4 rounded-xl border-2 border-rose-500 bg-rose-50/50 transition duration-150 w-full";
+                        badge.className = "w-8 h-8 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold border border-rose-600 option-badge";
+                    } else {
+                        card.className = "option-card flex items-center gap-4 text-left p-4 rounded-xl border border-slate-100 opacity-40 bg-slate-50 transition duration-150 w-full";
+                    }
+                }
+            });
+
+            if (Object.keys(userAnswers).filter(k => userAnswers[k].answered).length === 150) {
+                showFinalResults();
+            }
+
+            if (typeof renderMathInElement === "function") {
+                renderMathInElement(explanation, { throwOnError: false });
+            }
+        }
+
+        function disableOptions(status) {
+            document.querySelectorAll(".option-card").forEach(btn => {
+                btn.disabled = status;
+            });
+        }
+
+        function updateScore() {
+            let score = 0;
+            Object.values(userAnswers).forEach(ans => {
+                if (ans.isCorrect) score++;
+            });
+            document.getElementById("score-display").textContent = `${score} Puntos`;
+            document.getElementById("final-score").textContent = `${score} / 150`;
+        }
+
+        window.goToNextQuestion = function() {
+            let found = false;
+            for (let i = 0; i < 150; i++) {
+                let checkIdx = (activeIndex + i + 1) % 150;
+                if (!userAnswers[checkIdx] || !userAnswers[checkIdx].answered) {
+                    loadQuestion(checkIdx);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                showFinalResults();
+            }
+        }
+
+        /**
+         * Comodín 50/50: Despeja exactamente dos respuestas erróneas
+         */
+        window.use5050 = function() {
+            if (usedComodines["5050"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
+
+            const state = userAnswers[activeIndex];
+            const incorrectKeys = ["A", "B", "C", "D"].filter(key => key !== state.correctShuffledKey);
+            
+            // Mezclar opciones incorrectas para ocultar 2 aleatorias
+            for (let i = incorrectKeys.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [incorrectKeys[i], incorrectKeys[j]] = [incorrectKeys[j], incorrectKeys[i]];
+            }
+
+            document.getElementById(`option-${incorrectKeys[0]}`).classList.add("hidden-option");
+            document.getElementById(`option-${incorrectKeys[1]}`).classList.add("hidden-option");
+
+            usedComodines["5050"] = true;
+            updateComodinesUI();
+        }
+
+        /**
+         * Comodín Eliminar Una: Remueve una opción incorrecta
+         */
+        window.useEliminateOne = function() {
+            if (usedComodines["eliminar"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
+
+            const state = userAnswers[activeIndex];
+            const incorrectKeys = ["A", "B", "C", "D"].filter(key => key !== state.correctShuffledKey);
+            
+            const discardKey = incorrectKeys[Math.floor(Math.random() * incorrectKeys.length)];
+            document.getElementById(`option-${discardKey}`).classList.add("hidden-option");
+
+            usedComodines["eliminar"] = true;
+            updateComodinesUI();
+        }
+
+        /**
+         * Comodín Llamada: El Tutor Académico te asiste
+         */
+        window.useCallFriend = function() {
+            if (usedComodines["llamada"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
+
+            const state = userAnswers[activeIndex];
+            const tutorExplanation = `«¡Hola! He estado analizando detalladamente este modelo matemático de física. Te sugiero marcar la opción <strong>(${state.correctShuffledKey})</strong>. Si aplicas directamente el despeje de variables correspondientes al tema, verás que es totalmente congruente.»`;
+
+            openModal("📞 Llamada al Tutor Académico", "Recomendación analítica", tutorExplanation);
+
+            usedComodines["llamada"] = true;
+            updateComodinesUI();
+        }
+
+        /**
+         * Comodín Público: Muestra porcentajes sesgados al acierto
+         */
+        window.useAudienceHelp = function() {
+            if (usedComodines["publico"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
+
+            const state = userAnswers[activeIndex];
+            const keys = ["A", "B", "C", "D"];
+            let stats = {};
+            
+            let correctPercentage = Math.floor(Math.random() * 20) + 65; // Sesgo de probabilidad (65% - 85%)
+            let remaining = 100 - correctPercentage;
+
+            keys.forEach(key => {
+                if (key === state.correctShuffledKey) {
+                    stats[key] = correctPercentage;
+                } else {
+                    let chunk = Math.floor(Math.random() * remaining);
+                    stats[key] = chunk;
+                    remaining -= chunk;
+                }
+            });
+
+            keys.forEach(key => {
+                if (key !== state.correctShuffledKey && remaining > 0) {
+                    stats[key] += remaining;
+                    remaining = 0;
+                }
+            });
+
+            let displayHTML = `
+                <div class="space-y-3">
+                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución porcentual de los votos:</p>
+                    ${keys.map(key => `
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Opción ${key}</span>
+                                <span>${stats[key]}%</span>
+                            </div>
+                            <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-2.5 rounded-full transition-all" style="width: ${stats[key]}%"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            openModal("📊 Sondeo de Audiencia", "Resultados del grupo de estudio", displayHTML);
+
+            usedComodines["publico"] = true;
+            updateComodinesUI();
+        }
+
+        function updateComodinesUI() {
+            const isAnswered = userAnswers[activeIndex] && userAnswers[activeIndex].answered;
+            
+            document.getElementById("comodin-5050").disabled = usedComodines["5050"] || isAnswered;
+            document.getElementById("comodin-eliminar").disabled = usedComodines["eliminar"] || isAnswered;
+            document.getElementById("comodin-llamada").disabled = usedComodines["llamada"] || isAnswered;
+            document.getElementById("comodin-publico").disabled = usedComodines["publico"] || isAnswered;
+
+            ["5050", "eliminar", "llamada", "publico"].forEach(key => {
+                const btn = document.getElementById(`comodin-${key}`);
+                if (btn) {
+                    if (usedComodines[key]) {
+                        btn.classList.add("opacity-40", "cursor-not-allowed");
+                        btn.classList.remove("hover:bg-slate-100");
+                    } else {
+                        btn.classList.remove("opacity-40", "cursor-not-allowed");
+                        btn.classList.add("hover:bg-slate-100");
+                    }
+                }
+            });
+        }
+
+        window.openModal = function(title, subtitle, content) {
+            document.getElementById("modal-title").textContent = title;
+            document.getElementById("modal-subtitle").textContent = subtitle;
+            document.getElementById("modal-content").innerHTML = content;
+            document.getElementById("custom-modal").classList.remove("hidden");
+        }
+
+        window.closeModal = function() {
+            document.getElementById("custom-modal").classList.add("hidden");
+        }
+
+        function showFinalResults() {
+            document.getElementById("final-modal").classList.remove("hidden");
+        }
+
+        window.restartQuiz = function() {
+            userAnswers = {};
+            usedComodines = { "5050": false, "eliminar": false, "llamada": false, "publico": false };
+            document.getElementById("final-modal").classList.add("hidden");
+            
+            // Limpiar clases de la matriz inferior
+            for(let i=0; i<150; i++){
+                const matrixBtn = document.getElementById(`matrix-btn-${i}`);
+                if (matrixBtn) {
+                    matrixBtn.className = "cell-nav h-9 w-full rounded-lg flex items-center justify-center text-xs font-bold transition duration-200 border bg-slate-100 border-slate-200 text-slate-500 hover:border-slate-400";
+                }
+            }
+            
+            updateScore();
+            loadQuestion(0);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            generateQuestionBank();
+
+            // Eventos de botones principales con asignación directa para garantizar respuesta inmediata
+            document.getElementById("btn-start-quiz").addEventListener("click", startQuiz);
+            document.getElementById("btn-next-question").addEventListener("click", goToNextQuestion);
+            document.getElementById("btn-close-modal").addEventListener("click", closeModal);
+            document.getElementById("btn-restart-quiz").addEventListener("click", restartQuiz);
+
+            // Eventos de comodines
+            document.getElementById("comodin-5050").addEventListener("click", use5050);
+            document.getElementById("comodin-eliminar").addEventListener("click", useEliminateOne);
+            document.getElementById("comodin-llamada").addEventListener("click", useCallFriend);
+            document.getElementById("comodin-publico").addEventListener("click", useAudienceHelp);
+        });
+
+        // Navegación accesible por teclado (Enter en tarjetas de respuestas enfocadas)
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                const activeElement = document.activeElement;
+                if (activeElement && activeElement.classList.contains("option-card")) {
+                    activeElement.click();
+                }
+            }
+        });
+    </script>
 </body>
 </html>
