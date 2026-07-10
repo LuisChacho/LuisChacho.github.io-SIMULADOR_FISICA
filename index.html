@@ -18,6 +18,7 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* Estilo pizarra de física de KaTeX */
         .latex-display {
             font-family: 'KaTeX_Main', 'Times New Roman', serif;
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -25,6 +26,7 @@
             box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
         }
 
+        /* Scrollbar personalizado para la matriz */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -61,7 +63,6 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
 
-    <!-- -->
     <!-- PANTALLA DE INGRESO (PORTADA ACADÉMICA LIMPIA) -->
     <div id="welcome-screen" class="fixed inset-0 bg-slate-950 text-white z-50 flex flex-col items-center justify-center p-6 text-center">
         <div class="max-w-xl bg-slate-900 border border-slate-800 p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
@@ -250,7 +251,7 @@
 
         window.FirebaseSDK = { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, getFirestore, doc, getDoc, setDoc };
 
-        /* */
+        /* PARÁMETROS ACADÉMICOS GLOBALES */
         const GRAVITY = 9.8;
         let questions = [];
         let userAnswers = {}; 
@@ -317,7 +318,7 @@
             questions.push({
                 id: 8, categoria: "Cinemática - MRU",
                 pregunta: "Un robot de inspección industrial se desplaza en línea recta desde un punto A hasta un punto B cubriendo un vector \\( \\vec{r} = (-9\\hat{i} + 12\\hat{j}) \\text{ m} \\) en un tiempo de \\( 3 \\text{ s} \\). Halle el módulo de la velocidad del robot.",
-                options: { A: "5.00 m/s", B: "15.00 m/s", C: "3.00 m/s", D: "7.00 m/s" }, correcta: "A",
+                opciones: { A: "5.00 m/s", B: "15.00 m/s", C: "3.00 m/s", D: "7.00 m/s" }, correcta: "A",
                 explicacion: "El módulo del vector es \\( \\sqrt{(-9)^2 + 12^2} = 15 \\text{ m} \\). Dividiendo para el tiempo de \\( 3 \\text{ s} \\), obtenemos una rapidez de \\( 5.00 \\text{ m/s} \\)."
             });
             questions.push({
@@ -392,7 +393,7 @@
                 id: 20, categoria: "Cinemática - MRUV",
                 pregunta: "Teórica: ¿Qué condición matemática se debe cumplir para que la aceleración media calculada en un intervalo de tiempo coincida exactamente con la aceleración instantánea de la partícula?",
                 opciones: { A: "La aceleración de la partícula debe ser constante en todo instante del intervalo.", B: "La velocidad de la partícula debe variar exponencialmente.", C: "El módulo del desplazamiento debe ser estrictamente cero.", D: "La aceleración debe ser una función trigonométrica del tiempo." }, correcta: "A",
-                explicacion: "Si la aceleración es constante en el tiempo (MRUV), su valor instantáneo no cambia y equivale exactamente al valor promedio o medio de la aceleración."
+                explicacion: "La aceleración instantánea coincide con la aceleración media en todo momento únicamente si el movimiento posee aceleración constante (MRUV)."
             });
 
             // MCU & MCUV (21-30)
@@ -406,7 +407,7 @@
                 id: 22, categoria: "Cinemática - MCU",
                 pregunta: "Teórica: En el movimiento circular uniforme (MCU), aunque el módulo del vector velocidad (rapidez lineal) permanece constante, la partícula experimenta una aceleración neta. ¿Cuál es la causa de esto?",
                 opciones: { A: "El cambio continuo en la dirección del vector velocidad en cada instante.", B: "El cambio lineal en la aceleración tangencial rotacional.", C: "La deformación elástica de la partícula debida al rozamiento centrífugo.", D: "La variación de la frecuencia angular neta respecto al tiempo de giro." }, correcta: "A",
-                explicacion: "El vector velocidad es tangente a la trayectoria, por lo que cambia de dirección constantemente. Este cambio de orientación en el tiempo es lo que produce la aceleración centrípeta."
+                explicacion: "El vector velocidad cambia de dirección constantemente. Este cambio de orientación en el tiempo es lo que produce la aceleración centrípeta."
             });
             questions.push({
                 id: 23, categoria: "Cinemática - MCU",
@@ -589,7 +590,7 @@
             questions.push({
                 id: 51, categoria: "Dinámica - Leyes de Newton",
                 pregunta: "Teórica: De acuerdo con la Primera Ley de Newton (Ley de la Inercia), si no actúa ninguna fuerza neta sobre un cuerpo en movimiento en el espacio exterior, ¿qué le sucederá físicamente a dicho cuerpo?",
-                opciones: { A: "Continuará moviéndose en línea recta con velocidad constante indefinidamente.", B: "Se detendrá de manera paulatina debido al desgaste de la inercia motora.", C: "Comenzará a describir una órbita circular uniforme alrededor de la masa más cercana.", D: "Incrementará su aceleración lineal de manera espontánea." }, correcta: "A",
+                opciones: { A: "Continuará moviéndose en línea recta con velocidad constante indefinidamente.", B: "Se detendrá de manera paulatina debido al desgaste de la inercia motora.", C: "Comenzará a describir una órbita circular uniforme alrededor de la masa más cercana.", D: "Incrementará su aceleración lineal de manera de forma espontánea." }, correcta: "A",
                 explicacion: "La inercia es la propiedad de la materia que resiste los cambios en su estado de movimiento. En ausencia de fuerza resultante, un objeto en movimiento conserva su velocidad constante y trayectoria rectilínea."
             });
             questions.push({
@@ -745,7 +746,7 @@
             questions.push({
                 id: 105, categoria: "Trabajo Mecánico",
                 pregunta: "Teórica: ¿Por qué la fuerza de rozamiento dinámico o cinético realiza siempre un trabajo de signo negativo sobre un bloque que desliza por una mesa?",
-                opciones: { A: "Open: Porque el vector fuerza de fricción apunta en sentido contrario al vector velocidad y al vector desplazamiento del bloque (ángulo de 180°).", B: "Porque reduce la masa gravitatoria neta de las superficies.", C: "Porque disminuye la constante de rigidez molecular de los materiales.", D: "Porque la fuerza normal es perpendicular y anula el rozamiento dinámico." }, correcta: "A",
+                opciones: { A: "Porque el vector fuerza de fricción apunta en sentido contrario al vector velocidad y al vector desplazamiento del bloque (ángulo de 180°).", B: "Porque reduce la masa gravitatoria neta de las superficies.", C: "Porque disminuye la constante de rigidez molecular de los materiales.", D: "Porque la fuerza normal es perpendicular y anula el rozamiento dinámico." }, correcta: "A",
                 explicacion: "Al oponerse al movimiento, la fricción actúa a 180° del desplazamiento. El trabajo es \\( W = F \\cdot d \\cdot \\cos(180^\\circ) = -F \\cdot d \\) (trabajo negativo o disipativo)."
             });
 
@@ -869,7 +870,7 @@
             }
         }
 
-        /* */
+        /* ALGORITMO FISHER-YATES DE MEZCLA DINÁMICA ANTI-COPIA */
         function getShuffledOptionsForQuestion(q) {
             let rawOptions = [
                 { originalKey: "A", text: q.opciones.A },
@@ -911,7 +912,7 @@
             loadQuestion(activeIndex);
         }
 
-        /* */
+        /* NAVEGACIÓN LIBRE Y MATRIZ DE RESPUESTAS */
         function renderMatrix() {
             const grid = document.getElementById("matrix-grid");
             if (!grid) return;
@@ -946,7 +947,7 @@
             });
         }
 
-        /* */
+        /* CARGA Y PRESENTACIÓN DE REACTIVO INDIVIDUAL */
         function loadQuestion(idx) {
             activeIndex = idx;
             const q = questions[idx];
@@ -1026,7 +1027,7 @@
             }
         }
 
-        /* */
+        /* EVALUADOR DE RESPUESTA EN CALIENTE */
         function checkAnswer(chosenKey) {
             const state = userAnswers[activeIndex];
             if (state.answered) return;
@@ -1154,7 +1155,7 @@
             saveProgressToDB();
         }
 
-        /* */
+        /* COMODINES DE APOYO DE UN SOLO USO */
         function use5050() {
             if (usedComodines["5050"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
@@ -1292,7 +1293,7 @@
             document.getElementById("final-modal").classList.remove("hidden");
         }
 
-        /* */
+        /* AUTOGUARDADO EN CALIENTE CON FALLBACK EN 120ms */
         async function initDatabaseConnection() {
             const statusBadge = document.getElementById("db-status-badge");
             const sessionDisplay = document.getElementById("session-id-display");
