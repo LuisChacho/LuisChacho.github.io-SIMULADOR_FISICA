@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Física Universitaria - Modelo Pro</title>
-    <!-- Tailwind CSS para diseño institucional moderno -->
+    <!-- Tailwind CSS para diseño adaptable e institucional -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- KaTeX para renderizar ecuaciones matemáticas de calidad editorial -->
+    <!-- KaTeX para renderizar expresiones matemáticas impecables -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -63,35 +63,20 @@
 
     <!-- PANTALLA DE INGRESO -->
     <div id="welcome-screen" class="fixed inset-0 bg-slate-950 text-white z-50 flex flex-col items-center justify-center p-6 text-center">
-        <div class="max-w-2xl bg-slate-900 border border-slate-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden">
+        <div class="max-w-2xl bg-slate-900 border border-slate-800 p-10 rounded-3xl shadow-2xl relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-20"></div>
             <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-600 rounded-full blur-3xl opacity-20"></div>
             
-            <span class="bg-blue-500/10 text-blue-400 border border-blue-500/30 text-xs px-3.5 py-1.5 rounded-full font-bold uppercase tracking-wider">Simulador Oficial</span>
-            <h1 class="text-4xl md:text-5xl font-black mt-4 mb-3 tracking-tight bg-gradient-to-r from-blue-400 via-indigo-200 to-emerald-400 bg-clip-text text-transparent">
-                FÍSICA UNIVERSITARIA
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight bg-gradient-to-r from-blue-400 via-indigo-200 to-emerald-400 bg-clip-text text-transparent">
+                SIMULADOR DE FÍSICA
             </h1>
-            <p class="text-slate-400 text-sm md:text-base max-w-lg mx-auto mb-8">
-                Bienvenido al <strong class="text-white">Modelo Pro V2</strong> interactivo. Resuelve 150 reactivos exclusivos de cinemática (con análisis escalar de vectores), dinámica, trabajo, potencia y energía mecánica avanzada.
+            
+            <p class="text-slate-300 text-sm md:text-base leading-relaxed mt-6 max-w-lg mx-auto mb-10">
+                Objetivo: Evaluar de manera integral y analítica los conocimientos en cinemática, dinámica, trabajo, potencia y energía mecánica, promoviendo el razonamiento deductivo y la resolución activa de problemas mediante el despeje de variables físicas.
             </p>
             
-            <div class="grid grid-cols-2 gap-4 max-w-md mx-auto mb-8 text-left text-xs md:text-sm">
-                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-800">
-                    <span class="text-emerald-400 font-bold">✓ 150 Reactivos Únicos</span> Sin repeticiones
-                </div>
-                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-800">
-                    <span class="text-blue-400 font-bold">✓ Constantes Reales</span> \(g = 9.8 \text{ m/s}^2\)
-                </div>
-                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-800">
-                    <span class="text-amber-400 font-bold">✓ Energía Avanzada</span> Resorte \(k\), masas, \(x\)
-                </div>
-                <div class="bg-slate-900/50 p-3 rounded-lg border border-slate-800">
-                    <span class="text-purple-400 font-bold">✓ Rompe-Patrones</span> Respuestas aleatorias
-                </div>
-            </div>
-
-            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
-                Iniciar Simulador Académico
+            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
+                Iniciar Evaluación
             </button>
         </div>
     </div>
@@ -129,7 +114,7 @@
         <section class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col h-[calc(100vh-140px)] sticky top-24 min-h-[450px]">
             <div class="mb-4">
                 <h2 class="font-extrabold text-slate-900 text-lg tracking-tight">Matriz de Navegación</h2>
-                <p class="text-xs text-slate-500 mt-1">Acceso libre y no lineal. Haz clic en cualquier casilla para cargar el reactivo:</p>
+                <p class="text-xs text-slate-500 mt-1">Navegación libre. Haz clic en cualquier casilla para cargar el reactivo:</p>
             </div>
 
             <!-- Indicadores de estado de respuesta -->
@@ -229,7 +214,7 @@
         <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl p-8 text-center border border-slate-200">
             <span class="text-6xl mb-4 block">🎓</span>
             <h2 class="text-3xl font-black text-slate-900 tracking-tight">Evaluación Concluida</h2>
-            <p class="text-slate-500 text-sm mt-1 max-w-xs mx-auto">Tu resultado global ha sido procesado de acuerdo con los estándares universitarios:</p>
+            <p class="text-slate-500 text-sm mt-1 max-w-xs mx-auto">Tu resultado global ha sido procesado:</p>
             
             <div class="my-8 bg-slate-50 border border-slate-100 rounded-2xl p-6">
                 <span class="text-slate-400 uppercase tracking-widest text-[10px] font-bold block mb-1">Puntaje Final</span>
@@ -243,7 +228,7 @@
         </div>
     </div>
 
-    <!-- MOTOR DE EVALUACIÓN DE FÍSICA -->
+    <!-- MOTOR INTERACTIVO DE FÍSICA -->
     <script>
         const GRAVITY = 9.8;
         let questions = [];
@@ -251,7 +236,7 @@
         let activeIndex = 0;
         let usedComodines = { "5050": false, "eliminar": false, "llamada": false, "publico": false };
 
-        // GENERACIÓN DETERMINISTA DE 150 PREGUNTAS SIN DUPLICADOS (CINEMÁTICA, DINÁMICA, TRABAJO, POTENCIA, ENERGÍA)
+        // GENERACIÓN DETERMINISTA DE 150 PREGUNTAS INDEPENDIENTES CON MÁXIMA VARIEDAD
         function generateQuestionBank() {
             questions = [];
             
@@ -266,295 +251,577 @@
                     explicacion: ""
                 };
 
-                // Asignación equitativa de categorías cubriendo todo el espectro científico requerido
-                if (i <= 15) {
-                    cat = "Cinemática - MRU";
-                    let vx = (i * 3) + 2;
-                    let vy = (i * 2) - 4;
-                    let t = (i % 3) + 2;
-                    let rx = vx * t;
-                    let ry = vy * t;
-                    let d = Math.sqrt(rx*rx + ry*ry).toFixed(2);
-                    let v_med = (Math.sqrt(vx*vx + vy*vy)).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un móvil de pruebas se desplaza según el vector de posición \\( \\vec{r} = (${rx}\\hat{i} ${ry >= 0 ? "+" : ""}${ry}\\hat{j}) \\text{ m} \\) en un intervalo temporal de \\( t = ${t} \\text{ s} \\). Calcule el módulo de su velocidad media (rapidez escalar media).`;
-                    q.opciones = {
-                        A: `\\( ${v_med} \\text{ m/s} \\)`,
-                        B: `\\( ${(parseFloat(v_med) + 3.14).toFixed(2)} \\text{ m/s} \\)`,
-                        C: `\\( ${(parseFloat(v_med) * 0.75).toFixed(2)} \\text{ m/s} \\)`,
-                        D: `\\( ${(parseFloat(v_med) + 12.0).toFixed(2)} \\text{ m/s} \\)`
-                    };
-                    q.explicacion = `Primero obtenemos el módulo de la distancia escalar recorrida como la magnitud de su vector de desplazamiento: \\( |\\vec{r}| = \\sqrt{(${rx})^2 + (${ry})^2} = ${d} \\text{ m} \\). A continuación, calculamos el módulo de la velocidad mediante la fórmula escalar: \\( v = \\frac{d}{t} = \\frac{${d}}{${t}} = ${v_med} \\text{ m/s} \\).`;
-                
-                } else if (i <= 30) {
-                    cat = "Cinemática - MRUV";
-                    let v0x = (i % 5) + 3;
-                    let v0y = (i % 3) - 5;
-                    let ax = 2;
-                    let ay = 1;
-                    let t = 3;
-                    let vfx = v0x + ax * t;
-                    let vfy = v0y + ay * t;
-                    let vf_mag = Math.sqrt(vfx*vfx + vfy*vfy).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Una partícula con velocidad inicial \\( \\vec{v}_0 = (${v0x}\\hat{i} ${v0y >= 0 ? "+" : ""}${v0y}\\hat{j}) \\text{ m/s} \\) experimenta una aceleración constante de \\( \\vec{a} = (${ax}\\hat{i} + ${ay}\\hat{j}) \\text{ m/s}^2 \\) durante \\( t = ${t} \\text{ s} \\). Determine el módulo de su velocidad final.`;
-                    q.opciones = {
-                        A: `\\( ${vf_mag} \\text{ m/s} \\)`,
-                        B: `\\( ${(parseFloat(vf_mag) - 4.10).toFixed(2)} \\text{ m/s} \\)`,
-                        B: `\\( ${(parseFloat(vf_mag) * 1.3).toFixed(2)} \\text{ m/s} \\)`,
-                        C: `\\( ${(v0x + ax*t).toFixed(2)} \\text{ m/s} \\)`,
-                        D: `\\( ${(parseFloat(vf_mag) + 7.5).toFixed(2)} \\text{ m/s} \\)`
-                    };
-                    q.explicacion = `Se calculan de forma independiente las componentes rectangulares cartesianas finales: \\( v_{fx} = v_{0x} + a_x t = ${v0x} + (${ax})(${t}) = ${vfx} \\text{ m/s} \\) e \\( v_{fy} = v_{0y} + a_y t = ${v0y} + (${ay})(${t}) = ${vfy} \\text{ m/s} \\). Finalmente, resolvemos el módulo escalar como: \\( v_f = \\sqrt{(${vfx})^2 + (${vfy})^2} = ${vf_mag} \\text{ m/s} \\).`;
-                
-                } else if (i <= 45) {
-                    cat = "Cinemática - MCU";
-                    let r = (i % 6) + 2;
-                    let f = (i % 4) + 1; // Frecuencia en Hz
-                    let w = (2 * Math.PI * f).toFixed(2);
-                    let ac = (w * w * r).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un volante gira con movimiento circular uniforme con una frecuencia constante de \\( f = ${f} \\text{ Hz} \\). Si una partícula en el borde dista un radio de \\( R = ${r} \\text{ m} \\) del eje de giro, determine la aceleración centrípeta ejercida.`;
-                    q.opciones = {
-                        A: `\\( ${ac} \\text{ m/s}^2 \\)`,
-                        B: `\\( ${(parseFloat(ac) + 25.4).toFixed(2)} \\text{ m/s}^2 \\)`,
-                        C: `\\( ${(parseFloat(ac) * 0.5).toFixed(2)} \\text{ m/s}^2 \\)`,
-                        D: `\\( ${(w * r).toFixed(2)} \\text{ m/s}^2 \\)`
-                    };
-                    q.explicacion = `Se calcula primero la velocidad angular: \\( \\omega = 2\\pi f = 2\\pi(${f}) = ${w} \\text{ rad/s} \\). La aceleración centrípeta correspondiente se obtiene aplicando la fórmula: \\( a_c = \\omega^2 R = (${w})^2 \\cdot ${r} = ${ac} \\text{ m/s}^2 \\).`;
-                
-                } else if (i <= 60) {
-                    cat = "Cinemática - Caída Libre";
-                    let t = (i % 4) + 2;
-                    let h = (0.5 * GRAVITY * t * t).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Se suelta un cuerpo metálico desde reposo en condiciones de vacío. Si el cuerpo impacta el suelo tras un tiempo de caída libre de \\( t = ${t} \\text{ s} \\), calcule la altura de descenso. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                    q.opciones = {
-                        A: `\\( ${h} \\text{ m} \\)`,
-                        B: `\\( ${(parseFloat(h) + 12.5).toFixed(2)} \\text{ m} \\)`,
-                        C: `\\( ${(GRAVITY * t).toFixed(2)} \\text{ m} \\)`,
-                        D: `\\( ${(parseFloat(h) * 0.5).toFixed(2)} \\text{ m} \\)`
-                    };
-                    q.explicacion = `Para un objeto soltado desde el reposo en caída libre, la altura recorrida se determina a partir del intervalo de tiempo con la fórmula estándar: \\( h = \\frac{1}{2}g t^2 = 0.5 \\cdot 9.8 \\cdot (${t})^2 = ${h} \\text{ m} \\).`;
-                
-                } else if (i <= 75) {
-                    cat = "Cinemática - Movimiento Vertical";
-                    let v0 = (i % 5) * 5 + 15;
-                    let h_max = (v0 * v0 / (2 * GRAVITY)).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un cuerpo es proyectado verticalmente hacia arriba con una velocidad de lanzamiento inicial de \\( v_0 = ${v0} \\text{ m/s} \\). Calcule la altura máxima alcanzada respecto al suelo. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                    q.opciones = {
-                        A: `\\( ${h_max} \\text{ m} \\)`,
-                        B: `\\( ${(parseFloat(h_max) + 5.25).toFixed(2)} \\text{ m} \\)`,
-                        C: `\\( ${(v0 / GRAVITY).toFixed(2)} \\text{ m} \\)`,
-                        D: `\\( ${(parseFloat(h_max) * 1.5).toFixed(2)} \\text{ m} \\)`
-                    };
-                    q.explicacion = `En el punto más alto del tiro vertical, la velocidad instantánea se anula. Aplicando la ecuación escalar de altura máxima: \\( H_{max} = \\frac{v_0^2}{2g} = \\frac{(${v0})^2}{2 \\cdot 9.8} = ${h_max} \\text{ m} \\).`;
-                
-                } else if (i <= 90) {
-                    cat = "Cinemática - Movimiento Compuesto";
-                    let v0 = (i % 6) * 4 + 20;
-                    let angulo = 30; // grados
-                    let rad = (angulo * Math.PI) / 180;
-                    let dist_hor = ((v0 * v0 * Math.sin(2 * rad)) / GRAVITY).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un cañón neumático dispara un proyectil de pruebas con velocidad inicial de \\( v_0 = ${v0} \\text{ m/s} \\) y un ángulo de tiro de \\( 30^\\circ \\) sobre la horizontal. Halle su alcance horizontal máximo sobre terreno plano. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                    q.opciones = {
-                        A: `\\( ${dist_hor} \\text{ m} \\)`,
-                        B: `\\( ${(parseFloat(dist_hor) + 15.0).toFixed(2)} \\text{ m} \\)`,
-                        C: `\\( ${(parseFloat(dist_hor) * 0.75).toFixed(2)} \\text{ m} \\)`,
-                        D: `\\( ${(v0 * v0 / GRAVITY).toFixed(2)} \\text{ m} \\)`
-                    };
-                    q.explicacion = `El alcance horizontal máximo en tiro parabólico simétrico sobre un plano horizontal se obtiene con la relación matemática: \\( R = \\frac{v_0^2 \\sin(2\\theta)}{g} = \\frac{(${v0})^2 \\cdot \\sin(60^\\circ)}{9.8} = ${dist_hor} \\text{ m} \\).`;
-                
-                } else if (i <= 100) {
-                    cat = "Dinámica - Leyes de Newton";
-                    let mass = (i % 5) + 3;
-                    let f = (i * 3) + 12;
-                    let a = (f / mass).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) reposa sobre una superficie plana lisa horizontal. Si se le aplica una fuerza horizontal constante de \\( F = ${f} \\text{ N} \\), calcule el módulo de la aceleración constante producida.`;
-                    q.opciones = {
-                        A: `\\( ${a} \\text{ m/s}^2 \\)`,
-                        B: `\\( ${(parseFloat(a) + 1.25).toFixed(2)} \\text{ m/s}^2 \\)`,
-                        C: `\\( ${(f * mass).toFixed(2)} \\text{ m/s}^2 \\)`,
-                        D: `\\( ${(parseFloat(a) * 0.8).toFixed(2)} \\text{ m/s}^2 \\)`
-                    };
-                    q.explicacion = `Según la segunda ley de Newton para movimiento rectilíneo sobre un plano sin fricción, la aceleración es proporcional a la fuerza neta aplicada: \\( a = \\frac{F}{m} = \\frac{${f}}{${mass}} = ${a} \\text{ m/s}^2 \\).`;
-                
-                } else if (i <= 110) {
-                    cat = "Dinámica - Planos Inclinados";
-                    let angulo = 30; // grados
-                    let rad = (angulo * Math.PI) / 180;
-                    let mass = (i % 4) + 4;
-                    let normal = (mass * GRAVITY * Math.cos(rad)).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) desliza sobre un plano inclinado liso que forma un ángulo de \\( 30^\\circ \\) con la horizontal. Halle el módulo de la fuerza de reacción normal ejercida por el plano. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                    q.opciones = {
-                        A: `\\( ${normal} \\text{ N} \\)`,
-                        B: `\\( ${(parseFloat(normal) + 8.4).toFixed(2)} \\text{ N} \\)`,
-                        C: `\\( ${(mass * GRAVITY).toFixed(2)} \\text{ N} \\)`,
-                        D: `\\( ${(parseFloat(normal) * 0.5).toFixed(2)} \\text{ N} \\)`
-                    };
-                    q.explicacion = `Dado que no hay movimiento acelerado en el eje perpendicular a la superficie de deslizamiento del plano inclinado, la fuerza normal equilibra a la componente del peso en ese eje: \\( N = m g \\cos(\\theta) = ${mass} \\cdot 9.8 \\cdot \\cos(30^\\circ) = ${normal} \\text{ N} \\).`;
-                
-                } else if (i <= 120) {
-                    cat = "Trabajo Mecánico";
-                    let f = (i * 2) + 10;
-                    let d = (i % 5) + 3;
-                    let angulo = 60; // grados
-                    let rad = (angulo * Math.PI) / 180;
-                    let work = (f * d * Math.cos(rad)).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un bloque de arrastre es jalado por una fuerza constante de \\( F = ${f} \\text{ N} \\) con un ángulo de \\( 60^\\circ \\) respecto al plano horizontal de la trayectoria. Si el bloque recorre una distancia de \\( d = ${d} \\text{ m} \\), halle el trabajo mecánico realizado.`;
-                    q.opciones = {
-                        A: `\\( ${work} \\text{ J} \\)`,
-                        B: `\\( ${(parseFloat(work) * 1.5).toFixed(2)} \\text{ J} \\)`,
-                        C: `\\( ${(f * d).toFixed(2)} \\text{ J} \\)`,
-                        D: `\\( 0.00 \\text{ J} \\)`
-                    };
-                    q.explicacion = `El trabajo mecánico realizado por una fuerza constante aplicada con un cierto ángulo de inclinación respecto a la dirección del desplazamiento está definido por el producto escalar: \\( W = F \\cdot d \\cdot \\cos(\\theta) = ${f} \\cdot ${d} \\cdot \\cos(60^\\circ) = ${work} \\text{ J} \\).`;
-                
-                } else if (i <= 130) {
-                    cat = "Potencia Mecánica";
-                    let f = (i * 5) + 100;
-                    let v = (i % 4) + 2;
-                    let power = (f * v).toFixed(2);
-                    
-                    q.categoria = cat;
-                    q.pregunta = `Un elevador industrial de carga levanta un peso a velocidad constante de \\( v = ${v} \\text{ m/s} \\) ejerciendo una fuerza de tensión constante de \\( F = ${f} \\text{ N} \\). Halle la potencia promedio del motor.`;
-                    q.opciones = {
-                        A: `\\( ${power} \\text{ W} \\)`,
-                        B: `\\( ${(parseFloat(power) + 120.0).toFixed(2)} \\text{ W} \\)`,
-                        C: `\\( ${(parseFloat(power) / 746).toFixed(2)} \\text{ W} \\)`,
-                        D: `\\( ${(parseFloat(power) * 0.5).toFixed(2)} \\text{ W} \\)`
-                    };
-                    q.explicacion = `La potencia mecánica instantánea desarrollada para un objeto que se desplaza de manera colineal a velocidad constante bajo una fuerza constante se determina mediante el producto escalar resuelto: \\( P = F \\cdot v = ${f} \\cdot ${v} = ${power} \\text{ W} \\).`;
-                
-                // MÓDULO DE ENERGÍA AVANZADO E INTERACTIVO (Reactivos 131 al 142)
-                } else if (i <= 142) {
-                    cat = "Conservación de la Energía";
-                    let sub = i % 4;
-                    
+                // Segmentación de 15 categorías con 10 preguntas por categoría para exactitud de 150 ítems
+                if (i <= 10) {
+                    // CATEGORÍA 1: VECTORES Y MRU (Cálculo de velocidades escalares y despejes de tiempo/distancia a partir de vectores rectangulares)
+                    cat = "Vectores y MRU";
+                    let sub = i % 2;
                     if (sub === 0) {
-                        // ENERGÍA POTENCIAL ELÁSTICA: Calcular la constante del resorte k
-                        let x = 0.20; // 20 cm
-                        let ee = (i * 5) + 20; // Energía en Joules
-                        let k = (2 * ee / (x * x)).toFixed(2);
-                        
+                        let rx = -2 * i - 10;
+                        let ry = 3 * i + 15;
+                        let t = i + 1;
+                        let r_mod = Math.sqrt(rx*rx + ry*ry);
+                        let v = (r_mod / t).toFixed(2);
                         q.categoria = cat;
-                        q.pregunta = `Un resorte de masa despreciable es comprimido una distancia horizontal de \\( x = ${x} \\text{ m} \\) con respecto a su posición de equilibrio, acumulando una energía potencial elástica de \\( E_e = ${ee} \\text{ J} \\). Halle el valor de la constante de elasticidad \\( k \\) del resorte.`;
+                        q.pregunta = `Una partícula experimenta un desplazamiento rectilíneo uniforme definido por el vector de posición \\( \\vec{r} = (${rx}\\hat{i} + ${ry}\\hat{j}) \\text{ km} \\) en un tiempo de \\( t = ${t} \\text{ h} \\). Determine el módulo de su velocidad media (rapidez media escalar).`;
+                        q.opciones = {
+                            A: `\\( ${v} \\text{ km/h} \\)`,
+                            B: `\\( ${(parseFloat(v) + 4.15).toFixed(2)} \\text{ km/h} \\)`,
+                            C: `\\( ${(parseFloat(v) * 0.65).toFixed(2)} \\text{ km/h} \\)`,
+                            D: `\\( ${(parseFloat(v) + 11.20).toFixed(2)} \\text{ km/h} \\)`
+                        };
+                        q.explicacion = `El módulo del desplazamiento total recorrido es el módulo del vector de posición: \\( |\\vec{r}| = \\sqrt{(${rx})^2 + (${ry})^2} = ${r_mod.toFixed(2)} \\text{ km} \\). La rapidez escalar media se define como la distancia total dividida por el tiempo transcurrido: \\( v = \\frac{|\\vec{r}|}{t} = \\frac{${r_mod.toFixed(2)}}{${t}} = ${v} \\text{ km/h} \\).`;
+                    } else {
+                        // Despeje de tiempo
+                        let rx = 5 * i + 12;
+                        let ry = -2 * i - 8;
+                        let v = (2 * i + 5);
+                        let r_mod = Math.sqrt(rx*rx + ry*ry);
+                        let t = (r_mod / v).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un dron se desplaza con rapidez constante de \\( ${v} \\text{ m/s} \\) describiendo el vector trayecto \\( \\vec{d} = (${rx}\\hat{i} ${ry >= 0 ? "+" : ""}${ry}\\hat{j}) \\text{ m} \\). Calcule el tiempo requerido para completar dicho recorrido.`;
+                        q.opciones = {
+                            A: `\\( ${t} \\text{ s} \\)`,
+                            B: `\\( ${(parseFloat(t) + 3.25).toFixed(2)} \\text{ s} \\)`,
+                            C: `\\( ${(parseFloat(t) * 1.5).toFixed(2)} \\text{ s} \\)`,
+                            D: `\\( ${(parseFloat(t) - 1.10).toFixed(2)} \\text{ s} \\)`
+                        };
+                        q.explicacion = `Obtenemos la distancia como la magnitud del vector trayecto: \\( d = \\sqrt{(${rx})^2 + (${ry})^2} = ${r_mod.toFixed(2)} \\text{ m} \\). Despejando el intervalo de tiempo del MRU estándar: \\( t = \\frac{d}{v} = \\frac{${r_mod.toFixed(2)}}{${v}} = ${t} \\text{ s} \\).`;
+                    }
+
+                } else if (i <= 20) {
+                    // CATEGORÍA 2: MRUV (Aceleraciones y despejes con vectores)
+                    cat = "Cinemática - MRUV";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let v0x = -3 * i;
+                        let v0y = 4 * i;
+                        let v0_mag = Math.sqrt(v0x*v0x + v0y*v0y);
+                        let a_scalar = 2.5;
+                        let t = 4;
+                        let vf = (v0_mag + a_scalar * t).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un móvil inicia su movimiento con velocidad vectorial de \\( \\vec{v}_0 = (${v0x}\\hat{i} + ${v0y}\\hat{j}) \\text{ m/s} \\). Si experimenta una aceleración colineal constante cuyo módulo es de \\( a = ${a_scalar} \\text{ m/s}^2 \\) durante \\( t = ${t} \\text{ s} \\), determine el módulo de su velocidad final.`;
+                        q.opciones = {
+                            A: `\\( ${vf} \\text{ m/s} \\)`,
+                            B: `\\( ${(parseFloat(vf) + 12.4).toFixed(2)} \\text{ m/s} \\)`,
+                            C: `\\( ${(parseFloat(vf) * 0.7).toFixed(2)} \\text{ m/s} \\)`,
+                            D: `\\( ${(parseFloat(vf) - 5.5).toFixed(2)} \\text{ m/s} \\)`
+                        };
+                        q.explicacion = `Calculamos el módulo de la velocidad inicial: \\( v_0 = \\sqrt{(${v0x})^2 + (${v0y})^2} = ${v0_mag.toFixed(2)} \\text{ m/s} \\). Al tratarse de una aceleración colineal en el sentido de la velocidad, aplicamos: \\( v_f = v_0 + a t = ${v0_mag.toFixed(2)} + (${a_scalar} \\cdot ${t}) = ${vf} \\text{ m/s} \\).`;
+                    } else {
+                        // Despeje de aceleración
+                        let v0_mag = 5 * (i - 9);
+                        let vf_mag = 12 * (i - 9);
+                        let t = 5;
+                        let a = ((vf_mag - v0_mag) / t).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un tren bala acelera de manera uniforme. El módulo de su velocidad inicial es \\( v_0 = ${v0_mag} \\text{ m/s} \\) y, tras un intervalo temporal de \\( t = ${t} \\text{ s} \\), su velocidad alcanza un módulo de \\( v_f = ${vf_mag} \\text{ m/s} \\). Halle el módulo de la aceleración constante producida en este tramo.`;
+                        q.opciones = {
+                            A: `\\( ${a} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(a) + 1.8).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(parseFloat(a) * 0.5).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(parseFloat(a) + 6.3).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `Despejando la aceleración de la relación fundamental de velocidad en el MRUV: \\( a = \\frac{v_f - v_0}{t} = \\frac{${vf_mag} - ${v0_mag}}{${t}} = ${a} \\text{ m/s}^2 \\).`;
+                    }
+
+                } else if (i <= 30) {
+                    // CATEGORÍA 3: CAÍDA LIBRE (Uso de g = 9.8 m/s^2, despeje de gravedades en planetas ficticios)
+                    cat = "Cinemática - Caída Libre";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let t = i - 16; // 6, 8, 10...
+                        let h = (0.5 * GRAVITY * t * t).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un bloque de concreto se suelta desde lo alto de una torre de control de lanzamiento. Si tarda un tiempo exacto de \\( t = ${t} \\text{ s} \\) en golpear el suelo, determine la altura de la torre. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${h} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(h) + 20.5).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(parseFloat(h) * 0.85).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(h) - 45.1).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `Para un objeto soltado libremente desde el reposo, la distancia de descenso se calcula con la ecuación escalar: \\( h = \\frac{1}{2}g t^2 = 0.5 \\cdot 9.8 \\cdot (${t})^2 = ${h} \\text{ m} \\).`;
+                    } else {
+                        // Despeje de la gravedad en otro planeta
+                        let h = 100 + (i * 5);
+                        let t = (i - 17).toFixed(1); // ej 4.0s
+                        let g_planet = ((2 * h) / (t * t)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un módulo espacial de exploración deja caer un instrumento de medición desde una altura de \\( h = ${h} \\text{ m} \\) en un planeta desconocido. Los sensores registran que el impacto se produce después de \\( t = ${t} \\text{ s} \\). Calcule la aceleración de la gravedad de este cuerpo celeste.`;
+                        q.opciones = {
+                            A: `\\( ${g_planet} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(g_planet) + 1.5).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(parseFloat(g_planet) * 0.75).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(parseFloat(g_planet) + 4.9).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `A partir de la ecuación de caída libre \\( h = \\frac{1}{2}g t^2 \\), despejamos la gravedad local del planeta como: \\( g = \\frac{2h}{t^2} = \\frac{2 \\cdot ${h}}{(${t})^2} = ${g_planet} \\text{ m/s}^2 \\).`;
+                    }
+
+                } else if (i <= 40) {
+                    // CATEGORÍA 4: TIRO VERTICAL (Uso de g = 9.8 m/s^2, despejes de velocidad inicial o tiempos)
+                    cat = "Cinemática - Tiro Vertical";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let v0 = (i - 20) * 8; // ej 80 m/s
+                        let h_max = (v0 * v0 / (2 * GRAVITY)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un proyectil de señales es lanzado verticalmente hacia arriba desde la cubierta de un buque con una velocidad inicial de \\( v_0 = ${v0} \\text{ m/s} \\). Determine la altura máxima alcanzada. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${h_max} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(h_max) + 22.4).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(parseFloat(h_max) * 0.9).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(v0 / GRAVITY).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `En el punto más alto de la trayectoria vertical, la velocidad instantánea se anula. Usando la ecuación escalar: \\( H_{max} = \\frac{v_0^2}{2g} = \\frac{(${v0})^2}{2 \\cdot 9.8} = ${h_max} \\text{ m} \\).`;
+                    } else {
+                        // Despeje de velocidad inicial
+                        let h_target = 30 + (i * 2);
+                        let v0_req = Math.sqrt(2 * GRAVITY * h_target).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un ingeniero necesita que un eyector vertical envíe un cilindro a una altura máxima exacta de \\( H = ${h_target} \\text{ m} \\). Calcule el módulo de la velocidad de lanzamiento inicial requerida. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${v0_req} \\text{ m/s} \\)`,
+                            B: `\\( ${(parseFloat(v0_req) + 3.5).toFixed(2)} \\text{ m/s} \\)`,
+                            C: `\\( ${(parseFloat(v0_req) * 0.8).toFixed(2)} \\text{ m/s} \\)`,
+                            D: `\\( ${(parseFloat(v0_req) + 9.8).toFixed(2)} \\text{ m/s} \\)`
+                        };
+                        q.explicacion = `Despejando la velocidad inicial de la ecuación de altura máxima \\( H_{max} = \\frac{v_0^2}{2g} \\), obtenemos: \\( v_0 = \\sqrt{2g H_{max}} = \\sqrt{2 \\cdot 9.8 \\cdot ${h_target}} = ${v0_req} \\text{ m/s} \\).`;
+                    }
+
+                } else if (i <= 50) {
+                    // CATEGORÍA 5: MOVIMIENTO COMPUESTO / PARABÓLICO (Uso de g = 9.8 m/s^2, despeje de ángulos o alcances)
+                    cat = "Cinemática - Movimiento Compuesto";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let v0 = (i - 30) * 10; // ej 100 m/s
+                        let angulo = 45;
+                        let rad = (angulo * Math.PI) / 180;
+                        let r_max = ((v0 * v0 * Math.sin(2 * rad)) / GRAVITY).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un cañón de investigación lanza un proyectil experimental con una velocidad inicial de \\( v_0 = ${v0} \\text{ m/s} \\) y un ángulo de tiro de \\( 45^\\circ \\) sobre la horizontal. Calcule su alcance horizontal máximo teórico. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${r_max} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(r_max) + 50.5).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(parseFloat(r_max) * 0.75).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(v0 * v0 / GRAVITY).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `El alcance horizontal máximo en condiciones ideales se obtiene mediante la ecuación simétrica: \\( R = \\frac{v_0^2 \\sin(2\\theta)}{g} = \\frac{(${v0})^2 \\cdot \\sin(90^\\circ)}{9.8} = ${r_max} \\text{ m} \\).`;
+                    } else {
+                        // Despeje de la velocidad inicial a partir del alcance
+                        let r_target = 200 + (i * 10);
+                        let angulo = 30; // sin(2*30) = sin(60) = 0.866
+                        let rad = (angulo * Math.PI) / 180;
+                        let v0_needed = Math.sqrt((r_target * GRAVITY) / Math.sin(2 * rad)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Se desea que un proyectil de rescate cubra un alcance horizontal exacto de \\( R = ${r_target} \\text{ m} \\) con un ángulo de lanzamiento constante de \\( 30^\\circ \\). Calcule la velocidad de lanzamiento inicial requerida. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${v0_needed} \\text{ m/s} \\)`,
+                            B: `\\( ${(parseFloat(v0_needed) + 8.2).toFixed(2)} \\text{ m/s} \\)`,
+                            C: `\\( ${(parseFloat(v0_needed) * 0.85).toFixed(2)} \\text{ m/s} \\)`,
+                            D: `\\( ${(parseFloat(v0_needed) + 21.0).toFixed(2)} \\text{ m/s} \\)`
+                        };
+                        q.explicacion = `Despejando el término de velocidad de la ecuación de alcance \\( R = \\frac{v_0^2 \\sin(2\\theta)}{g} \\), obtenemos: \\( v_0 = \\sqrt{\\frac{R \\cdot g}{\\sin(2\\theta)}} = \\sqrt{\\frac{${r_target} \\cdot 9.8}{\\sin(60^\\circ)}} = ${v0_needed} \\text{ m/s} \\).`;
+                    }
+
+                } else if (i <= 60) {
+                    // CATEGORÍA 6: MCU (Velocidades angulares, aceleraciones centrípetas, despejes de periodos o radios)
+                    cat = "Cinemática - MCU";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let r = (i - 45) * 0.5; // ej 3.5 m
+                        let w = 2.5; // rad/s
+                        let ac = (w * w * r).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Una masa puntual se encuentra acoplada a un brazo rotatorio de radio \\( R = ${r} \\text{ m} \\) describiendo un movimiento circular uniforme con velocidad angular de \\( \\omega = ${w} \\text{ rad/s} \\). Halle su aceleración centrípeta.`;
+                        q.opciones = {
+                            A: `\\( ${ac} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(ac) + 2.15).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(parseFloat(ac) * 0.5).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(w * r).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `La aceleración centrípeta que experimenta un cuerpo en trayectoria circular se calcula mediante la relación cuadrática de la velocidad angular: \\( a_c = \\omega^2 R = (${w})^2 \\cdot ${r} = ${ac} \\text{ m/s}^2 \\).`;
+                    } else {
+                        // Despeje de radio
+                        let ac_limit = 50 + (i * 2);
+                        let w = 4; // rad/s
+                        let r_req = (ac_limit / (w * w)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un centrífugador limita la aceleración radial a \\( a_c = ${ac_limit} \\text{ m/s}^2 \\) operando a una velocidad angular constante de \\( \\omega = ${w} \\text{ rad/s} \\). Halle el radio máximo de giro del contenedor.`;
+                        q.opciones = {
+                            A: `\\( ${r_req} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(r_req) + 0.85).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(parseFloat(r_req) * 1.5).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(r_req) - 0.50).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `A partir de la ecuación \\( a_c = \\omega^2 R \\), despejamos la variable de radio de curvatura como: \\( R = \\frac{a_c}{\\omega^2} = \\frac{${ac_limit}}{(${w})^2} = ${r_req} \\text{ m} \\).`;
+                    }
+
+                } else if (i <= 70) {
+                    // CATEGORÍA 7: MCUV (Aceleraciones angulares, tangenciales, despejes de tiempos)
+                    cat = "Cinemática - MCUV";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let r = 1.2;
+                        let alpha = (i - 50) * 0.2; // ej 2.4 rad/s^2
+                        let at = (alpha * r).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un disco de radio \\( R = ${r} \\text{ m} \\) acelera angularmente con un valor constante de \\( \\alpha = ${alpha.toFixed(1)} \\text{ rad/s}^2 \\). Calcule la componente de su aceleración tangencial escalar constante.`;
+                        q.opciones = {
+                            A: `\\( ${at} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(at) + 1.12).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(parseFloat(at) * 0.75).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(alpha).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `La aceleración tangencial se vincula directamente a la aceleración angular a través de la distancia al eje de giro: \\( a_t = \\alpha R = ${alpha.toFixed(1)} \\cdot ${r} = ${at} \\text{ m/s}^2 \\).`;
+                    } else {
+                        // Despeje de tiempo en MCUV
+                        let w0 = 10;
+                        let wf = 50 + i;
+                        let alpha = 5;
+                        let t = ((wf - w0) / alpha).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Una turbina rotatoria acelera de forma constante con un coeficiente de \\( \\alpha = ${alpha} \\text{ rad/s}^2 \\). Si su velocidad angular inicial es \\( \\omega_0 = ${w0} \\text{ rad/s} \\), halle el tiempo transcurrido hasta registrar una velocidad angular de \\( \\omega_f = ${wf} \\text{ rad/s} \\).`;
+                        q.opciones = {
+                            A: `\\( ${t} \\text{ s} \\)`,
+                            B: `\\( ${(parseFloat(t) + 2.5).toFixed(2)} \\text{ s} \\)`,
+                            C: `\\( ${(parseFloat(t) * 0.8).toFixed(2)} \\text{ s} \\)`,
+                            D: `\\( ${(parseFloat(t) + 6.1).toFixed(2)} \\text{ s} \\)`
+                        };
+                        q.explicacion = `Despejando el tiempo a partir de la relación de velocidad angular en el MCUV: \\( t = \\frac{\\omega_f - \\omega_0}{\\alpha} = \\frac{${wf} - ${w0}}{${alpha}} = ${t} \\text{ s} \\).`;
+                    }
+
+                } else if (i <= 80) {
+                    // CATEGORÍA 8: LEYES DE NEWTON Y FUERZAS (Fuerzas netas, masas de bloques, tensiones)
+                    cat = "Dinámica - Leyes de Newton";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let f = (i - 65) * 15; // ej 150 N
+                        let a = 3.5;
+                        let mass = (f / a).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un remolque hidráulico ejerce una fuerza de tracción neta horizontal de \\( F = ${f} \\text{ N} \\) sobre un bloque experimental de metal sobre una superficie lisa, produciendo una aceleración constante de \\( a = ${a} \\text{ m/s}^2 \\). Despeje el valor de la masa de dicho bloque.`;
+                        q.opciones = {
+                            A: `\\( ${mass} \\text{ kg} \\)`,
+                            B: `\\( ${(parseFloat(mass) + 5.15).toFixed(2)} \\text{ kg} \\)`,
+                            C: `\\( ${(parseFloat(mass) * 0.75).toFixed(2)} \\text{ kg} \\)`,
+                            D: `\\( ${(parseFloat(mass) + 18.0).toFixed(2)} \\text{ kg} \\)`
+                        };
+                        q.explicacion = `De acuerdo con la Segunda Ley de Newton, la fuerza neta es proporcional a la aceleración. Despejando la masa: \\( m = \\frac{F}{a} = \\frac{${f}}{${a}} = ${mass} \\text{ kg} \\).`;
+                    } else {
+                        // Despeje de fuerza de rozamiento estático máximo
+                        let mass = i - 60; // ej 11 kg
+                        let mu_s = 0.45;
+                        let f_limite = (mass * GRAVITY * mu_s).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) descansa sobre una plataforma horizontal rugosa con coeficiente de rozamiento estático de \\( \\mu_s = ${mu_s} \\). Halle el módulo de la fuerza horizontal mínima necesaria para iniciar el movimiento. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${f_limite} \\text{ N} \\)`,
+                            B: `\\( ${(parseFloat(f_limite) + 10.5).toFixed(2)} \\text{ N} \\)`,
+                            C: `\\( ${(parseFloat(f_limite) * 0.5).toFixed(2)} \\text{ N} \\)`,
+                            D: `\\( ${(mass * GRAVITY).toFixed(2)} \\text{ N} \\)`
+                        };
+                        q.explicacion = `La fuerza de fricción estática máxima se alcanza justo antes del deslizamiento: \\( f_{s,max} = \\mu_s N \\). En un plano horizontal sin fuerzas verticales extras, la normal es \\( N = m g \\). Reemplazando: \\( f_{s,max} = ${mu_s} \\cdot (${mass} \\cdot 9.8) = ${f_limite} \\text{ N} \\).`;
+                    }
+
+                } else if (i <= 90) {
+                    // CATEGORÍA 9: PLANOS INCLINADOS (Rozamientos, masas, ángulos inclinados)
+                    cat = "Dinámica - Planos Inclinados";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let angle = 30;
+                        let rad = (angle * Math.PI) / 180;
+                        let mass = i - 70; // ej 12 kg
+                        let normal = (mass * GRAVITY * Math.cos(rad)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) resbala sobre un plano inclinado liso que forma un ángulo de \\( 30^\\circ \\) con la horizontal. Halle el módulo de la fuerza de reacción normal ejercida por el plano sobre el bloque. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${normal} \\text{ N} \\)`,
+                            B: `\\( ${(parseFloat(normal) + 12.4).toFixed(2)} \\text{ N} \\)`,
+                            C: `\\( ${(parseFloat(normal) * 0.75).toFixed(2)} \\text{ N} \\)`,
+                            D: `\\( ${(mass * GRAVITY).toFixed(2)} \\text{ N} \\)`
+                        };
+                        q.explicacion = `Dado que no hay movimiento acelerado en el eje perpendicular al plano inclinado, la normal equilibra exactamente a la componente ortogonal del peso: \\( N = m g \\cos(\\theta) = ${mass} \\cdot 9.8 \\cdot \\cos(30^\\circ) = ${normal} \\text{ N} \\).`;
+                    } else {
+                        // Despeje de la aceleración libre en plano inclinado con fricción
+                        let angle = 45;
+                        let rad = (angle * Math.PI) / 180;
+                        let mu_k = 0.20;
+                        let a_slide = (GRAVITY * (Math.sin(rad) - mu_k * Math.cos(rad))).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un bloque desciende sobre un plano inclinado rugoso inclinado a \\( 45^\\circ \\) con un coeficiente de fricción cinética de \\( \\mu_k = ${mu_k} \\). Halle la aceleración de descenso constante producida. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${a_slide} \\text{ m/s}^2 \\)`,
+                            B: `\\( ${(parseFloat(a_slide) + 1.25).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            C: `\\( ${(GRAVITY * Math.sin(rad)).toFixed(2)} \\text{ m/s}^2 \\)`,
+                            D: `\\( ${(parseFloat(a_slide) * 0.5).toFixed(2)} \\text{ m/s}^2 \\)`
+                        };
+                        q.explicacion = `Las fuerzas que actúan en la dirección del movimiento sobre el plano son la componente del peso a favor de la pendiente y la fricción en sentido opuesto. Aplicando Newton: \\( m a = m g \\sin(\\theta) - \\mu_k m g \\cos(\\theta) \\). Al simplificar la masa: \\( a = g(\\sin\\theta - \\mu_k\\cos\\theta) = 9.8 \\cdot (\\sin 45^\\circ - 0.20 \\cdot \\cos 45^\\circ) = ${a_slide} \\text{ m/s}^2 \\).`;
+                    }
+
+                } else if (i <= 100) {
+                    // CATEGORÍA 10: TRABAJO MECÁNICO (Trabajos con ángulos, fuerzas variables, despejes de distancias)
+                    cat = "Trabajo Mecánico";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let f = (i - 80) * 12; // ej 120 N
+                        let d = 5;
+                        let angulo = 60;
+                        let rad = (angulo * Math.PI) / 180;
+                        let work = (f * d * Math.cos(rad)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un cable metálico desplaza horizontalmente un remolque a lo largo de una distancia de \\( d = ${d} \\text{ m} \\) aplicando una fuerza constante de \\( F = ${f} \\text{ N} \\) con un ángulo de inclinación de \\( 60^\\circ \\) respecto al plano de la trayectoria. Halle el trabajo neto realizado.`;
+                        q.opciones = {
+                            A: `\\( ${work} \\text{ J} \\)`,
+                            B: `\\( ${(parseFloat(work) * 1.5).toFixed(2)} \\text{ J} \\)`,
+                            C: `\\( ${(f * d).toFixed(2)} \\text{ J} \\)`,
+                            D: `\\( ${(parseFloat(work) - 25.5).toFixed(2)} \\text{ J} \\)`
+                        };
+                        q.explicacion = `El trabajo mecánico efectuado por una fuerza constante aplicada con cierta inclinación respecto al vector de desplazamiento se obtiene mediante el producto escalar: \\( W = F \\cdot d \\cdot \\cos(\\theta) = ${f} \\cdot ${d} \\cdot \\cos(60^\\circ) = ${work} \\text{ J} \\).`;
+                    } else {
+                        // Despeje de la distancia recorrida
+                        let w_done = 500 + (i * 10);
+                        let f = 50;
+                        let d_req = (w_done / f).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un motor neumático efectúa un trabajo mecánico exacto de \\( W = ${w_done} \\text{ J} \\) arrastrando un carro aplicando una fuerza constante colineal de \\( F = ${f} \\text{ N} \\). Calcule la distancia de arrastre horizontal obtenida.`;
+                        q.opciones = {
+                            A: `\\( ${d_req} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(d_req) + 3.15).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(parseFloat(d_req) * 0.75).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(d_req) + 12.00).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `Dado que la fuerza es paralela y colineal a la trayectoria, el ángulo \\( \\theta = 0^\\circ \\) (por ende \\( \\cos\\theta = 1 \\)). Despejando la distancia de la ecuación de trabajo \\( W = F \\cdot d \\): \\( d = \\frac{W}{F} = \\frac{${w_done}}{${f}} = ${d_req} \\text{ m} \\).`;
+                    }
+
+                } else if (i <= 110) {
+                    // CATEGORÍA 11: POTENCIA MECÁNICA (Eficiencias, potencias instantáneas, despejes de masas levantadas)
+                    cat = "Potencia Mecánica";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let f = (i - 90) * 100; // ej 1000 N
+                        let v = 2.5;
+                        let power = (f * v).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `El motor de un montacargas industrial levanta un cargamento verticalmente a rapidez constante de \\( v = ${v} \\text{ m/s} \\) ejerciendo una fuerza de tensión vertical de \\( F = ${f} \\text{ N} \\). Halle la potencia mecánica útil generada por el motor.`;
+                        q.opciones = {
+                            A: `\\( ${power} \\text{ W} \\)`,
+                            B: `\\( ${(parseFloat(power) + 450).toFixed(2)} \\text{ W} \\)`,
+                            C: `\\( ${(parseFloat(power) / 746).toFixed(2)} \\text{ HP} \\)`,
+                            D: `\\( ${(parseFloat(power) * 0.5).toFixed(2)} \\text{ W} \\)`
+                        };
+                        q.explicacion = `La potencia mecánica instantánea transmitida colinealmente a velocidad constante se calcula mediante la relación escalar directa de velocidad y fuerza aplicada: \\( P = F \\cdot v = ${f} \\cdot ${v} = ${power} \\text{ W} \\).`;
+                    } else {
+                        // Despeje de masa levantada a partir de potencia
+                        let power_limit = 1500 + (i * 20); // Watts
+                        let t = 10; // s
+                        let h = 5; // m
+                        let mass_lift = (power_limit * t / (GRAVITY * h)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Una grúa eléctrica que desarrolla una potencia nominal constante de \\( P = ${power_limit} \\text{ W} \\) es utilizada para izar un bloque de concreto verticalmente a lo largo de una altura de \\( h = ${h} \\text{ m} \\) en un tiempo de \\( t = ${t} \\text{ s} \\). Despeje la masa del bloque elevado. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${mass_lift} \\text{ kg} \\)`,
+                            B: `\\( ${(parseFloat(mass_lift) + 15.5).toFixed(2)} \\text{ kg} \\)`,
+                            C: `\\( ${(parseFloat(mass_lift) * 0.8).toFixed(2)} \\text{ kg} \\)`,
+                            D: `\\( ${(parseFloat(mass_lift) + 42.0).toFixed(2)} \\text{ kg} \\)`
+                        };
+                        q.explicacion = `La potencia media desarrollada equivale al trabajo realizado por unidad de tiempo: \\( P = \\frac{W}{t} \\). Dado que el trabajo útil para levantar verticalmente un cuerpo es \\( W = m g h \\), la relación queda: \\( P = \\frac{m g h}{t} \\). Al despejar la masa obtenemos: \\( m = \\frac{P \\cdot t}{g \\cdot h} = \\frac{${power_limit} \\cdot ${t}}{9.8 \\cdot ${h}} = ${mass_lift} \\text{ kg} \\).`;
+                    }
+
+                } else if (i <= 120) {
+                    // CATEGORÍA 12: ENERGÍA CINÉTICA (Despejes de masas y velocidades)
+                    cat = "Energía Cinética";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let mass = (i - 100) * 0.5 + 2.0; // ej 7.0 kg
+                        let velocity = 8.0;
+                        let ke = (0.5 * mass * velocity * velocity).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un carro de pruebas con masa experimental de \\( m = ${mass.toFixed(1)} \\text{ kg} \\) se desplaza horizontalmente con una velocidad escalar constante de \\( v = ${velocity.toFixed(1)} \\text{ m/s} \\). Calcule su energía cinética asociada.`;
+                        q.opciones = {
+                            A: `\\( ${ke} \\text{ J} \\)`,
+                            B: `\\( ${(parseFloat(ke) + 15.5).toFixed(2)} \\text{ J} \\)`,
+                            C: `\\( ${(parseFloat(ke) * 0.5).toFixed(2)} \\text{ J} \\)`,
+                            D: `\\( ${(parseFloat(ke) + 45.0).toFixed(2)} \\text{ J} \\)`
+                        };
+                        q.explicacion = `La energía cinética traslacional se evalúa a partir de la masa y la velocidad mediante la fórmula escalar cuadrática: \\( E_c = \\frac{1}{2}m v^2 = 0.5 \\cdot ${mass.toFixed(1)} \\cdot (${velocity.toFixed(1)})^2 = ${ke} \\text{ J} \\).`;
+                    } else {
+                        // Despeje de masa a partir de la energía cinética
+                        let ke = 120 + (i * 4); // Joules
+                        let v = 6; // m/s
+                        let mass_req = ((2 * ke) / (v * v)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un bloque se desplaza en condiciones controladas con rapidez constante de \\( v = ${v} \\text{ m/s} \\) registrando una energía cinética total de \\( E_c = ${ke} \\text{ J} \\). Halle el valor de su masa.`;
+                        q.opciones = {
+                            A: `\\( ${mass_req} \\text{ kg} \\)`,
+                            B: `\\( ${(parseFloat(mass_req) + 2.5).toFixed(2)} \\text{ kg} \\)`,
+                            C: `\\( ${(parseFloat(mass_req) * 0.8).toFixed(2)} \\text{ kg} \\)`,
+                            D: `\\( ${(ke / v).toFixed(2)} \\text{ kg} \\)`
+                        };
+                        q.explicacion = `A partir de la definición de energía cinética traslacional \\( E_c = \\frac{1}{2} m v^2 \\), despejamos la variable de masa como: \\( m = \\frac{2 E_c}{v^2} = \\frac{2 \\cdot ${ke}}{(${v})^2} = ${mass_req} \\text{ kg} \\).`;
+                    }
+
+                } else if (i <= 130) {
+                    // CATEGORÍA 13: ENERGÍA POTENCIAL GRAVITATORIA (Despejes de alturas y masas con g = 9.8 m/s^2)
+                    cat = "Energía Potencial Gravitatoria";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let mass = (i - 110) * 1.5; // ej 15.0 kg
+                        let h = 12.0;
+                        let pe = (mass * GRAVITY * h).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un componente esférico suspendido de masa \\( m = ${mass.toFixed(1)} \\text{ kg} \\) se encuentra a una altura vertical de \\( h = ${h.toFixed(1)} \\text{ m} \\) con respecto al suelo de un laboratorio. Determine su energía potencial gravitatoria acumulada. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${pe} \\text{ J} \\)`,
+                            B: `\\( ${(parseFloat(pe) + 120.5).toFixed(2)} \\text{ J} \\)`,
+                            C: `\\( ${(parseFloat(pe) * 0.75).toFixed(2)} \\text{ J} \\)`,
+                            D: `\\( ${(mass * h).toFixed(2)} \\text{ J} \\)`
+                        };
+                        q.explicacion = `La energía potencial de origen gravitatorio para un sistema de masa puntual elevado se determina multiplicando el peso por la altura respecto al nivel de referencia: \\( E_p = m g h = ${mass.toFixed(1)} \\cdot 9.8 \\cdot ${h.toFixed(1)} = ${pe} \\text{ J} \\).`;
+                    } else {
+                        // Despeje de altura vertical a partir de energía potencial
+                        let pe = 200 + (i * 10);
+                        let mass = 10;
+                        let h_req = (pe / (mass * GRAVITY)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un bloque de masa \\( m = ${mass} \\text{ kg} \\) se eleva mecánicamente de manera controlada de modo que sus sensores registran una energía potencial acumulada de \\( E_p = ${pe} \\text{ J} \\). Despeje la altura vertical de suspensión. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
+                        q.opciones = {
+                            A: `\\( ${h_req} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(h_req) + 2.15).toFixed(2)} \\text{ m} \\)`,
+                            C: `\\( ${(parseFloat(h_req) * 1.5).toFixed(2)} \\text{ m} \\)`,
+                            D: `\\( ${(parseFloat(h_req) - 1.10).toFixed(2)} \\text{ m} \\)`
+                        };
+                        q.explicacion = `Haciendo uso de la ecuación de energía potencial gravitatoria en las cercanías del suelo \\( E_p = m g h \\), despejamos el término de altura \\( h \\) como: \\( h = \\frac{E_p}{m g} = \\frac{${pe}}{${mass} \\cdot 9.8} = ${h_req} \\text{ m} \\).`;
+                    }
+
+                } else if (i <= 140) {
+                    // CATEGORÍA 14: ENERGÍA POTENCIAL ELÁSTICA (Despeje de k del resorte y compresión x)
+                    cat = "Energía Potencial Elástica";
+                    let sub = i % 2;
+                    if (sub === 0) {
+                        let x = 0.15; // m
+                        let ee = 15 + (i - 130); // ej 20 J
+                        let k = (2 * ee / (x * x)).toFixed(2);
+                        q.categoria = cat;
+                        q.pregunta = `Un resorte amortiguador libre de masa se comprime una distancia horizontal controlada de \\( x = ${x} \\text{ m} \\) con respecto a su posición de equilibrio, acumulando una energía potencial elástica de \\( E_e = ${ee} \\text{ J} \\). Despeje el valor de su constante de rigidez elástica \\( k \\).`;
                         q.opciones = {
                             A: `\\( ${k} \\text{ N/m} \\)`,
-                            B: `\\( ${(parseFloat(k) + 250).toFixed(2)} \\text{ N/m} \\)`,
+                            B: `\\( ${(parseFloat(k) + 150).toFixed(2)} \\text{ N/m} \\)`,
                             C: `\\( ${(ee / x).toFixed(2)} \\text{ N/m} \\)`,
                             D: `\\( ${(parseFloat(k) * 0.5).toFixed(2)} \\text{ N/m} \\)`
                         };
-                        q.explicacion = `La relación de energía elástica está dada por \\( E_e = \\frac{1}{2} k x^2 \\). Al despejar la constante elástica de rigidez lineal de la ecuación, obtenemos: \\( k = \\frac{2 E_e}{x^2} = \\frac{2 \\cdot ${ee}}{(${x})^2} = ${k} \\text{ N/m} \\).`;
-                        
-                    } else if (sub === 1) {
-                        // ENERGÍA CINÉTICA: Calcular la masa m del cuerpo móvil
-                        let v = (i % 3) + 4; // velocidad
-                        let ec = (i * 12) + 50; // energía cinética
-                        let m = (2 * ec / (v * v)).toFixed(2);
-                        
-                        q.categoria = cat;
-                        q.pregunta = `Un bloque de pruebas en una pista de fricción despreciable adquiere una velocidad constante de \\( v = ${v} \\text{ m/s} \\). Si los sensores registran que posee una energía cinética de \\( E_c = ${ec} \\text{ J} \\), halle la masa \\( m \\) del bloque.`;
-                        q.opciones = {
-                            A: `\\( ${m} \\text{ kg} \\)`,
-                            B: `\\( ${(parseFloat(m) + 3.5).toFixed(2)} \\text{ kg} \\)`,
-                            C: `\\( ${(ec / (v * v)).toFixed(2)} \\text{ kg} \\)`,
-                            D: `\\( ${(parseFloat(m) * 2).toFixed(2)} \\text{ kg} \\)`
-                        };
-                        q.explicacion = `La energía cinética escalar se define mediante la ecuación clásica \\( E_c = \\frac{1}{2} m v^2 \\). Al despejar la masa como la variable incógnita del problema de estudio obtenemos la expresión: \\( m = \\frac{2 E_c}{v^2} = \\frac{2 \\cdot ${ec}}{(${v})^2} = ${m} \\text{ kg} \\).`;
-                        
-                    } else if (sub === 2) {
-                        // ENERGÍA POTENCIAL GRAVITATORIA: Calcular la altura h despejada
-                        let mass = (i % 4) + 2; // masa en kg
-                        let ep = (i * 15) + 100; // energía potencial
-                        let h = (ep / (mass * GRAVITY)).toFixed(2);
-                        
-                        q.categoria = cat;
-                        q.pregunta = `Un cuerpo esférico de masa \\( m = ${mass} \\text{ kg} \\) es suspendido mecánicamente acumulando una energía potencial gravitatoria de \\( E_p = ${ep} \\text{ J} \\) respecto al suelo. Halle la altura exacta \\( h \\) a la que se encuentra. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                        q.opciones = {
-                            A: `\\( ${h} \\text{ m} \\)`,
-                            B: `\\( ${(parseFloat(h) + 1.5).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( ${(ep / mass).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( ${(parseFloat(h) * 0.5).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = `La energía potencial de origen gravitatorio se expresa como \\( E_p = m g h \\). Despejando la variable de altura vertical \\( h \\) y sustituyendo la aceleración de gravedad exacta, tenemos: \\( h = \\frac{E_p}{m g} = \\frac{${ep}}{${mass} \\cdot 9.8} = ${h} \\text{ m} \\).`;
-                        
+                        q.explicacion = `La energía acumulada de un resorte se describe mediante la relación cuadrática de elongación: \\( E_e = \\frac{1}{2}k x^2 \\). Al despejar el coeficiente de rigidez elástica \\( k \\) de la ecuación: \\( k = \\frac{2 E_e}{x^2} = \\frac{2 \\cdot ${ee}}{(${x})^2} = ${k} \\text{ N/m} \\).`;
                     } else {
-                        // ENERGÍA POTENCIAL ELÁSTICA: Calcular la compresión del resorte x
-                        let k = (i * 10) + 150; // constante del resorte
-                        let ee = (i % 3) + 5; // energía elástica
-                        let x = Math.sqrt(2 * ee / k).toFixed(2);
-                        
+                        // Despeje de deformación x
+                        let k = 500; // N/m
+                        let ee = (i - 131) * 2 + 5; // ej 15 Joules
+                        let x_req = Math.sqrt(2 * ee / k).toFixed(2);
                         q.categoria = cat;
-                        q.pregunta = `Un resorte amortiguador con una constante de rigidez constante de \\( k = ${k} \\text{ N/m} \\) almacena de manera estable una energía potencial elástica de \\( E_e = ${ee} \\text{ J} \\). Determine la distancia de compresión \\( x \\) del resorte.`;
+                        q.pregunta = `Un resorte industrial helicoidal posee una constante de elasticidad rígida de \\( k = ${k} \\text{ N/m} \\). Si almacena una energía elástica equivalente a \\( E_e = ${ee} \\text{ J} \\), halle la distancia de compresión \\( x \\) del muelle.`;
                         q.opciones = {
-                            A: `\\( ${x} \\text{ m} \\)`,
-                            B: `\\( ${(parseFloat(x) + 0.15).toFixed(2)} \\text{ m} \\)`,
+                            A: `\\( ${x_req} \\text{ m} \\)`,
+                            B: `\\( ${(parseFloat(x_req) + 0.12).toFixed(2)} \\text{ m} \\)`,
                             C: `\\( ${(2 * ee / k).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( ${(parseFloat(x) * 2.5).toFixed(2)} \\text{ m} \\)`
+                            D: `\\( ${(parseFloat(x_req) * 2.2).toFixed(2)} \\text{ m} \\)`
                         };
-                        q.explicacion = `Partiendo de la definición general de energía potencial acumulada en un resorte helicoidal: \\( E_e = \\frac{1}{2} k x^2 \\). Al despejar el término cuadrático de la compresión obtenemos la raíz cuadrada: \\( x = \\sqrt{\\frac{2 E_e}{k}} = \\sqrt{\\frac{2 \\cdot ${ee}}{${k}}} = ${x} \\text{ m} \\).`;
+                        q.explicacion = `Partiendo de la definición general de energía potencial elástica \\( E_e = \\frac{1}{2} k x^2 \\), despejamos la variable de deformación lineal horizontal \\( x \\) aplicando raíz cuadrada: \\( x = \\sqrt{\\frac{2 E_e}{k}} = \\sqrt{\\frac{2 \\cdot ${ee}}{${k}}} = ${x_req} \\text{ m} \\).`;
                     }
-                
-                // TEORÍA GENERAL DE LA FÍSICA (Reactivos 143 al 150)
+
                 } else {
+                    // CATEGORÍA 15: TEORÍA GENERAL DE LA FÍSICA (Reactivos conceptuales de opción múltiple, sin repeticiones)
                     cat = "Teoría General de la Física";
-                    let sub = i % 4;
+                    let sub = i % 10;
                     q.categoria = cat;
-                    
-                    if (sub === 0) {
-                        q.pregunta = "¿Bajo qué condiciones específicas se puede asegurar la conservación rigurosa de la energía mecánica total de un sistema dinámico?";
+                    if (sub === 1) {
+                        q.pregunta = "¿Cuál es la distinción fundamental desde una perspectiva cinemática entre las magnitudes de distancia recorrida y desplazamiento de un cuerpo móvil?";
                         q.opciones = {
-                            A: "Cuando todas las fuerzas que realizan un trabajo útil sobre el sistema son de naturaleza conservativa.",
-                            B: "Cuando el sistema se desplaza a velocidad constante sin aceleración en una trayectoria circular.",
-                            C: "Cuando se ejerce una fuerza de reacción normal perpendicular que anula la fuerza gravitatoria.",
-                            D: "Cuando existe rozamiento cinético constante equilibrado con una fuerza de tracción paralela."
+                            A: "La distancia recorrida es un valor escalar absoluto de la trayectoria real, mientras que el desplazamiento es una magnitud vectorial colineal entre la posición inicial y final.",
+                            B: "La distancia es siempre de signo opuesto al módulo del vector desplazamiento.",
+                            C: "El desplazamiento describe el contorno de la curva de aceleración instantánea.",
+                            D: "Ambos se comportan como tensores de segundo orden en cualquier sistema coordenado tridimensional."
                         };
-                        q.explicacion = "La energía mecánica de un sistema (cinética + potencial) se mantiene perfectamente inalterada a lo largo del tiempo únicamente si las fuerzas responsables de efectuar trabajo sobre él son de tipo conservativas (como la fuerza gravitatoria o elástica). El rozamiento disipa energía mecánica en forma de calor.";
-                        
-                    } else if (sub === 1) {
-                        q.pregunta = "¿Cómo cambia la constante de rigidez de un resorte elástico lineal si se reduce a la mitad la distancia que es comprimido?";
-                        q.opciones = {
-                            A: "La constante de rigidez permanece invariable ya que depende puramente de las propiedades intrínsecas del resorte.",
-                            B: "Se reduce a la mitad en proporción directa a la compresión.",
-                            C: "Se duplica para compensar el menor almacenamiento de energía elástica.",
-                            D: "Disminuye a la cuarta parte según la relación cuadrática de la fuerza elástica."
-                        };
-                        q.explicacion = "La constante elástica \\( k \\) representa una propiedad física estructural de rigidez intrínseca del resorte (determinada por el material y el número de espiras). Por lo tanto, no varía al modificar la compresión \\( x \\). Lo que cambia en proporción cuadrática es la energía potencial almacenada.";
-                        
+                        q.explicacion = "La distancia recorrida evalúa la longitud escalar de la trayectoria física realizada por la partícula, mientras que el desplazamiento representa un vector directo que conecta el punto de partida inicial con la coordenada de llegada.";
                     } else if (sub === 2) {
-                        q.pregunta = "De acuerdo con el teorema del Trabajo y la Energía Cinética, si el trabajo mecánico neto realizado sobre un cuerpo es exactamente igual a cero, ¿qué podemos concluir sobre su movimiento?";
+                        q.pregunta = "En condiciones ideales de vacío, si se dejan caer libremente dos esferas macizas de diferentes masas de forma simultánea, ¿por qué razón impactan el suelo al mismo tiempo?";
                         q.opciones = {
-                            A: "La rapidez escalar de la partícula se mantiene completamente constante.",
-                            B: "El cuerpo disminuye su velocidad uniformemente hasta detenerse.",
-                            C: "La velocidad de la partícula es perpendicular a la fuerza centrípeta acumulada.",
-                            D: "El cuerpo adquiere inmediatamente un movimiento rectilíneo uniformemente acelerado."
+                            A: "Porque la aceleración de la gravedad es independiente de la masa del cuerpo en descenso libre, afectando la curvatura temporal del trayecto de forma idéntica.",
+                            B: "Porque el peso de ambos cuerpos es el mismo en ausencia de masa gravitatoria.",
+                            C: "Debido a que la velocidad límite es inversamente proporcional a la densidad del material.",
+                            D: "Porque el empuje de la masa viscosa circundante actúa en dirección opuesta al rozamiento."
                         };
-                        q.explicacion = "El teorema del Trabajo y la Energía Cinética establece que el trabajo neto realizado por las fuerzas externas sobre una partícula es igual a la variación de su energía cinética: \\( W_{neto} = \\Delta E_c \\). Si \\( W_{neto} = 0 \\), entonces \\( \\Delta E_c = 0 \\), lo que significa que la rapidez escalar se mantiene constante.";
-                        
+                        q.explicacion = "De acuerdo con el principio de equivalencia de Galileo, todos los cuerpos en caída libre caen con la misma aceleración constante en el vacío (9.8 m/s²), sin importar su masa.";
+                    } else if (sub === 3) {
+                        q.pregunta = "De acuerdo con la Tercera Ley de Newton (Acción y Reacción), ¿por qué las fuerzas correspondientes a este par no se anulan entre sí durante un movimiento acelerado?";
+                        q.opciones = {
+                            A: "Porque actúan simultáneamente sobre dos cuerpos diferentes, impidiendo que se combinen en una sola fuerza neta resultante sobre un único objeto.",
+                            B: "Debido a que sus módulos son asimétricos e independientes.",
+                            C: "Porque una de las fuerzas actúa en el plano cartesiano real y la otra en el plano conjugado.",
+                            D: "Porque se desfasan temporalmente una respecto a la otra de forma síncrona."
+                        };
+                        q.explicacion = "Las fuerzas de acción y reacción nunca pueden cancelarse de manera mutua puesto que se aplican de manera síncrona sobre objetos diferentes.";
+                    } else if (sub === 4) {
+                        q.pregunta = "¿Qué significado físico tiene el hecho de que el trabajo neto realizado sobre una partícula por una fuerza externa sea exactamente negativo?";
+                        q.opciones = {
+                            A: "Significa que la fuerza aplicada tiene una componente en dirección opuesta al desplazamiento, disminuyendo la energía cinética del cuerpo.",
+                            B: "Que el campo de fuerza es estrictamente cerrado e irrotacional.",
+                            C: "Que el sistema de referencia se desplaza en una trayectoria circular uniformemente acelerada.",
+                            D: "Representa la creación espontánea de masa inercial de reposo."
+                        };
+                        q.explicacion = "Un trabajo neto negativo indica que la componente útil de la fuerza se opone al sentido del vector de desplazamiento, provocando desaceleración y disipando energía mecánica.";
+                    } else if (sub === 5) {
+                        q.pregunta = "¿Bajo qué condiciones específicas se puede garantizar la conservación de la energía mecánica total de un sistema de partículas en movimiento?";
+                        q.opciones = {
+                            A: "Únicamente cuando todas las fuerzas internas y externas responsables de realizar un trabajo útil sobre el sistema son fuerzas de naturaleza conservativa.",
+                            B: "Cuando el sistema se mueve a velocidad constante describiendo una órbita circular sin fricción.",
+                            C: "Cuando no se ejerce ninguna aceleración de gravedad sobre la masa inercial.",
+                            D: "Cuando las fuerzas disipativas efectúan un trabajo positivo colineal."
+                        };
+                        q.explicacion = "La energía mecánica de un sistema permanece perfectamente conservada a lo largo del tiempo si y solo si todas las fuerzas que realizan un trabajo sobre él son de carácter conservativas.";
+                    } else if (sub === 6) {
+                        q.pregunta = "¿Cómo se define conceptualmente la potencia mecánica en comparación con el trabajo mecánico?";
+                        q.opciones = {
+                            A: "La potencia representa la tasa o rapidez temporal con la que se efectúa o transfiere un trabajo mecánico.",
+                            B: "La potencia mide el cambio cuadrático del momento lineal neto.",
+                            C: "Es el producto escalar de la masa inercial por el volumen desplazado.",
+                            D: "La potencia es independiente de la duración temporal del intervalo de estudio."
+                        };
+                        q.explicacion = "Mientras que el trabajo evalúa la cantidad total de energía mecánica transferida, la potencia cuantifica la rapidez con la que se realiza dicha transferencia por unidad de tiempo.";
+                    } else if (sub === 7) {
+                        q.pregunta = "En un movimiento circular uniforme (MCU), si la rapidez tangencial de la partícula permanece constante, ¿por qué razón existe una aceleración centrípeta activa?";
+                        q.opciones = {
+                            A: "Porque el vector velocidad cambia continuamente de dirección espacial a lo largo del trayecto curvo, aunque su módulo permanezca constante.",
+                            B: "Debido a que la masa inercial disminuye de forma proporcional al radio.",
+                            C: "Porque el rozamiento estático de la superficie desvía de forma elástica la masa.",
+                            D: "A causa de la aceleración angular constante que produce la fuerza normal."
+                        };
+                        q.explicacion = "La aceleración centrípeta no evalúa cambios en el módulo de la velocidad, sino el cambio continuo en la dirección radial del vector velocidad tangencial.";
+                    } else if (sub === 8) {
+                        q.pregunta = "¿Qué representa el coeficiente de rozamiento estático máximo en comparación con el coeficiente de rozamiento cinético?";
+                        q.opciones = {
+                            A: "Mide la resistencia al inicio del movimiento y es siempre mayor que el coeficiente cinético debido a la inercia del entrelazado microscópico en reposo.",
+                            B: "Es una constante adimensional inversa a la reacción normal perpendicular.",
+                            C: "Representa el límite superior de la energía cinética rotacional.",
+                            D: "Es nulo para cualquier superficie inclinada sin recubrimiento metálico."
+                        };
+                        q.explicacion = "El rozamiento estático máximo evalúa el límite elástico de resistencia microscópica de las rugosidades en reposo absoluto, siendo siempre de mayor magnitud que la fricción cinética.";
+                    } else if (sub === 9) {
+                        q.pregunta = "De acuerdo con el teorema del Trabajo y la Energía Cinética, si la rapidez de un automóvil se duplica, ¿cómo varía la distancia mínima de frenado bajo la misma fuerza de retención?";
+                        q.opciones = {
+                            A: "Se cuadruplica en proporción directa al incremento cuadrático de la energía cinética acumulada.",
+                            B: "Se duplica linealmente según la conservación de la cantidad de movimiento.",
+                            C: "Permanece idéntica puesto que la aceleración no varía.",
+                            D: "Disminuye a la cuarta parte debido a la fricción viscosa."
+                        };
+                        q.explicacion = "Dado que el trabajo de frenado es \\( W = F_f \\cdot d = \\Delta E_c \\) y la energía cinética es proporcional al cuadrado de la velocidad, duplicar la rapidez cuadruplica la energía cinética y, por ende, cuadruplica la distancia de frenado.";
                     } else {
-                        q.pregunta = "¿Cuál es la diferencia fundamental en términos dimensionales entre las magnitudes físicas de Trabajo Mecánico y Potencia Mecánica?";
+                        q.pregunta = "¿Cuál es la función termodinámica de las fuerzas disipativas (fricción, resistencia del aire) sobre la energía de un sistema mecánico?";
                         q.opciones = {
-                            A: "El Trabajo mide la energía total transferida por una fuerza, mientras que la Potencia mide la tasa temporal con la que se efectúa dicha transferencia.",
-                            B: "El Trabajo es una magnitud de carácter vectorial mientras que la Potencia es estrictamente escalar.",
-                            C: "El Trabajo se expresa en Watts en el Sistema Internacional, mientras que la Potencia se cuantifica en Joules.",
-                            D: "La Potencia es independiente del intervalo de tiempo requerido para realizar el desplazamiento del cuerpo."
+                            A: "Transformar la energía mecánica útil en energía térmica desordenada (calor), disminuyendo el rendimiento del sistema sin violar la primera ley.",
+                            B: "Destruir la masa gravitatoria neta por medio de fricción elástica.",
+                            C: "Aumentar la potencia instantánea de tracción colineal.",
+                            D: "Conservar de forma constante el momento angular del sistema de partículas."
                         };
-                        q.explicacion = "El Trabajo Mecánico (medido en Joules) es una transferencia de energía mediante el desplazamiento, mientras que la Potencia Mecánica (medida en Watts o Joules por segundo) evalúa la rapidez con la que se transfiere o transforma dicha energía por unidad de tiempo: \\( P = \\frac{dW}{dt} \\). Ambos son escalares.";
+                        q.explicacion = "Las fuerzas disipativas no destruyen la energía del sistema, sino que la degradan convirtiéndola en calor a nivel atómico, inutilizándola para efectuar trabajo mecánico útil.";
                     }
                 }
 
@@ -851,9 +1118,9 @@
             if (usedComodines["llamada"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
-            const tutorExplanation = `«Estimado alumno, analizando con detalle este reactivo y aplicando el despeje de la fórmula de física correspondiente, te sugiero considerar con gran probabilidad la opción <strong>(${state.correctShuffledKey})</strong>. Asegúrate de verificar siempre el redondeo a dos decimales de la constante.»`;
+            const tutorExplanation = `«Estimado estudiante, analizando la física de este reactivo, te sugiero despejar la variable del sistema planteado. Al operar adecuadamente, llegarás a la opción <strong>(${state.correctShuffledKey})</strong>. No olvides verificar el redondeo a dos decimales y el módulo escalar.»`;
 
-            openModal("📞 Sugerencia del Tutor Académico", "Ayuda didáctica", tutorExplanation);
+            openModal("📞 Pista Pedagógica del Tutor", "Ayuda analítica", tutorExplanation);
 
             usedComodines["llamada"] = true;
             updateComodinesUI();
@@ -888,7 +1155,7 @@
 
             let displayHTML = `
                 <div class="space-y-4">
-                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución de encuesta simulada del grupo de estudio para esta pregunta:</p>
+                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución estadística simulada de la encuesta de aula:</p>
                     ${keys.map(key => `
                         <div>
                             <div class="flex justify-between text-xs font-bold mb-1">
