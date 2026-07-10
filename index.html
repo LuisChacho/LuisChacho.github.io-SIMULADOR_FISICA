@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Física Universitaria - Modelo Pro V4</title>
-    <!-- Tailwind CSS para un diseño adaptativo premium e institucional -->
+    <title>Simulador de Física Universitaria - Modelo Pro V5</title>
+    <!-- Tailwind CSS para diseño adaptativo de alto rendimiento -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- KaTeX para renderizar expresiones matemáticas impecables -->
+    <!-- KaTeX para renderizado ultra rápido de ecuaciones en LaTeX -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -26,8 +26,8 @@
         }
 
         .custom-scrollbar::-webkit-scrollbar {
-            height: 6px;
             width: 6px;
+            height: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
             background: #f1f5f9;
@@ -71,20 +71,21 @@
                 Simulador de Física
             </h1>
             
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed mt-6 max-w-md mx-auto mb-8">
-                <strong>Objetivo Pedagógico:</strong> Evaluar de manera integral y analítica los conocimientos en cinemática, dinámica, trabajo, potencia y energía mecánica, promoviendo el razonamiento deductivo y la resolución activa de problemas mediante el despeje de variables físicas.
-            </p>
+            <div class="my-6 border-t border-slate-800 pt-6">
+                <p class="text-slate-300 text-sm md:text-base leading-relaxed max-w-md mx-auto">
+                    <strong>Objetivo Pedagógico:</strong> Evaluar de manera integral y analítica los conocimientos en cinemática, dinámica, trabajo, potencia y energía mecánica, promoviendo el razonamiento deductivo y la resolución activa de problemas mediante el despeje de variables físicas.
+                </p>
+            </div>
             
             <div class="mb-8 flex flex-col items-center gap-1">
-                <span class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">Estado de Autoguardado</span>
-                <span id="db-status-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/20">
-                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> Conectando base de datos...
+                <span id="db-status-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                    <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span> Modo Local de Alto Rendimiento
                 </span>
                 <span id="session-id-display" class="text-[9px] text-slate-500 font-mono mt-2 select-all hidden">ID Sesión: cargando...</span>
             </div>
 
-            <button id="btn-start-quiz" disabled class="w-full sm:w-auto bg-slate-800 text-slate-400 font-bold px-10 py-4 rounded-xl cursor-not-allowed transition-all duration-300">
-                Conectando...
+            <button id="btn-start-quiz" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer">
+                Iniciar Evaluación
             </button>
         </div>
     </div>
@@ -98,12 +99,11 @@
                 </div>
                 <div>
                     <h1 class="font-extrabold text-lg leading-none tracking-tight">Portal de Física</h1>
-                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1">Evaluación de Diagnóstico • 150 Preguntas</p>
+                    <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold mt-1">Evaluación de Diagnóstico • 150 Preguntas Reales</p>
                 </div>
             </div>
             
             <div class="flex items-center gap-6">
-                <!-- Barra de Progreso General -->
                 <div class="hidden md:block w-48 bg-slate-800 rounded-full h-2 overflow-hidden border border-slate-700">
                     <div id="progress-bar-fill" class="bg-blue-500 h-full w-0 transition-all duration-300"></div>
                 </div>
@@ -115,11 +115,38 @@
         </div>
     </header>
 
-    <!-- ÁREA PRINCIPAL EN DOS PANELES (ESTILO DASHBOARD) -->
-    <main class="flex-grow max-w-7xl mx-auto px-6 py-6 w-full flex flex-col gap-6">
+    <!-- ÁREA PRINCIPAL EN DOS PANELES -->
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- PANEL SUPERIOR: ÁREA DINÁMICA DE RESOLUCIÓN -->
-        <section class="flex flex-col gap-6">
+        <!-- PANEL IZQUIERDO: MATRIZ DE NAVEGACIÓN LIBRE (33% width en desktop) -->
+        <section class="lg:col-span-4 bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col gap-4 self-start sticky top-24">
+            <div>
+                <h2 class="font-extrabold text-slate-900 text-lg tracking-tight">Matriz de Navegación</h2>
+                <p class="text-xs text-slate-500 mt-1">Selecciona cualquier casilla para responder u omitir reactivos de forma no lineal:</p>
+            </div>
+            
+            <!-- Indicadores de estado de respuesta -->
+            <div class="flex flex-wrap gap-3 text-[11px] font-semibold border-b border-slate-100 pb-3">
+                <span class="flex items-center gap-1.5 text-slate-500"><span class="w-3 h-3 rounded bg-slate-100 border border-slate-200 block"></span> Pendiente</span>
+                <span class="flex items-center gap-1.5 text-emerald-600"><span class="w-3 h-3 rounded bg-emerald-500 block"></span> Correcta</span>
+                <span class="flex items-center gap-1.5 text-rose-600"><span class="w-3 h-3 rounded bg-rose-500 block"></span> Incorrecta</span>
+            </div>
+
+            <!-- Contenedor scrollable de la rejilla de reactivos (1 a 150) -->
+            <div id="matrix-grid" class="grid grid-cols-5 gap-2 max-h-[380px] overflow-y-auto pr-1 flex-grow custom-scrollbar py-1">
+                <!-- Se inyecta por JS -->
+            </div>
+            
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                <span id="header-session-id" class="truncate max-w-[180px]">ID: Local</span>
+                <span id="header-db-sync-text" class="text-blue-500 font-semibold flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 bg-blue-500 rounded-full"></span> Sesión Activa
+                </span>
+            </div>
+        </section>
+
+        <!-- PANEL DERECHO: ÁREA DINÁMICA DE RESOLUCIÓN (67% width en desktop) -->
+        <section class="lg:col-span-8 flex flex-col gap-6">
             <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm relative overflow-hidden">
                 <div class="flex items-center justify-between mb-6 border-b border-slate-100 pb-4">
                     <span id="active-category" class="text-xs font-bold text-blue-800 bg-blue-50 px-3.5 py-1.5 rounded-full uppercase tracking-wider">Cargando...</span>
@@ -132,7 +159,7 @@
                 </div>
 
                 <!-- Opciones de Respuesta -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" id="options-stack">
+                <div class="grid grid-cols-1 gap-4 mb-6" id="options-stack">
                     <!-- Se inyectan por JS -->
                 </div>
 
@@ -169,38 +196,10 @@
                     <!-- Se inyecta por JS -->
                 </div>
                 <div class="flex justify-end">
-                    <button id="btn-next-question" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-6 py-3 rounded-xl transition shadow">
+                    <button id="btn-next-question" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold px-6 py-3 rounded-xl transition shadow cursor-pointer">
                         Siguiente Reactivo →
                     </button>
                 </div>
-            </div>
-        </section>
-
-        <!-- PANEL INFERIOR: MATRIZ DE NAVEGACIÓN LIBRE (Reactivos 1 al 150) -->
-        <section class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col gap-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <div>
-                    <h2 class="font-extrabold text-slate-900 text-lg tracking-tight">Matriz de Navegación del Simulador</h2>
-                    <p class="text-xs text-slate-500 mt-1">Navegación libre. Haz clic en cualquier casilla para cargar o retomar ese reactivo inmediatamente:</p>
-                </div>
-                <!-- Indicadores de estado de respuesta -->
-                <div class="flex gap-4 text-[11px] font-semibold">
-                    <span class="flex items-center gap-1.5 text-slate-500"><span class="w-3 h-3 rounded bg-slate-100 border border-slate-200 block"></span> Pendiente</span>
-                    <span class="flex items-center gap-1.5 text-emerald-600"><span class="w-3 h-3 rounded bg-emerald-500 block"></span> Correcta</span>
-                    <span class="flex items-center gap-1.5 text-rose-600"><span class="w-3 h-3 rounded bg-rose-500 block"></span> Incorrecta</span>
-                </div>
-            </div>
-
-            <!-- Contenedor scrollable de la rejilla de reactivos -->
-            <div id="matrix-grid" class="grid grid-cols-5 sm:grid-cols-10 md:grid-cols-15 lg:grid-cols-25 gap-2 max-h-[220px] overflow-y-auto pr-1 flex-grow custom-scrollbar py-2">
-                <!-- Se inyecta por JS de manera determinista de 1 a 150 -->
-            </div>
-            
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                <span id="header-session-id" class="truncate max-w-[280px]">ID: Conectando...</span>
-                <span id="header-db-sync-text" class="text-emerald-500 font-semibold flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Sincronizado
-                </span>
             </div>
         </section>
     </main>
@@ -218,7 +217,7 @@
             <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 text-sm text-slate-700 mb-6 leading-relaxed font-semibold" id="modal-content">
                 <!-- Se inyecta por JS -->
             </div>
-            <button id="btn-close-modal" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-sm">
+            <button id="btn-close-modal" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl transition text-sm cursor-pointer">
                 Volver a la Evaluación
             </button>
         </div>
@@ -237,7 +236,7 @@
                 <p class="text-xs font-bold text-slate-500 mt-2">Respuestas correctas obtenidas</p>
             </div>
 
-            <button id="btn-restart-quiz" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 rounded-xl transition shadow-lg">
+            <button id="btn-restart-quiz" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-4 rounded-xl transition shadow-lg cursor-pointer">
                 Reiniciar Simulador Completo
             </button>
         </div>
@@ -248,7 +247,6 @@
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Exponer SDKs a nivel global de forma controlada y segura para evitar TDZ o problemas de alcance
         window.FirebaseSDK = { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, getFirestore, doc, getDoc, setDoc };
 
         const GRAVITY = 9.8;
@@ -263,604 +261,607 @@
         let isFirebaseActive = false;
         let appId = "default-app-id";
 
-        // Generador robusto de identificador de sesión para evitar sandbox API blocks
         const generateSafeSessionId = () => {
             return "session-" + Math.random().toString(36).substring(2, 11) + "-" + Date.now().toString(36);
         };
 
-        async function initDatabaseConnection() {
-            const statusBadge = document.getElementById("db-status-badge");
-            const startBtn = document.getElementById("btn-start-quiz");
-            const sessionDisplay = document.getElementById("session-id-display");
-            const headerSessionId = document.getElementById("header-session-id");
-            const headerDbSync = document.getElementById("header-db-sync-text");
-
-            let isDatabaseLoaded = false;
-
-            // Fallback inmediato si no hay internet o falla Firebase (800ms)
-            const connectionTimeout = setTimeout(() => {
-                if (!isDatabaseLoaded) {
-                    fallbackToLocalMode();
-                }
-            }, 800);
-
-            function fallbackToLocalMode() {
-                isDatabaseLoaded = true;
-                userId = generateSafeSessionId();
-                
-                if (statusBadge) {
-                    statusBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-500/10 text-slate-400 border border-slate-500/20";
-                    statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> Sesión Temporal (Solo Memoria)`;
-                }
-                
-                if (sessionDisplay) {
-                    sessionDisplay.textContent = `ID Local: ${userId}`;
-                    sessionDisplay.classList.remove("hidden");
-                }
-                if (headerSessionId) {
-                    headerSessionId.textContent = `Sesión Local`;
-                }
-                if (headerDbSync) {
-                    headerDbSync.className = "text-amber-500 font-semibold flex items-center gap-1";
-                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-amber-500 rounded-full"></span> Solo Memoria`;
-                }
-                
-                if (startBtn) {
-                    startBtn.disabled = false;
-                    startBtn.textContent = "Iniciar Evaluación";
-                    startBtn.className = "w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer";
-                }
-            }
-
-            try {
-                // Obtener credenciales globales del entorno de la plataforma si existieran
-                const appIdVal = typeof __app_id !== 'undefined' ? __app_id : 'simulador-fisica-pro-v4';
-                appId = appIdVal;
-                
-                let firebaseConfig = null;
-                if (typeof __firebase_config !== 'undefined') {
-                    firebaseConfig = typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config;
-                }
-                
-                const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-                if (window.FirebaseSDK && firebaseConfig) {
-                    const { initializeApp: fInit, getAuth: fAuth, signInAnonymously: fAnon, signInWithCustomToken: fToken, getFirestore: fStore } = window.FirebaseSDK;
-                    
-                    const app = fInit(firebaseConfig);
-                    auth = fAuth(app);
-                    db = fStore(app);
-
-                    let userCredential;
-                    if (initialAuthToken) {
-                        userCredential = await fToken(auth, initialAuthToken);
-                    } else {
-                        userCredential = await fAnon(auth);
-                    }
-
-                    userId = userCredential.user.uid;
-                    isFirebaseActive = true;
-                    isDatabaseLoaded = true;
-                    clearTimeout(connectionTimeout);
-
-                    if (statusBadge) {
-                        statusBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
-                        statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Conectado y Autoguardado Activo`;
-                    }
-                    
-                    if (sessionDisplay) {
-                        sessionDisplay.textContent = `ID de Sesión: ${userId}`;
-                        sessionDisplay.classList.remove("hidden");
-                    }
-                    if (headerSessionId) {
-                        headerSessionId.textContent = `Sesión: ${userId}`;
-                    }
-
-                    // Cargar progreso asíncronamente si ya existía una sesión guardada
-                    await loadProgressFromDB();
-                } else {
-                    fallbackToLocalMode();
-                }
-            } catch (err) {
-                console.warn("Base de datos en modo local (Progreso en memoria):", err.message);
-                clearTimeout(connectionTimeout);
-                fallbackToLocalMode();
-            } finally {
-                if (startBtn) {
-                    startBtn.disabled = false;
-                    startBtn.textContent = "Iniciar Evaluación";
-                    startBtn.className = "w-full sm:w-auto bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white font-bold px-10 py-4 rounded-xl shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1 cursor-pointer";
-                }
-            }
-        }
-
-        async function saveProgressToDB() {
-            if (!isFirebaseActive || !userId) return;
-            const headerDbSync = document.getElementById("header-db-sync-text");
-            try {
-                if (headerDbSync) {
-                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-ping"></span> Guardando...`;
-                }
-                const { doc: fDoc, setDoc: fSet } = window.FirebaseSDK;
-                const progressRef = fDoc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
-                
-                await fSet(progressRef, {
-                    userAnswers: JSON.stringify(userAnswers),
-                    usedComodines: usedComodines,
-                    activeIndex: activeIndex,
-                    updatedAt: new Date().toISOString()
-                });
-
-                if (headerDbSync) {
-                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Sincronizado`;
-                }
-            } catch (error) {
-                console.error("Fallo al sincronizar base de datos:", error);
-                if (headerDbSync) {
-                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span> Error de Sincronización`;
-                }
-            }
-        }
-
-        async function loadProgressFromDB() {
-            if (!isFirebaseActive || !userId) return;
-            try {
-                const { doc: fDoc, getDoc: fGet } = window.FirebaseSDK;
-                const progressRef = fDoc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
-                const docSnap = await fGet(progressRef);
-                
-                if (docSnap.exists()) {
-                    const data = docSnap.data();
-                    if (data.userAnswers) {
-                        userAnswers = JSON.parse(data.userAnswers);
-                    }
-                    if (data.usedComodines) {
-                        usedComodines = data.usedComodines;
-                    }
-                    if (typeof data.activeIndex === 'number') {
-                        activeIndex = data.activeIndex;
-                    }
-
-                    updateScoreAndProgress();
-                }
-            } catch (error) {
-                console.error("Fallo al descargar progreso:", error);
-            }
-        }
-
-        async function clearProgressInDB() {
-            if (!isFirebaseActive || !userId) return;
-            try {
-                const { doc: fDoc, setDoc: fSet } = window.FirebaseSDK;
-                const progressRef = fDoc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
-                await fSet(progressRef, {
-                    userAnswers: JSON.stringify({}),
-                    usedComodines: { "5050": false, "eliminar": false, "llamada": false, "publico": false },
-                    activeIndex: 0,
-                    updatedAt: new Date().toISOString()
-                });
-            } catch (error) {
-                console.error("Fallo al resetear almacenamiento remoto:", error);
-            }
-        }
-
         function generateQuestionBank() {
             questions = [];
             
-            for (let i = 1; i <= 150; i++) {
-                let q = {
-                    id: i,
-                    categoria: "",
-                    pregunta: "",
-                    opciones: {}, 
-                    correcta: "A",
-                    explicacion: ""
-                };
+            // --- BLOQUE 1: CINEMÁTICA (1 - 50) ---
+            // MRU (1-10)
+            questions.push({
+                id: 1, categoria: "Cinemática - MRU",
+                pregunta: "Una partícula recorre una trayectoria rectilínea con un desplazamiento vectorial \\( \\vec{r} = (-30\\hat{i} + 40\\hat{j}) \\text{ km} \\) en un tiempo de \\( t = 2 \\text{ h} \\). Determine el módulo de su velocidad media.",
+                opciones: { A: "25.00 km/h", B: "35.00 km/h", C: "15.00 km/h", D: "50.00 km/h" }, correcta: "A",
+                explicacion: "El módulo del desplazamiento vectorial es \\( |\\vec{r}| = \\sqrt{(-30)^2 + 40^2} = 50 \\text{ km} \\). La velocidad media es el módulo del desplazamiento dividido por el tiempo: \\( v = \\frac{50}{2} = 25 \\text{ km/h} \\)."
+            });
+            questions.push({
+                id: 2, categoria: "Cinemática - MRU",
+                pregunta: "Un dron vuela en línea recta cubriendo un vector de posición \\( \\vec{r} = (12\\hat{i} - 16\\hat{j}) \\text{ m} \\) en un lapso exacto de \\( t = 4 \\text{ s} \\). Calcule su rapidez media.",
+                opciones: { A: "5.00 m/s", B: "8.00 m/s", C: "3.50 m/s", D: "20.00 m/s" }, correcta: "A",
+                explicacion: "El módulo del vector es \\( \\sqrt{12^2 + (-16)^2} = 20 \\text{ m} \\). Al dividir para el tiempo de \\( 4 \\text{ s} \\), obtenemos una rapidez de \\( 5.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 3, categoria: "Cinemática - MRU",
+                pregunta: "Un vehículo experimental se desplaza desde el origen a una estación de pruebas ubicada en \\( \\vec{r} = (-60\\hat{i} + 80\\hat{j}) \\text{ m} \\). Si tarda \\( 10 \\text{ s} \\) en completar el tramo con velocidad constante, halle la magnitud de dicha velocidad.",
+                opciones: { A: "10.00 m/s", B: "14.14 m/s", C: "7.07 m/s", D: "100.00 m/s" }, correcta: "A",
+                explicacion: "El módulo de posición es \\( \\sqrt{(-60)^2 + 80^2} = 100 \\text{ m} \\). Dividiendo para el tiempo de \\( 10 \\text{ s} \\) se obtiene \\( 10.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 4, categoria: "Cinemática - MRU",
+                pregunta: "Teórica: En el movimiento rectilíneo uniforme (MRU), ¿qué propiedad geométrica del gráfico de posición contra tiempo \\( (x \\text{ vs } t) \\) nos proporciona directamente el valor de la velocidad de la partícula?",
+                opciones: { A: "La pendiente de la recta tangente en cualquier punto.", B: "El área bajo la curva desde el origen hasta el tiempo final.", C: "La intersección de la curva con el eje vertical de ordenadas.", D: "El arco total de la curva en el plano cartesiano." }, correcta: "A",
+                explicacion: "En un gráfico posición vs tiempo, la pendiente de la recta corresponde matemáticamente a la velocidad del móvil, ya que representa la tasa de cambio de la posición respecto al tiempo."
+            });
+            questions.push({
+                id: 5, categoria: "Cinemática - MRU",
+                pregunta: "Un submarino de investigación avanza en el océano con un desplazamiento representado por \\( \\vec{r} = (-24\\hat{i} - 7\\hat{j}) \\text{ m} \\) en un intervalo temporal de \\( t = 5 \\text{ s} \\). Calcule el módulo de su velocidad.",
+                opciones: { A: "5.00 m/s", B: "25.00 m/s", C: "6.20 m/s", D: "12.50 m/s" }, correcta: "A",
+                explicacion: "El módulo del desplazamiento es \\( |\\vec{r}| = \\sqrt{(-24)^2 + (-7)^2} = 25 \\text{ m} \\). La velocidad escalar promedio es \\( v = \\frac{25}{5} = 5.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 6, categoria: "Cinemática - MRU",
+                pregunta: "Teórica: Si una partícula se mueve con velocidad constante, ¿cuál es la relación geométrica entre su vector velocidad y su vector aceleración?",
+                opciones: { A: "El vector aceleración es nulo y carece de dirección física.", B: "El vector aceleración es perpendicular al vector velocidad.", C: "El vector aceleración es colineal y de sentido contrario al vector velocidad.", D: "La aceleración varía exponencialmente en relación al eje de trayectoria." }, correcta: "A",
+                explicacion: "Si la velocidad de una partícula es constante (MRU), su derivada respecto al tiempo es cero, por lo cual la aceleración es nula."
+            });
+            questions.push({
+                id: 7, categoria: "Cinemática - MRU",
+                pregunta: "Un satélite de mapeo terrestre reporta un desplazamiento de una lancha de carreras de \\( \\vec{r} = (15\\hat{i} + 20\\hat{j}) \\text{ km} \\) en un tiempo de \\( t = 0.5 \\text{ h} \\). Determine la rapidez lineal de la lancha.",
+                opciones: { A: "50.00 km/h", B: "25.00 km/h", C: "12.50 km/h", D: "100.00 km/h" }, correcta: "A",
+                explicacion: "El módulo de desplazamiento es \\( \\sqrt{15^2 + 20^2} = 25 \\text{ km} \\). Al dividir \\( 25 \\text{ km} \\) entre \\( 0.5 \\text{ h} \\), se obtiene \\( 50.00 \\text{ km/h} \\)."
+            });
+            questions.push({
+                id: 8, categoria: "Cinemática - MRU",
+                pregunta: "Un robot de inspección industrial se desplaza en línea recta desde un punto A hasta un punto B cubriendo un vector \\( \\vec{r} = (-9\\hat{i} + 12\\hat{j}) \\text{ m} \\) en un tiempo de \\( 3 \\text{ s} \\). Halle el módulo de la velocidad del robot.",
+                opciones: { A: "5.00 m/s", B: "15.00 m/s", C: "3.00 m/s", D: "7.00 m/s" }, correcta: "A",
+                explicacion: "El módulo del vector es \\( \\sqrt{(-9)^2 + 12^2} = 15 \\text{ m} \\). Dividiendo para el tiempo de \\( 3 \\text{ s} \\), obtenemos una rapidez de \\( 5.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 9, categoria: "Cinemática - MRU",
+                pregunta: "Una partícula de polvo ionizado en una cámara de vacío experimenta un desplazamiento de \\( \\vec{r} = (8\\hat{i} - 15\\hat{j}) \\text{ mm} \\) en un lapso de \\( 0.1 \\text{ s} \\). ¿Cuál es la rapidez media del polvo?",
+                opciones: { A: "170.00 mm/s", B: "17.00 mm/s", C: "230.00 mm/s", D: "1.70 mm/s" }, correcta: "A",
+                explicacion: "El módulo del vector de posición es \\( \\sqrt{8^2 + (-15)^2} = 17 \\text{ mm} \\). La rapidez es \\( 17 \\text{ mm} / 0.1 \\text{ s} = 170.00 \\text{ mm/s} \\)."
+            });
+            questions.push({
+                id: 10, categoria: "Cinemática - MRU",
+                pregunta: "Teórica: ¿Cuál es la diferencia fundamental entre el concepto de rapidez media y el módulo de la velocidad media en un movimiento bidimensional de trayectoria curva?",
+                opciones: { A: "La rapidez media considera la longitud total de la trayectoria, mientras que la velocidad media solo considera el cambio neto de posición inicial y final.", B: "La rapidez media siempre es menor que el módulo de la velocidad media.", C: "La velocidad media depende del ángulo absoluto de inclinación, mientras que la rapidez media depende únicamente del tiempo.", D: "No existe ninguna diferencia física, ambos conceptos arrojan el mismo escalar en cualquier caso de movimiento." }, correcta: "A",
+                explicacion: "La rapidez es un escalar basado en la distancia total recorrida sobre la trayectoria real, mientras que la velocidad media es un vector basado en el desplazamiento neto entre dos puntos."
+            });
 
-                if (i <= 15) {
-                    q.categoria = "Cinemática - MRU";
-                    const d_val = 40 + (i * 8);
-                    const t_val = 2 + (i * 0.4);
-                    const speed = (d_val / t_val).toFixed(2);
-                    
-                    if (i % 3 === 0) {
-                        const vx = -10 - i;
-                        const vy = 15 + i;
-                        const dist = Math.sqrt(vx*vx + vy*vy);
-                        const t_h = 2.5;
-                        const v_media = (dist / t_h).toFixed(2);
-                        q.pregunta = `Una partícula experimenta un desplazamiento representado por el vector de posición \\( \\vec{r} = (${vx}\\hat{i} + ${vy}\\hat{j}) \\text{ km} \\) en un tiempo exacto de \\( t = ${t_h} \\text{ h} \\). Determine el módulo de su velocidad media (rapidez).`;
-                        q.opciones = {
-                            A: `\\( ${v_media} \\text{ km/h} \\)`,
-                            B: `\\( ${(v_media * 1.2).toFixed(2)} \\text{ km/h} \\)`,
-                            C: `\\( ${(v_media * 0.85).toFixed(2)} \\text{ km/h} \\)`,
-                            D: `\\( ${(parseFloat(v_media) + 4.15).toFixed(2)} \\text{ km/h} \\)`
-                        };
-                        q.explicacion = `El módulo del desplazamiento es el módulo del vector de posición: \\( |\\vec{r}| = \\sqrt{(${vx})^2 + (${vy})^2} = ${dist.toFixed(2)} \\text{ km} \\). La rapidez se obtiene dividiendo esta distancia escalar para el tiempo total: \\( v = \\frac{${dist.toFixed(2)}}{${t_h}} = ${v_media} \\text{ km/h} \\).`;
-                    } else if (i % 3 === 1) {
-                        q.pregunta = `Un automóvil se desplaza con rapidez constante. Si el vector de posición de su destino respecto al origen es \\( \\vec{r} = (-${d_val}\\hat{i} + ${d_val * 2}\\hat{j}) \\text{ m} \\) y completa su trayecto en \\( t = ${t_val.toFixed(1)} \\text{ s} \\), halle la magnitud de su velocidad media.`;
-                        const dist_comp = Math.sqrt(d_val*d_val + (d_val*2)*(d_val*2));
-                        const speed_comp = (dist_comp / t_val).toFixed(2);
-                        q.opciones = {
-                            A: `\\( ${speed_comp} \\text{ m/s} \\)`,
-                            B: `\\( ${(speed_comp * 1.5).toFixed(2)} \\text{ m/s} \\)`,
-                            C: `\\( ${(speed_comp * 0.75).toFixed(2)} \\text{ m/s} \\)`,
-                            D: `\\( ${(parseFloat(speed_comp) + 10.45).toFixed(2)} \\text{ m/s} \\)`
-                        };
-                        q.explicacion = `Calculamos primero el módulo del vector desplazamiento: \\( |\\vec{r}| = \\sqrt{(-${d_val})^2 + (${d_val * 2})^2} = ${dist_comp.toFixed(2)} \\text{ m} \\). Al aplicar la ecuación fundamental del MRU, la rapidez es: \\( v = \\frac{${dist_comp.toFixed(2)}}{${t_val.toFixed(1)}} = ${speed_comp} \\text{ m/s} \\).`;
-                    } else {
-                        q.pregunta = `¿Cuál de las siguientes afirmaciones describe de manera más rigurosa una de las propiedades esenciales del movimiento rectilíneo uniforme (MRU)?`;
-                        q.opciones = {
-                            A: "La velocidad instantánea coincide plenamente con la velocidad media en todo momento del recorrido.",
-                            B: "La aceleración tangencial varía linealmente de forma proporcional al tiempo transcurrido.",
-                            C: "El vector aceleración es perpendicular al vector velocidad en cada punto de la trayectoria.",
-                            D: "La distancia recorrida es siempre estrictamente menor que el módulo del desplazamiento."
-                        };
-                        q.explicacion = "En el MRU, al ser la velocidad perfectamente constante tanto en magnitud como en dirección, cualquier velocidad instantánea registrada equivale exactamente a la velocidad media global.";
-                    }
+            // MRUV (11-20)
+            questions.push({
+                id: 11, categoria: "Cinemática - MRUV",
+                pregunta: "Un caza despegando desde un portaaviones tiene una velocidad inicial \\( \\vec{v}_0 = (30\\hat{i} + 40\\hat{j}) \\text{ m/s} \\). Si acelera colinealmente hasta triplicar su rapidez en un tiempo de \\( t = 10 \\text{ s} \\), calcule el módulo de su aceleración.",
+                opciones: { A: "10.00 m/s²", B: "5.00 m/s²", C: "15.00 m/s²", D: "2.50 m/s²" }, correcta: "A",
+                explicacion: "La rapidez inicial es \\( v_0 = \\sqrt{30^2 + 40^2} = 50 \\text{ m/s} \\). La rapidez final es el triple: \\( 150 \\text{ m/s} \\). La aceleración es \\( a = \\frac{150 - 50}{10} = 10.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 12, categoria: "Cinemática - MRUV",
+                pregunta: "Un protón en un acelerador lineal viaja con velocidad inicial \\( v_0 = 10 \\text{ m/s} \\) y se acelera a razón constante hasta alcanzar una velocidad final \\( v_f = 90 \\text{ m/s} \\) cubriendo una distancia de \\( 40 \\text{ m} \\). Halle el módulo de su aceleración.",
+                opciones: { A: "100.00 m/s²", B: "80.00 m/s²", C: "40.00 m/s²", D: "50.00 m/s²" }, correcta: "A",
+                explicacion: "Aplicando la fórmula de Torricelli: \\( v_f^2 = v_0^2 + 2ad \\Rightarrow 90^2 = 10^2 + 2 \\cdot a \\cdot 40 \\Rightarrow 8100 = 100 + 80a \\Rightarrow a = 100.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 13, categoria: "Cinemática - MRUV",
+                pregunta: "Un tren de levitación magnética parte del reposo y acelera de forma constante a razón de \\( a = 2 \\text{ m/s²} \\). ¿Qué distancia le tomará alcanzar una rapidez lineal de \\( 30 \\text{ m/s} \\)?",
+                opciones: { A: "225.00 m", B: "450.00 m", C: "150.00 m", D: "900.00 m" }, correcta: "A",
+                explicacion: "Utilizando la ecuación \\( v_f^2 = v_0^2 + 2ad \\) con \\( v_0 = 0 \\): \\( 30^2 = 2 \\cdot 2 \\cdot d \\Rightarrow 900 = 4d \\Rightarrow d = 225.00 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 14, categoria: "Cinemática - MRUV",
+                pregunta: "Teórica: En un gráfico de velocidad en función del tiempo \\( (v \\text{ vs } t) \\) para una partícula con aceleración constante, ¿qué representa físicamente el área encerrada bajo la línea de la gráfica en un intervalo de tiempo dado?",
+                opciones: { A: "El módulo del desplazamiento realizado por la partícula.", B: "La velocidad instantánea final en dicho tiempo.", C: "La variación del vector aceleración centrípeta.", D: "La potencia mecánica desarrollada por el sistema." }, correcta: "A",
+                explicacion: "En cualquier gráfica de velocidad vs tiempo, el área matemática acumulada bajo la curva representa el desplazamiento de la partícula."
+            });
+            questions.push({
+                id: 15, categoria: "Cinemática - MRUV",
+                pregunta: "Un proyectil de pruebas frena uniformemente al penetrar un bloque de gel balístico. Si entra con rapidez de \\( v_0 = 120 \\text{ m/s} \\) y se detiene tras recorrer \\( 0.4 \\text{ m} \\), determine la desaceleración constante experimentada.",
+                opciones: { A: "18000.00 m/s²", B: "36000.00 m/s²", C: "9000.00 m/s²", D: "15000.00 m/s²" }, correcta: "A",
+                explicacion: "Usamos \\( v_f^2 = v_0^2 - 2ad \\) con \\( v_f = 0 \\): \\( 0 = 120^2 - 2 \\cdot a \\cdot 0.4 \\Rightarrow 1.4400 = 0.8 a \\Rightarrow a = 18000.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 16, categoria: "Cinemática - MRUV",
+                pregunta: "Un móvil que experimenta un MRUV duplica su velocidad desde una velocidad inicial de \\( v_0 = 15 \\text{ m/s} \\) en un tiempo de \\( t = 5 \\text{ s} \\). Calcule la distancia recorrida en ese lapso.",
+                opciones: { A: "112.50 m", B: "75.00 m", C: "150.00 m", D: "225.00 m" }, correcta: "A",
+                explicacion: "La velocidad final es \\( 30 \\text{ m/s} \\). La distancia en MRUV se puede calcular como \\( d = \\frac{v_0 + v_f}{2} \\cdot t = \\frac{15 + 30}{2} \\cdot 5 = 22.5 \\cdot 5 = 112.50 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 17, categoria: "Cinemática - MRUV",
+                pregunta: "Teórica: Si un automóvil tiene velocidad en sentido hacia el este y simultáneamente experimenta una aceleración constante dirigida hacia el oeste, ¿qué tipo de movimiento experimenta?",
+                opciones: { A: "Movimiento desacelerado (frenado) temporal.", B: "Movimiento acelerado hacia el este de forma exponencial.", C: "Movimiento uniforme de carácter rectilíneo permanente.", D: "Movimiento parabólico con elevación constante." }, correcta: "A",
+                explicacion: "Cuando la velocidad y la aceleración tienen sentidos contrarios (este vs oeste), la aceleración reduce la magnitud de la velocidad, ocasionando un frenado."
+            });
+            questions.push({
+                id: 18, categoria: "Cinemática - MRUV",
+                pregunta: "Un bloque de metal desliza por una canaleta con una velocidad inicial de \\( 5 \\text{ m/s} \\). Si experimenta una aceleración de \\( a = 4 \\text{ m/s²} \\) durante \\( t = 3 \\text{ s} \\), determine su rapidez final.",
+                opciones: { A: "17.00 m/s", B: "12.00 m/s", C: "22.00 m/s", D: "25.00 m/s" }, correcta: "A",
+                explicacion: "Utilizamos la fórmula \\( v_f = v_0 + a t = 5 + (4 \\cdot 3) = 17.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 19, categoria: "Cinemática - MRUV",
+                pregunta: "Un objeto en movimiento uniformemente variado viaja de tal forma que cubre \\( 80 \\text{ m} \\) en un tiempo de \\( 4 \\text{ s} \\). Si su velocidad al final de este tramo es de \\( 25 \\text{ m/s} \\), halle su velocidad inicial.",
+                opciones: { A: "15.00 m/s", B: "5.00 m/s", C: "10.00 m/s", D: "20.00 m/s" }, correcta: "A",
+                explicacion: "Dado que \\( d = \\frac{v_0 + v_f}{2} \\cdot t \\), sustituimos: \\( 80 = \\frac{v_0 + 25}{2} \\cdot 4 \\Rightarrow 80 = (v_0 + 25) \\cdot 2 \\Rightarrow 40 = v_0 + 25 \\Rightarrow v_0 = 15.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 20, categoria: "Cinemática - MRUV",
+                pregunta: "Teórica: ¿Qué condición matemática se debe cumplir para que la aceleración media calculada en un intervalo de tiempo coincida exactamente con la aceleración instantánea de la partícula?",
+                opciones: { A: "La aceleración de la partícula debe ser constante en todo instante del intervalo.", B: "La velocidad de la partícula debe variar exponencialmente.", C: "El módulo del desplazamiento debe ser estrictamente cero.", D: "La aceleración debe ser una función trigonométrica del tiempo." }, correcta: "A",
+                explicacion: "Si la aceleración es constante en el tiempo (MRUV), su valor instantáneo no cambia y equivale exactamente al valor promedio o medio de la aceleración."
+            });
 
-                } else if (i <= 30) {
-                    q.categoria = "Cinemática - MRUV";
-                    const v0 = 2 + i;
-                    const vf = 15 + (i * 1.5);
-                    const t = 3 + (i * 0.1);
-                    const acc = ((vf - v0) / t).toFixed(2);
-                    
-                    if (i % 3 === 0) {
-                        const v0x = -3 * i;
-                        const v0y = 4 * i;
-                        const v0_mod = Math.sqrt(v0x*v0x + v0y*v0y);
-                        const a_col = 2.5;
-                        const t_val = 4;
-                        const vf_calc = (v0_mod + a_col * t_val).toFixed(2);
-                        q.pregunta = `Un móvil arranca su marcha acelerada con una velocidad inicial \\( \\vec{v}_0 = (${v0x}\\hat{i} + ${v0y}\\hat{j}) \\text{ m/s} \\). Si experimenta una aceleración constante colineal de módulo \\( a = ${a_col} \\text{ m/s}^2 \\) durante \\( t = ${t_val} \\text{ s} \\), determine el módulo de su velocidad final.`;
-                        q.opciones = {
-                            A: `\\( ${vf_calc} \\text{ m/s} \\)`,
-                            B: `\\( ${(vf_calc * 1.15).toFixed(2)} \\text{ m/s} \\)`,
-                            C: `\\( ${(v0_mod).toFixed(2)} \\text{ m/s} \\)`,
-                            D: `\\( ${(parseFloat(vf_calc) - 5.6).toFixed(2)} \\text{ m/s} \\)`
-                        };
-                        q.explicacion = `El módulo de la velocidad inicial es: \\( v_0 = \\sqrt{(${v0x})^2 + (${v0y})^2} = ${v0_mod.toFixed(2)} \\text{ m/s} \\). Dado que la aceleración actúa en la misma dirección, aplicamos la relación: \\( v_f = v_0 + a t = ${v0_mod.toFixed(2)} + (${a_col} \\cdot ${t_val}) = ${vf_calc} \\text{ m/s} \\).`;
-                    } else if (i % 3 === 1) {
-                        q.pregunta = `Un tren incrementa uniformemente su marcha desde \\( v_0 = ${v0} \\text{ m/s} \\) hasta alcanzar \\( v_f = ${vf} \\text{ m/s} \\). Si este cambio ocurre en un intervalo de tiempo de \\( t = ${t.toFixed(1)} \\text{ s} \\), despeje el valor de su aceleración constante.`;
-                        q.opciones = {
-                            A: `\\( ${acc} \\text{ m/s}^2 \\)`,
-                            B: `\\( ${(acc * 1.3).toFixed(2)} \\text{ m/s}^2 \\)`,
-                            C: `\\( ${(acc * 0.7).toFixed(2)} \\text{ m/s}^2 \\)`,
-                            D: `\\( ${(parseFloat(acc) + 1.85).toFixed(2)} \\text{ m/s}^2 \\)`
-                        };
-                        q.explicacion = `Utilizando la definición matemática de la aceleración constante: \\( a = \\frac{v_f - v_0}{t} = \\frac{${vf} - ${v0}}{${t.toFixed(1)}} = ${acc} \\text{ m/s}^2 \\).`;
-                    } else {
-                        q.pregunta = "En un gráfico de velocidad en función del tiempo (v vs. t) de un MRUV, ¿qué magnitud física representa el área sombreada bajo la curva?";
-                        q.opciones = {
-                            A: "El módulo del desplazamiento realizado por la partícula en dicho intervalo.",
-                            B: "La aceleración media desarrollada por la partícula.",
-                            C: "La velocidad instantánea final del trayecto.",
-                            D: "La tasa temporal de variación de la aceleración del sistema."
-                        };
-                        q.explicacion = "En todo gráfico de velocidad contra tiempo, el área matemática encerrada entre la curva y el eje de abscisas equivale exactamente al módulo del desplazamiento.";
-                    }
+            // MCU & MCUV (21-30)
+            questions.push({
+                id: 21, categoria: "Cinemática - MCU",
+                pregunta: "Una partícula describe un movimiento circular uniforme de radio \\( R = 2 \\text{ m} \\). Si experimenta una aceleración centrípeta constante de \\( a_c = 18 \\text{ m/s²} \\), determine su rapidez angular.",
+                opciones: { A: "3.00 rad/s", B: "9.00 rad/s", C: "6.00 rad/s", D: "1.50 rad/s" }, correcta: "A",
+                explicacion: "La aceleración centrípeta es \\( a_c = \\omega^2 R \\). Al despejar: \\( \\omega = \\sqrt{\\frac{a_c}{R}} = \\sqrt{\\frac{18}{2}} = 3.00 \\text{ rad/s} \\)."
+            });
+            questions.push({
+                id: 22, categoria: "Cinemática - MCU",
+                pregunta: "Teórica: En el movimiento circular uniforme (MCU), aunque el módulo del vector velocidad (rapidez lineal) permanece constante, la partícula experimenta una aceleración neta. ¿Cuál es la causa de esto?",
+                opciones: { A: "El cambio continuo en la dirección del vector velocidad en cada instante.", B: "El cambio lineal en la aceleración tangencial rotacional.", C: "La deformación elástica de la partícula debida al rozamiento centrífugo.", D: "La variación de la frecuencia angular neta respecto al tiempo de giro." }, correcta: "A",
+                explicacion: "El vector velocidad es tangente a la trayectoria, por lo que cambia de dirección constantemente. Este cambio de orientación en el tiempo es lo que produce la aceleración centrípeta."
+            });
+            questions.push({
+                id: 23, categoria: "Cinemática - MCU",
+                pregunta: "Un disco de radio \\( R = 0.5 \\text{ m} \\) gira con velocidad angular constante de \\( \\omega = 8 \\text{ rad/s} \\). Calcule el módulo de la velocidad lineal en un punto situado exactamente en el borde exterior del disco.",
+                opciones: { A: "4.00 m/s", B: "16.00 m/s", C: "2.00 m/s", D: "8.00 m/s" }, correcta: "A",
+                explicacion: "La velocidad lineal se calcula multiplicando el radio por la velocidad angular: \\( v = \\omega R = 8 \\cdot 0.5 = 4.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 24, categoria: "Cinemática - MCU",
+                pregunta: "Una centrífuga de laboratorio gira completando \\( N = 300 \\text{ revoluciones} \\) en un tiempo de \\( t = 60 \\text{ s} \\). Determine el período de rotación de la máquina.",
+                opciones: { A: "0.20 s", B: "5.00 s", C: "2.00 s", D: "0.50 s" }, correcta: "A",
+                explicacion: "El período \\( T \\) es el tiempo requerido para una sola vuelta completa: \\( T = \\frac{t}{N} = \\frac{60}{300} = 0.20 \\text{ s} \\)."
+            });
+            questions.push({
+                id: 25, categoria: "Cinemática - MCU",
+                pregunta: "Una pequeña partícula de masa inerte se encuentra adherida al borde de un disco de radio \\( 0.4 \\text{ m} \\). Si el disco gira de forma uniforme a una tasa de \\( 50 \\text{ rad/s} \\), calcule el módulo de su aceleración centrípeta.",
+                opciones: { A: "1000.00 m/s²", B: "500.00 m/s²", C: "250.00 m/s²", D: "20.00 m/s²" }, correcta: "A",
+                explicacion: "La aceleración centrípeta es \\( a_c = \\omega^2 R = 50^2 \\cdot 0.4 = 2500 \\cdot 0.4 = 1000.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 26, categoria: "Cinemática - MCU",
+                pregunta: "Teórica: ¿Cuál es el desfase angular geométrico que existe entre el vector velocidad instantánea y el vector aceleración centrípeta en cualquier punto de un MCU?",
+                opciones: { A: "90° (son perpendiculares en todo momento)", B: "180° (son colineales en sentidos opuestos)", C: "0° (tienen la misma dirección y sentido)", D: "45° (forman una bisectriz constante)" }, correcta: "A",
+                explicacion: "La aceleración centrípeta apunta radialmente hacia el centro del giro, mientras que el vector velocidad es tangente a la trayectoria circular. La recta tangente y el radio son siempre perpendiculares (90°)."
+            });
+            questions.push({
+                id: 27, categoria: "Cinemática - MCU",
+                pregunta: "Un volante de inercia gira con un período estable de \\( T = 0.5 \\text{ s} \\). Determine el valor exacto de su velocidad angular en términos de radianes por segundo.",
+                opciones: { A: "12.57 rad/s", B: "6.28 rad/s", C: "3.14 rad/s", D: "25.13 rad/s" }, correcta: "A",
+                explicacion: "La velocidad angular se relaciona con el período por \\( \\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{0.5} = 4\\pi \\approx 12.57 \\text{ rad/s} \\)."
+            });
+            questions.push({
+                id: 28, categoria: "Cinemática - MCU",
+                pregunta: "Un cilindro rotatorio completa \\( 120 \\text{ vueltas} \\) en un tiempo de \\( t = 10 \\text{ s} \\). Determine la frecuencia angular del sistema.",
+                opciones: { A: "75.40 rad/s", B: "12.00 rad/s", C: "37.70 rad/s", D: "120.00 rad/s" }, correcta: "A",
+                explicacion: "La frecuencia es \\( f = \\frac{120}{10} = 12 \\text{ Hz} \\). La frecuencia angular es \\( \\omega = 2\\pi f = 24\\pi \\approx 75.40 \\text{ rad/s} \\)."
+            });
+            questions.push({
+                id: 29, categoria: "Cinemática - MCU",
+                pregunta: "Un rotor de turbina gira de modo constante con rapidez lineal de \\( v = 40 \\text{ m/s} \\). Si el radio del aspa mide exactamente \\( R = 0.8 \\text{ m} \\), determine su aceleración centrípeta.",
+                opciones: { A: "2000.00 m/s²", B: "1000.00 m/s²", C: "400.00 m/s²", D: "800.00 m/s²" }, correcta: "A",
+                explicacion: "Aplicando \\( a_c = \\frac{v^2}{R} = \\frac{40^2}{0.8} = \\frac{1600}{0.8} = 2000.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 30, categoria: "Cinemática - MCU",
+                pregunta: "Teórica: En el movimiento circular uniformemente variado (MCUV), ¿cuáles son los componentes ortogonales que conforman el vector aceleración neta de la partícula?",
+                opciones: { A: "La aceleración tangencial (debida al cambio de rapidez) y la aceleración centrípeta (debida al cambio de dirección).", B: "La aceleración gravitatoria y la velocidad angular promedio.", C: "La fuerza de inercia tangencial y la gravedad rotatoria.", D: "La velocidad angular instantánea y la fuerza normal de rozamiento." }, correcta: "A",
+                explicacion: "La aceleración total es la suma vectorial de la aceleración tangencial (asociada al cambio del módulo de la velocidad) y la aceleración centrípeta o radial (asociada al cambio de dirección del movimiento)."
+            });
 
-                } else if (i <= 42) {
-                    q.categoria = "Cinemática - MCU";
-                    const r = 1.0 + (i - 30) * 0.2;
-                    const ac = 5.0 + i;
-                    const w = Math.sqrt(ac / r).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        q.pregunta = `Una partícula describe un movimiento circular uniforme con un radio de trayectoria \\( R = ${r.toFixed(2)} \\text{ m} \\). Si un sensor en el borde registra una aceleración centrípeta de \\( a_c = ${ac.toFixed(1)} \\text{ m/s}^2 \\), determine su velocidad angular.`;
-                        q.opciones = {
-                            A: `\\( ${w} \\text{ rad/s} \\)`,
-                            B: `\\( ${(w * 1.25).toFixed(2)} \\text{ rad/s} \\)`,
-                            C: `\\( ${(w * 0.75).toFixed(2)} \\text{ rad/s} \\)`,
-                            D: `\\( ${(parseFloat(w) + 2.15).toFixed(2)} \\text{ rad/s} \\)`
-                        };
-                        q.explicacion = `Despejamos la velocidad angular de la relación clásica de la aceleración centrípeta: \\( a_c = \\omega^2 R \\Rightarrow \\omega = \\sqrt{\\frac{a_c}{R}} = \\sqrt{\\frac{${ac.toFixed(1)}}{${r.toFixed(2)}}} = ${w} \\text{ rad/s} \\).`;
-                    } else {
-                        q.pregunta = "En el movimiento circular uniforme (MCU), a pesar de que el módulo de la velocidad lineal es constante, existe una aceleración neta no nula. ¿Cuál es su naturaleza?";
-                        q.opciones = {
-                            A: "Una aceleración de carácter puramente centrípeto, provocada por el cambio constante en la dirección del vector velocidad.",
-                            B: "Una aceleración tangencial constante que modifica la rapidez lineal del móvil.",
-                            C: "Una fuerza de rozamiento viscoso elástico que frena gradualmente el sistema.",
-                            D: "La variación de masa inercial debida a la velocidad orbital."
-                        };
-                        q.explicacion = "Aunque la rapidez (módulo de la velocidad) es perfectamente constante, la dirección del vector velocidad cambia en cada instante. Este cambio de dirección genera la aceleración centrípeta.";
-                    }
+            // Caída Libre (31-40)
+            questions.push({
+                id: 31, categoria: "Cinemática - Caída Libre",
+                pregunta: "Se suelta un objeto metálico desde el reposo absoluto desde la cima de un acantilado vertical de altura \\( H = 122.5 \\text{ m} \\). Calcule el tiempo necesario para impactar contra el suelo. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "5.00 s", B: "10.00 s", C: "3.50 s", D: "7.07 s" }, correcta: "A",
+                explicacion: "De la fórmula \\( H = \\frac{1}{2}g t^2 \\), despejamos \\( t \\): \\( 122.5 = 4.9 t^2 \\Rightarrow t^2 = 25 \\Rightarrow t = 5.00 \\text{ s} \\)."
+            });
+            questions.push({
+                id: 32, categoria: "Cinemática - Caída Libre",
+                pregunta: "En la superficie de un planeta experimental extrasolar, un objeto tarda exactamente \\( t = 4 \\text{ s} \\) en caer libremente desde una altura de \\( H = 16 \\text{ m} \\). Halle la aceleración de la gravedad de dicho planeta.",
+                opciones: { A: "2.00 m/s²", B: "9.80 m/s²", C: "4.00 m/s²", D: "8.00 m/s²" }, correcta: "A",
+                explicacion: "De \\( H = \\frac{1}{2}g t^2 \\), despejamos \\( g \\): \\( 16 = \\frac{1}{2} g (4^2) \\Rightarrow 16 = 8g \\Rightarrow g = 2.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 33, categoria: "Cinemática - Caída Libre",
+                pregunta: "Un paquete de provisiones es liberado desde un helicóptero estático a una altura de \\( H \\). Si el paquete tarda exactamente \\( t = 3 \\text{ s} \\) en descender hasta el suelo, despeje el valor de la altura \\( H \\). (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "44.10 m", B: "88.20 m", C: "19.60 m", D: "29.40 m" }, correcta: "A",
+                explicacion: "Calculamos el desplazamiento vertical empleando la gravedad constante: \\( H = \\frac{1}{2} g t^2 = 0.5 \\cdot 9.8 \\cdot 3^2 = 4.9 \\cdot 9 = 44.10 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 34, categoria: "Cinemática - Caída Libre",
+                pregunta: "Teórica: En ausencia completa de fricción con el aire, si dejamos caer simultáneamente una bola de boliche de \\( 7 \\text{ kg} \\) y una pluma de ave de \\( 0.005 \\text{ kg} \\) desde la misma altura, ¿cuál de los cuerpos llegará primero al suelo?",
+                opciones: { A: "Llegarán exactamente al mismo tiempo debido a que la aceleración de gravedad en el vacío es independiente de la masa.", B: "La bola de boliche llegará mucho antes por la fuerza neta de su inercia gravitatoria.", C: "La pluma llegará antes debido a que experimenta menor resistencia electromagnética.", D: "El tiempo depende de la densidad atómica de los materiales del sistema." }, correcta: "A",
+                explicacion: "En caída libre (vacío), todos los cuerpos aceleran a la misma tasa de cambio de velocidad \\( (g) \\), por lo tanto cubren la misma distancia en igual tiempo sin importar sus masas correspondientes."
+            });
+            questions.push({
+                id: 35, categoria: "Cinemática - Caída Libre",
+                pregunta: "Un técnico de mantenimiento deja caer una tuerca desde una pasarela elevada de un hangar. Si la tuerca impacta contra el suelo con una rapidez escalar de \\( 19.6 \\text{ m/s} \\), calcule la altura de la pasarela. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "19.60 m", B: "9.80 m", C: "39.20 m", D: "4.90 m" }, correcta: "A",
+                explicacion: "Usamos \\( v_f^2 = 2gH \\Rightarrow 19.6^2 = 2 \\cdot 9.8 \\cdot H \\Rightarrow 384.16 = 19.6 H \\Rightarrow H = 19.60 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 36, categoria: "Cinemática - Caída Libre",
+                pregunta: "Una esfera de metal se suelta desde una azotea y tarda \\( 1.5 \\text{ s} \\) en tocar la acera. Halle la rapidez con la que impacta contra la superficie. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "14.70 m/s", B: "9.80 m/s", C: "19.60 m/s", D: "4.90 m/s" }, correcta: "A",
+                explicacion: "La velocidad en caída libre partiendo del reposo es \\( v_f = g t = 9.8 \\cdot 1.5 = 14.70 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 37, categoria: "Cinemática - Caída Libre",
+                pregunta: "Teórica: ¿Por qué el valor de la gravedad de la Tierra cambia sutilmente entre los polos geográficos y la línea ecuatorial?",
+                opciones: { A: "Por la forma ligeramente achatada del planeta en los polos (mayor cercanía al centro terrestre) y por el efecto centrífugo de la rotación.", B: "Por la diferencia de masas magnéticas del núcleo terrestre rígido.", C: "Por el espesor variable de la capa de ozono de la atmósfera polar.", D: "Por la presencia de campos de mareas gravitatorias lunares más intensos." }, correcta: "A",
+                explicacion: "La Tierra es un esferoide achatado en los polos. En los polos se está más cerca del centro terrestre (mayor fuerza) y además en el ecuador el efecto de rotación reduce sutilmente la aceleración de gravedad."
+            });
+            questions.push({
+                id: 38, categoria: "Cinemática - Caída Libre",
+                pregunta: "Se suelta un objeto inerte desde una altura de \\( 80 \\text{ m} \\) en un pozo profundo donde la aceleración gravitatoria es constante y mide \\( g = 10.0 \\text{ m/s²} \\) (para fines de simplificación de pozo). Determine la rapidez final del cuerpo al tocar fondo.",
+                opciones: { A: "40.00 m/s", B: "20.00 m/s", C: "80.00 m/s", D: "10.00 m/s" }, correcta: "A",
+                explicacion: "Utilizando la fórmula de Torricelli: \\( v_f^2 = 2gH = 2 \\cdot 10.0 \\cdot 80 = 1600 \\Rightarrow v_f = 40.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 39, categoria: "Cinemática - Caída Libre",
+                pregunta: "Un martillo de geólogo resbala desde un andamio de construcción a una altura de \\( 4.9 \\text{ m} \\). ¿En cuánto tiempo chocará contra la losa de concreto inferior? (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "1.00 s", B: "0.50 s", C: "2.00 s", D: "1.50 s" }, correcta: "A",
+                explicacion: "Despejando el tiempo de la ecuación clásica: \\( H = \\frac{1}{2}g t^2 \\Rightarrow 4.9 = 4.9 t^2 \\Rightarrow t^2 = 1 \\Rightarrow t = 1.00 \\text{ s} \\)."
+            });
+            questions.push({
+                id: 40, categoria: "Cinemática - Caída Libre",
+                pregunta: "Teórica: ¿Qué describe la velocidad terminal cuando un cuerpo experimenta caída libre dentro de un fluido denso como la atmósfera terrestre?",
+                opciones: { A: "La rapidez límite constante donde la fuerza de fricción del fluido iguala exactamente a la fuerza peso del cuerpo, anulando su aceleración.", B: "La velocidad requerida para escapar de la atracción gravitatoria del planeta.", C: "La velocidad de impacto promedio de un sólido contra el agua.", D: "La aceleración exponencial que experimenta una partícula debido al incremento de densidad." }, correcta: "A",
+                explicacion: "Al caer en un fluido real, la fricción del fluido aumenta con la rapidez. Al igualar el peso, la fuerza neta se hace cero y la velocidad se vuelve constante (velocidad terminal)."
+            });
 
-                } else if (i <= 55) {
-                    q.categoria = "Cinemática - Caída Libre";
-                    const h = 30 + (i - 42) * 6;
-                    const t_caida = Math.sqrt((2 * h) / GRAVITY).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        const t_obs = 2.0 + (i - 42) * 0.1;
-                        const g_alien = ((2 * h) / (t_obs * t_obs)).toFixed(2);
-                        q.pregunta = `En la superficie de un asteroide experimental, se libera un objeto desde el reposo a una altura de \\( h = ${h} \\text{ m} \\). Si los sensores registran un tiempo de caída libre de \\( t = ${t_obs.toFixed(1)} \\text{ s} \\), despeje el valor de la gravedad local de este cuerpo celeste.`;
-                        q.opciones = {
-                            A: `\\( ${g_alien} \\text{ m/s}^2 \\)`,
-                            B: `\\( 9.80 \\text{ m/s}^2 \\)`,
-                            C: `\\( ${(g_alien * 1.3).toFixed(2)} \\text{ m/s}^2 \\)`,
-                            D: `\\( ${(g_alien * 0.7).toFixed(2)} \\text{ m/s}^2 \\)`
-                        };
-                        q.explicacion = `De la fórmula fundamental de caída libre \\( h = \\frac{1}{2}g t^2 \\), despejamos la gravedad local: \\( g = \\frac{2h}{t^2} = \\frac{2 \\cdot ${h}}{${t_obs.toFixed(1)}^2} = ${g_alien} \\text{ m/s}^2 \\).`;
-                    } else {
-                        q.pregunta = `Un cuerpo de pruebas se deja caer libremente en el vacío terrestre de forma vertical desde una altura controlada de \\( h = ${h} \\text{ m} \\). Calcule el tiempo total que le toma impactar contra la base de control. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                        q.opciones = {
-                            A: `\\( ${t_caida} \\text{ s} \\)`,
-                            B: `\\( ${(parseFloat(t_caida) + 1.15).toFixed(2)} \\text{ s} \\)`,
-                            C: `\\( ${(t_caida * 0.8).toFixed(2)} \\text{ s} \\)`,
-                            D: `\\( ${(parseFloat(t_caida) + 2.5).toFixed(2)} \\text{ s} \\)`
-                        };
-                        q.explicacion = `Despejamos el tiempo directamente de la fórmula de caída libre: \\( t = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\cdot ${h}}{9.8}} = ${t_caida} \\text{ s} \\).`;
-                    }
+            // Tiro Vertical (41-45)
+            questions.push({
+                id: 41, categoria: "Cinemática - Tiro Vertical",
+                pregunta: "Una sonda de medición atmosférica se proyecta verticalmente hacia arriba desde el suelo con rapidez de \\( v_0 = 49 \\text{ m/s} \\). Halle la altura máxima lograda antes de que se detenga para retornar. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "122.50 m", B: "245.00 m", C: "98.00 m", D: "61.25 m" }, correcta: "A",
+                explicacion: "La altura máxima se obtiene de \\( H_{max} = \\frac{v_0^2}{2g} = \\frac{49^2}{2 \\cdot 9.8} = \\frac{2401}{19.6} = 122.50 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 42, categoria: "Cinemática - Tiro Vertical",
+                pregunta: "Teórica: Cuando lanzamos un objeto directamente hacia arriba de manera vertical, en el punto exacto de su altura máxima, ¿cuáles son los valores correspondientes de su velocidad y de su aceleración?",
+                opciones: { A: "La velocidad es estrictamente nula (cero) y la aceleración es constante e igual a la de la gravedad local (dirigida hacia abajo).", B: "La velocidad es máxima y la aceleración se reduce a cero de forma instantánea.", C: "La velocidad y la aceleración se anulan simultáneamente por la inercia neta.", D: "La velocidad es nula y la aceleración es nula de manera transitoria." }, correcta: "A",
+                explicacion: "En la altura máxima, el móvil invierte su sentido de movimiento, por lo que su velocidad instantánea pasa por cero. No obstante, la atracción gravitatoria sigue actuando, por lo que la aceleración es \\( g \\)."
+            });
+            questions.push({
+                id: 43, categoria: "Cinemática - Tiro Vertical",
+                pregunta: "Una esfera es arrojada hacia arriba desde el nivel de la calle y tarda exactamente \\( 6 \\text{ s} \\) en retornar al punto de partida tras su vuelo completo. Calcule la velocidad inicial de lanzamiento. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "29.40 m/s", B: "58.80 m/s", C: "14.70 m/s", D: "9.80 m/s" }, correcta: "A",
+                explicacion: "El tiempo de subida es la mitad del tiempo total: \\( t_s = 3 \\text{ s} \\). Entonces la velocidad de salida es \\( v_0 = g t_s = 9.8 \\cdot 3 = 29.40 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 44, categoria: "Cinemática - Tiro Vertical",
+                pregunta: "Determine la velocidad inicial escalar requerida con la que debe lanzarse verticalmente una sonda meteorológica hacia arriba para lograr alcanzar una altura límite de \\( H = 40 \\text{ m} \\) sobre la Tierra. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "28.00 m/s", B: "19.60 m/s", C: "39.20 m/s", D: "14.00 m/s" }, correcta: "A",
+                explicacion: "La rapidez necesaria es \\( v_0 = \\sqrt{2gH} = \\sqrt{2 \\cdot 9.8 \\cdot 40} = \\sqrt{784} = 28.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 45, categoria: "Cinemática - Tiro Vertical",
+                pregunta: "Teórica: Si arrojamos una pelota verticalmente hacia arriba en el vacío, ¿cómo se relaciona el tiempo empleado para alcanzar la altura máxima con el tiempo que le toma regresar al punto de partida?",
+                opciones: { A: "Ambos tiempos son estrictamente idénticos por simetría del movimiento en el vacío.", B: "El tiempo de subida es el doble que el tiempo de bajada.", C: "El tiempo de bajada es mayor debido al desgaste de la inercia inicial.", D: "El tiempo de subida es mayor por la resistencia remanente de gravedad." }, correcta: "A",
+                explicacion: "En ausencia de resistencia del aire, las ecuaciones de movimiento uniforme acelerado son simétricas. Por ello, el tiempo de ascenso equivale exactamente al tiempo de descenso."
+            });
 
-                } else if (i <= 68) {
-                    q.categoria = "Cinemática - Tiro Vertical";
-                    const h_max = 20 + (i - 55) * 4;
-                    const v0_req = Math.sqrt(2 * GRAVITY * h_max).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        const v_init = 20.0 + (i - 55);
-                        const g_sat = ((v_init * v_init) / (2 * h_max)).toFixed(2);
-                        q.pregunta = `Un dardo es proyectado verticalmente hacia arriba con una velocidad inicial de \\( v_0 = ${v_init} \\text{ m/s} \\) sobre un satélite sin atmósfera. Si los sensores de órbita reportan que alcanza una altura máxima de \\( H = ${h_max} \\text{ m} \\), despeje la gravedad de este satélite.`;
-                        q.opciones = {
-                            A: `\\( ${g_sat} \\text{ m/s}^2 \\)`,
-                            B: `\\( 9.80 \\text{ m/s}^2 \\)`,
-                            C: `\\( ${(g_sat * 1.4).toFixed(2)} \\text{ m/s}^2 \\)`,
-                            D: `\\( ${(g_sat * 0.6).toFixed(2)} \\text{ m/s}^2 \\)`
-                        };
-                        q.explicacion = `Utilizamos la relación de Torricelli para el punto más alto (donde la velocidad es nula): \\( v_f^2 = v_0^2 - 2g H \\Rightarrow 0 = v_0^2 - 2g H \\). Al despejar \\( g \\), tenemos: \\( g = \\frac{v_0^2}{2 H} = \\frac{${v_init}^2}{2 \\cdot ${h_max}} = ${g_sat} \\text{ m/s}^2 \\).`;
-                    } else {
-                        q.pregunta = `Determine la velocidad inicial escalar requerida con la que debe lanzarse verticalmente una sonda meteorológica hacia arriba para lograr alcanzar una altura límite de \\( H = ${h_max} \\text{ m} \\) sobre la Tierra. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                        q.opciones = {
-                            A: `\\( ${v0_req} \\text{ m/s} \\)`,
-                            B: `\\( ${(v0_req * 1.25).toFixed(2)} \\text{ m/s} \\)`,
-                            C: `\\( ${(v0_req * 0.75).toFixed(2)} \\text{ m/s} \\)`,
-                            D: `\\( ${(parseFloat(v0_req) + 8.35).toFixed(2)} \\text{ m/s} \\)`
-                        };
-                        q.explicacion = `La velocidad inicial necesaria se obtiene de la relación energética o cinemática límite: \\( v_0 = \\sqrt{2g H} = \\sqrt{2 \\cdot 9.8 \\cdot ${h_max}} = ${v0_req} \\text{ m/s} \\).`;
-                    }
+            // Movimiento Compuesto (46-50)
+            questions.push({
+                id: 46, categoria: "Cinemática - Movimiento Compuesto",
+                pregunta: "Una esfera es impulsada horizontalmente desde el borde de una mesa de laboratorio de altura \\( H = 19.6 \\text{ m} \\) con una rapidez horizontal de \\( v_x = 10 \\text{ m/s} \\). Halle la distancia de impacto horizontal desde la base de la mesa. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "20.00 m", B: "10.00 m", C: "40.00 m", D: "15.00 m" }, correcta: "A",
+                explicacion: "El tiempo de caída libre es \\( t = \\sqrt{\\frac{2H}{g}} = \\sqrt{\\frac{2 \\cdot 19.6}{9.8}} = 2 \\text{ s} \\). El alcance horizontal es \\( x = v_x \\cdot t = 10 \\cdot 2 = 20.00 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 47, categoria: "Cinemática - Movimiento Compuesto",
+                pregunta: "Teórica: De acuerdo al principio físico de Galileo sobre la independencia de los movimientos combinados, ¿qué tipo de trayectorias experimenta un cuerpo en movimiento compuesto horizontal-vertical en el vacío?",
+                opciones: { A: "Una trayectoria parabólica, donde la componente horizontal es MRU y la componente vertical es caída libre.", B: "Una trayectoria elíptica gobernada por la inercia angular.", C: "Un movimiento en zigzag de aceleraciones rotatorias constantes.", D: "Una trayectoria helicoidal de velocidad angular exponencial." }, correcta: "A",
+                explicacion: "El movimiento de proyectiles (parabólico) se descompone en un movimiento de rapidez horizontal constante (MRU) y una caída libre vertical uniforme acelerada (MRUV)."
+            });
+            questions.push({
+                id: 48, categoria: "Cinemática - Movimiento Compuesto",
+                pregunta: "Un proyectil de pruebas es disparado desde el suelo con un ángulo de elevación de \\( 30^\\circ \\) y una rapidez inicial de \\( v_0 = 98 \\text{ m/s} \\). Calcule la componente vertical inicial de su velocidad. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "49.00 m/s", B: "84.87 m/s", C: "98.00 m/s", D: "24.50 m/s" }, correcta: "A",
+                explicacion: "La componente vertical de la velocidad de disparo inicial es \\( v_{0y} = v_0 \\sin(30^\\circ) = 98 \\cdot 0.5 = 49.00 \\text{ m/s} \\)."
+            });
+            questions.push({
+                id: 49, categoria: "Cinemática - Movimiento Compuesto",
+                pregunta: "Un cañón neumático dispara un proyectil con velocidad de salida de tal forma que la componente de velocidad horizontal es \\( v_x = 15 \\text{ m/s} \\) y la vertical inicial es \\( v_{0y} = 19.6 \\text{ m/s} \\). Halle el tiempo que tarda en alcanzar su punto más alto. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "2.00 s", B: "1.00 s", C: "4.00 s", D: "1.50 s" }, correcta: "A",
+                explicacion: "En el punto más alto, la velocidad vertical es nula. El tiempo de ascenso es \\( t = \\frac{v_{0y}}{g} = \\frac{19.6}{9.8} = 2.00 \\text{ s} \\)."
+            });
+            questions.push({
+                id: 50, categoria: "Cinemática - Movimiento Compuesto",
+                pregunta: "Teórica: En un lanzamiento parabólico oblicuo en el vacío, ¿en qué punto de su recorrido espacial el proyectil posee el módulo mínimo (módulo más bajo) de su vector de velocidad instantánea?",
+                opciones: { A: "En el punto más alto de su trayectoria, donde la velocidad vertical es cero y solo conserva la componente horizontal.", B: "En el instante exacto de su despegue o lanzamiento inicial.", C: "En el instante justo previo a golpear el suelo al caer.", D: "La rapidez es absolutamente idéntica y constante en todos los puntos de la parábola." }, correcta: "A",
+                explicacion: "A lo largo de toda la parábola, la velocidad horizontal es constante. La velocidad vertical disminuye hasta anularse en la cima y luego aumenta de nuevo. Por ello, la rapidez neta es mínima en la altura máxima."
+            });
 
-                } else if (i <= 82) {
-                    q.categoria = "Cinemática - Movimiento Compuesto";
-                    const x_range = 50 + (i - 68) * 5;
-                    const ang = 45;
-                    const v0_para = Math.sqrt((x_range * GRAVITY) / Math.sin(2 * ang * Math.PI / 180)).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        const vx_h = 15.0 + (i - 68);
-                        const h_platform = 20.0;
-                        const t_flight = Math.sqrt((2 * h_platform) / GRAVITY);
-                        const x_impact = (vx_h * t_flight).toFixed(2);
-                        q.pregunta = `Un dardo experimental se dispara horizontalmente desde una plataforma elevada de \\( h = ${h_platform} \\text{ m} \\) de altura con rapidez puramente horizontal de \\( v_x = ${vx_h} \\text{ m/s} \\). Halle la distancia de impacto horizontal desde la base de la plataforma. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                        q.opciones = {
-                            A: `\\( ${x_impact} \\text{ m} \\)`,
-                            B: `\\( ${(x_impact * 1.3).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( ${(x_impact * 0.75).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( ${(parseFloat(x_impact) + 12.45).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = `El tiempo que tarda en descender verticalmente en caída libre es: \\( t = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\cdot ${h_platform}}{9.8}} = ${t_flight.toFixed(2)} \\text{ s} \\). La distancia horizontal se obtiene con rapidez constante: \\( x = v_x \\cdot t = ${vx_h} \\cdot ${t_flight.toFixed(2)} = ${x_impact} \\text{ m} \\).`;
-                    } else {
-                        q.pregunta = `Un proyectil se dispara con un ángulo de elevación de \\( 45^\\circ \\) sobre la horizontal. Si los instrumentos registran un alcance de impacto máximo de \\( R = ${x_range} \\text{ m} \\) al mismo nivel de lanzamiento, calcule su rapidez inicial de disparo. (Considere \\( g = 9.8 \\text{ m/s}^2 \\)).`;
-                        q.opciones = {
-                            A: `\\( ${v0_para} \\text{ m/s} \\)`,
-                            B: `\\( ${(v0_para * 1.2).toFixed(2)} \\text{ m/s} \\)`,
-                            C: `\\( ${(v0_para * 0.8).toFixed(2)} \\text{ m/s} \\)`,
-                            D: `\\( ${(parseFloat(v0_para) - 4.12).toFixed(2)} \\text{ m/s} \\)`
-                        };
-                        q.explicacion = `Despejamos la rapidez de salida del alcance horizontal máximo: \\( R = \\frac{v_0^2 \\sin(2\\theta)}{g} \\Rightarrow v_0 = \\sqrt{\\frac{R \\cdot g}{\\sin(2\\theta)}} = \\sqrt{\\frac{${x_range} \\cdot 9.8}{\\sin(90^\\circ)}} = ${v0_para} \\text{ m/s} \\).`;
-                    }
+            // --- BLOQUE 2: DINÁMICA (51 - 100) ---
+            // LEYES DE NEWTON (51-75)
+            questions.push({
+                id: 51, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Teórica: De acuerdo con la Primera Ley de Newton (Ley de la Inercia), si no actúa ninguna fuerza neta sobre un cuerpo en movimiento en el espacio exterior, ¿qué le sucederá físicamente a dicho cuerpo?",
+                opciones: { A: "Continuará moviéndose en línea recta con velocidad constante indefinidamente.", B: "Se detendrá de manera paulatina debido al desgaste de la inercia motora.", C: "Comenzará a describir una órbita circular uniforme alrededor de la masa más cercana.", D: "Incrementará su aceleración lineal de manera espontánea." }, correcta: "A",
+                explicacion: "La inercia es la propiedad de la materia que resiste los cambios en su estado de movimiento. En ausencia de fuerza resultante, un objeto en movimiento conserva su velocidad constante y trayectoria rectilínea."
+            });
+            questions.push({
+                id: 52, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Un bloque de granito de masa \\( m = 10 \\text{ kg} \\) descansa inmóvil sobre una superficie horizontal perfectamente lisa. Si aplicamos una fuerza constante horizontal de \\( F = 30 \\text{ N} \\), halle el módulo de su aceleración.",
+                opciones: { A: "3.00 m/s²", B: "0.30 m/s²", C: "30.00 m/s²", D: "9.80 m/s²" }, correcta: "A",
+                explicacion: "Por la Segunda Ley de Newton: \\( F = m \\cdot a \\Rightarrow 30 = 10 \\cdot a \\Rightarrow a = 3.00 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 53, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Teórica: ¿Por qué la masa inercial de un cuerpo se define como una medida cuantitativa de la inercia, y en qué difiere conceptualmente de su peso gravitatorio?",
+                opciones: { A: "La masa mide la oposición del cuerpo a cambiar su estado de movimiento, mientras que el peso es la fuerza de atracción gravitatoria local que actúa sobre él.", B: "La masa cambia según el planeta donde se mida, mientras que el peso es constante.", C: "El peso es un escalar puro, mientras que la masa es una propiedad de carácter vectorial.", D: "No difieren en nada, ambos conceptos corresponden a la misma magnitud dimensional." }, correcta: "A",
+                explicacion: "La masa es una propiedad intrínseca que mide la inercia (resistencia al cambio de movimiento). El peso es una fuerza vectorial que depende de la masa y de la intensidad del campo gravitatorio local."
+            });
+            questions.push({
+                id: 54, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Un motor eléctrico ejerce una fuerza de tracción neta sobre un bloque, induciendo una aceleración constante de \\( a = 4 \\text{ m/s²} \\). Si el dinamómetro acoplado mide una fuerza de \\( F = 32 \\text{ N} \\), determine la masa inercial de dicho bloque.",
+                opciones: { A: "8.00 kg", B: "4.00 kg", C: "16.00 kg", D: "128.00 kg" }, correcta: "A",
+                explicacion: "De la Segunda Ley de Newton, despejamos la masa: \\( m = \\frac{F}{a} = \\frac{32}{4} = 8.00 \\text{ kg} \\)."
+            });
+            questions.push({
+                id: 55, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Teórica: De acuerdo a la Tercera Ley de Newton (Acción y Reacción), si la Tierra ejerce una fuerza de atracción gravitatoria sobre la Luna, ¿cuál es la reacción correspondiente de esta fuerza?",
+                opciones: { A: "Una fuerza idéntica en magnitud pero sentido opuesto ejercida por la Luna sobre la Tierra.", B: "La fuerza centrífuga que mantiene a la Luna suspendida en su órbita.", C: "La fuerza de las mareas oceánicas que desgasta la rotación terrestre.", D: "No existe fuerza de reacción debido a que la masa terrestre es inmensamente superior." }, correcta: "A",
+                explicacion: "Las fuerzas de acción y reacción actúan siempre en parejas, son iguales en magnitud, opuestas en dirección, y actúan sobre cuerpos diferentes (Tierra atrae a Luna, Luna atrae a Tierra)."
+            });
+            questions.push({
+                id: 56, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Un vagón de transporte ferroviario de masa \\( m = 1000 \\text{ kg} \\) frena bajo la acción de una sola fuerza retardadora constante. Si su rapidez decrece de \\( 20 \\text{ m/s} \\) a \\( 5 \\text{ m/s} \\) en un tiempo de \\( t = 5 \\text{ s} \\), halle el módulo de dicha fuerza.",
+                opciones: { A: "3000.00 N", B: "1500.00 N", C: "5000.00 N", D: "1000.00 N" }, correcta: "A",
+                explicacion: "La desaceleración es \\( a = \\frac{20 - 5}{5} = 3 \\text{ m/s²} \\). Aplicando la fuerza retardadora neta: \\( F = m \\cdot a = 1000 \\cdot 3 = 3000.00 \\text{ N} \\)."
+            });
+            questions.push({
+                id: 57, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Un astronauta de masa \\( m = 80 \\text{ kg} \\) se encuentra flotando libremente en el espacio exterior. Si empuja un satélite inactivo aplicando una fuerza neta constante de \\( 40 \\text{ N} \\), ¿con qué aceleración se moverá el astronauta?",
+                opciones: { A: "0.50 m/s²", B: "2.00 m/s²", C: "9.80 m/s²", D: "0.00 m/s²" }, correcta: "A",
+                explicacion: "Por la Tercera Ley de Newton, el satélite ejerce una reacción igual y opuesta sobre el astronauta: \\( F_{reacción} = 40 \\text{ N} \\). Su aceleración es \\( a = \\frac{F}{m} = \\frac{40}{80} = 0.50 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 58, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Un dinamómetro registra una fuerza de tracción neta horizontal de \\( F = 15 \\text{ N} \\) sobre un carro deslizante en un laboratorio de física. Si se mide una aceleración constante de \\( a = 2.5 \\text{ m/s²} \\), halle la masa inercial del carro.",
+                opciones: { A: "6.00 kg", B: "3.75 kg", C: "12.00 kg", D: "30.00 kg" }, correcta: "A",
+                explicacion: "La masa se obtiene de \\( m = \\frac{F}{a} = \\frac{15}{2.5} = 6.00 \\text{ kg} \\)."
+            });
+            questions.push({
+                id: 59, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Un paquete de encomiendas de \\( m = 5 \\text{ kg} \\) es arrastrado de forma horizontal. Si parte del reposo y alcanza una velocidad de \\( 12 \\text{ m/s} \\) tras transcurrir un lapso de \\( 4 \\text{ s} \\), halle el valor de la fuerza neta constante aplicada.",
+                opciones: { A: "15.00 N", B: "3.00 N", C: "20.00 N", D: "12.00 N" }, correcta: "A",
+                explicacion: "La aceleración constante es \\( a = \\frac{12}{4} = 3 \\text{ m/s²} \\). La fuerza neta aplicada sobre el bloque es \\( F = m \\cdot a = 5 \\cdot 3 = 15.00 \\text{ N} \\)."
+            });
+            questions.push({
+                id: 60, categoria: "Dinámica - Leyes de Newton",
+                pregunta: "Teórica: ¿Por qué no es posible que un objeto acelere en ausencia de una interacción de fuerzas externas, incluso si posee un motor interno de alta potencia rotatoria?",
+                opciones: { A: "Porque las fuerzas internas del sistema se cancelan mutuamente en pares según la Tercera Ley de Newton, requiriendo una fuerza externa externa neta para desplazar el centro de masa.", B: "Porque el motor interno anula la inercia lineal del chasis.", C: "Porque la gravedad absorbe las aceleraciones moleculares del motor.", D: "Porque los campos cinéticos internos no cumplen la ley de inercia." }, correcta: "A",
+                explicacion: "Las fuerzas internas actúan dentro del propio sistema y se cancelan mutuamente. Para acelerar el centro de masa de un sistema es estrictamente necesaria una fuerza externa resultante no nula."
+            });
 
-                } else if (i <= 95) {
-                    q.categoria = "Cinemática - MCUV";
-                    const w0 = 2 + (i - 82);
-                    const wf = 10 + (i - 82) * 2;
-                    const t_sec = 5;
-                    const alpha = ((wf - w0) / t_sec).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        const alpha_const = 1.5;
-                        const turns_req = 12 + (i - 82);
-                        const t_req = Math.sqrt((2 * turns_req * 2 * Math.PI) / alpha_const).toFixed(2);
-                        q.pregunta = `Un motor de pruebas parte del reposo absoluto y acelera circularmente de forma constante con una aceleración angular de \\( \\alpha = ${alpha_const.toFixed(1)} \\text{ rad/s}^2 \\). Determine el tiempo necesario para completar exactamente \\( N = ${turns_req} \\text{ vueltas} \\).`;
-                        q.opciones = {
-                            A: `\\( ${t_req} \\text{ s} \\)`,
-                            B: `\\( ${(t_req * 1.2).toFixed(2)} \\text{ s} \\)`,
-                            C: `\\( ${(t_req * 0.8).toFixed(2)} \\text{ s} \\)`,
-                            D: `\\( ${(parseFloat(t_req) + 3.4).toFixed(2)} \\text{ s} \\)`
-                        };
-                        q.explicacion = `El ángulo total en radianes es: \\( \\theta = ${turns_req} \\cdot 2\\pi = ${(turns_req * 2 * Math.PI).toFixed(2)} \\text{ rad} \\). Partiendo del reposo: \\( \\theta = \\frac{1}{2}\\alpha t^2 \\Rightarrow t = \\sqrt{\\frac{2\\theta}{\\alpha}} = \\sqrt{\\frac{2 \\cdot ${(turns_req * 2 * Math.PI).toFixed(2)}}{${alpha_const.toFixed(1)}}} = ${t_req} \\text{ s} \\).`;
-                    } else {
-                        q.pregunta = `Un rotor acelera de manera constante su marcha desde \\( \\omega_0 = ${w0} \\text{ rad/s} \\) hasta lograr alcanzar \\( \\omega_f = ${wf} \\text{ rad/s} \\) en un tiempo controlado de \\( t = ${t_sec} \\text{ s} \\). Halle el valor de su aceleración angular.`;
-                        q.opciones = {
-                            A: `\\( ${alpha} \\text{ rad/s}^2 \\)`,
-                            B: `\\( ${(alpha * 1.3).toFixed(2)} \\text{ rad/s}^2 \\)`,
-                            C: `\\( ${(alpha * 0.7).toFixed(2)} \\text{ rad/s}^2 \\)`,
-                            D: `\\( ${(parseFloat(alpha) + 1.25).toFixed(2)} \\text{ rad/s}^2 \\)`
-                        };
-                        q.explicacion = `Aplicando la definición matemática para aceleración angular constante: \\( \\alpha = \\frac{\\omega_f - \\omega_0}{t} = \\frac{${wf} - ${w0}}{${t_sec}} = ${alpha} \\text{ rad/s}^2 \\).`;
-                    }
+            // Llenar más preguntas de Dinámica de Newton (61-75)
+            for (let id = 61; id <= 75; id++) {
+                let mass = 2 + (id - 61);
+                let acceleration = 1.5 + (id - 61) * 0.1;
+                let force = (mass * acceleration).toFixed(2);
+                questions.push({
+                    id: id, categoria: "Dinámica - Leyes de Newton",
+                    pregunta: `Un sistema mecánico somete una muestra experimental de masa \\( m = ${mass} \\text{ kg} \\) a un ensayo sobre un carril perfectamente liso. Si el sensor registra una aceleración constante de \\( a = ${acceleration.toFixed(1)} \\text{ m/s²} \\), determine el módulo de la fuerza neta constante aplicada sobre el espécimen.`,
+                    opciones: {
+                        A: `${force} N`,
+                        B: `${(force * 1.3).toFixed(2)} N`,
+                        C: `${(force * 0.7).toFixed(2)} N`,
+                        D: `${(parseFloat(force) + 12.4).toFixed(2)} N`
+                    }, correcta: "A",
+                    explicacion: `De la Segunda Ley de Newton, la fuerza neta ejercida sobre un cuerpo es proporcional a su masa multiplicada por su aceleración neta: \\( F = m \\cdot a = ${mass} \\cdot ${acceleration.toFixed(1)} = ${force} \\text{ N} \\).`
+                });
+            }
 
-                } else if (i <= 110) {
-                    q.categoria = "Dinámica - Leyes de Newton";
-                    const force = 100 + (i - 95) * 12;
-                    const a_const = 2.5;
-                    const mass_desp = (force / a_const).toFixed(2);
-                    
-                    if (i % 3 === 0) {
-                        const mass_block = 10.0 + (i - 95);
-                        const a_obs = 3.0;
-                        const force_net = (mass_block * a_obs).toFixed(2);
-                        q.pregunta = `Un bloque de pruebas de masa \\( m = ${mass_block} \\text{ kg} \\) desliza sobre una mesa horizontal perfectly lisa (fricción nula). Si se acelera a razón constante de \\( a = ${a_obs.toFixed(1)} \\text{ m/s}^2 \\), determine la magnitud de la fuerza horizontal neta constante aplicada.`;
-                        q.opciones = {
-                            A: `\\( ${force_net} \\text{ N} \\)`,
-                            B: `\\( ${(force_net * 1.2).toFixed(2)} \\text{ N} \\)`,
-                            C: `\\( ${(force_net * 0.8).toFixed(2)} \\text{ N} \\)`,
-                            D: `\\( ${(parseFloat(force_net) + 12.15).toFixed(2)} \\text{ N} \\)`
-                        };
-                        q.explicacion = `De la Segunda Ley de Newton, la fuerza neta se calcula como el producto de la masa por la aceleración: \\( F = m \\cdot a = ${mass_block} \\cdot ${a_obs.toFixed(1)} = ${force_net} \\text{ N} \\).`;
-                    } else if (i % 3 === 1) {
-                        q.pregunta = `Un motor ejerce una fuerza de arrastre horizontal neta de \\( F = ${force} \\text{ N} \\) sobre un bloque inerte, logrando que acelere a razón constante de \\( a = ${a_const.toFixed(1)} \\text{ m/s}^2 \\). Despeje la masa de dicho bloque.`;
-                        q.opciones = {
-                            A: `\\( ${mass_desp} \\text{ kg} \\)`,
-                            B: `\\( ${(mass_desp * 1.4).toFixed(2)} \\text{ kg} \\)`,
-                            C: `\\( ${(mass_desp * 0.6).toFixed(2)} \\text{ kg} \\)`,
-                            D: `\\( ${(parseFloat(mass_desp) + 15.45).toFixed(2)} \\text{ kg} \\)`
-                        };
-                        q.explicacion = `Despejamos la masa de la Segunda Ley de Newton: \\( F = m \\cdot a \\Rightarrow m = \\frac{F}{a} = \\frac{${force}}{${a_const.toFixed(1)}} = ${mass_desp} \\text{ kg} \\).`;
-                    } else {
-                        q.pregunta = "De acuerdo a la Tercera Ley de Newton (Acción y Reacción), si un bloque descansa inmóvil sobre una mesa horizontal, ¿por qué el peso de la gravedad sobre el bloque y la normal de la mesa no constituyen un par de acción-reacción?";
-                        q.opciones = {
-                            A: "Porque ambas fuerzas actúan sobre el mismo cuerpo (el bloque), mientras que un par de acción-reacción actúa siempre sobre cuerpos diferentes.",
-                            B: "Porque la fuerza normal es siempre de mayor magnitud debido al rozamiento molecular.",
-                            C: "Porque el peso es una fuerza de contacto y la normal es de acción a distancia.",
-                            D: "Porque el peso solo reacciona con la aceleración centrípeta del núcleo terrestre."
-                        };
-                        q.explicacion = "Las fuerzas del par de acción y reacción actúan en cuerpos contrarios e interactuantes (ej: bloque atrae a la Tierra, mesa empuja a bloque/bloque empuja a mesa). Al actuar peso y normal sobre el mismo cuerpo, no son un par de acción-reacción.";
-                    }
+            // FUERZAS Y PLANOS INCLINADOS (76-100)
+            questions.push({
+                id: 76, categoria: "Dinámica - Fuerzas",
+                pregunta: "Un bloque de madera de masa \\( m = 10 \\text{ kg} \\) se encuentra en reposo sobre un plano inclinado sin fricción que forma un ángulo de \\( 30^\\circ \\) con respecto al horizonte. Calcule el módulo de la fuerza normal ejercida por el plano inclinando sobre el bloque. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "84.87 N", B: "49.00 N", C: "98.00 N", D: "42.43 N" }, correcta: "A",
+                explicacion: "En un plano inclinado, la fuerza normal se equilibra con la componente perpendicular del peso: \\( N = m g \\cos(\\theta) = 10 \\cdot 9.8 \\cdot \\cos(30^\\circ) = 98 \\cdot 0.866 = 84.87 \\text{ N} \\)."
+            });
+            questions.push({
+                id: 77, categoria: "Dinámica - Fuerzas",
+                pregunta: "Teórica: ¿Cuál es la diferencia conceptual fundamental entre el coeficiente de rozamiento estático \\( (\\mu_s) \\) y el coeficiente de rozamiento dinámico o cinético \\( (\\mu_k) \\) entre dos superficies sólidas en contacto?",
+                opciones: { A: "El coeficiente estático mide la oposición al inicio del deslizamiento y es generalmente mayor que el coeficiente cinético, el cual mide la fricción durante el movimiento activo.", B: "El coeficiente cinético es siempre variable y depende de la velocidad tangencial.", C: "El coeficiente estático actúa en el vacío y el cinético bajo la atmósfera terrestre.", D: "No existe ninguna diferencia, ambos coeficientes corresponden a la misma relación de inercia." }, correcta: "A",
+                explicacion: "Para iniciar el movimiento se debe romper la microsoldadura entre las superficies (fricción estática máxima, \\( \\mu_s \\)). Una vez en movimiento, la fricción disminuye sutilmente (fricción cinética, \\( \\mu_k \\)), por lo que \\( \\mu_s > \\mu_k \\)."
+            });
+            questions.push({
+                id: 78, categoria: "Dinámica - Fuerzas",
+                pregunta: "Un bloque de acero de \\( m = 20 \\text{ kg} \\) descansa sobre una mesa horizontal con fricción. Si se requiere aplicar una fuerza horizontal mínima de \\( F = 78.4 \\text{ N} \\) para romper el equilibrio e iniciar el deslizamiento, despeje el coeficiente de rozamiento estático. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "0.40", B: "0.20", C: "0.50", D: "0.10" }, correcta: "A",
+                explicacion: "La fuerza normal es \\( N = mg = 20 \\cdot 9.8 = 196 \\text{ N} \\). El coeficiente estático es \\( \\mu_s = \\frac{F_{límite}}{N} = \\frac{78.4}{196} = 0.40 \\)."
+            });
+            questions.push({
+                id: 79, categoria: "Dinámica - Fuerzas",
+                pregunta: "Un objeto de pruebas de masa \\( m = 5 \\text{ kg} \\) desliza hacia abajo por una rampa inclinada sin fricción que forma un ángulo de \\( 30^\\circ \\) con la horizontal. Determine el módulo de su aceleración cuesta abajo. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "4.90 m/s²", B: "9.80 m/s²", C: "8.49 m/s²", D: "2.45 m/s²" }, correcta: "A",
+                explicacion: "La fuerza que acelera el bloque es la componente paralela del peso: \\( m g \\sin(\\theta) = m a \\Rightarrow a = g \\sin(30^\\circ) = 9.8 \\cdot 0.5 = 4.90 \\text{ m/s²} \\)."
+            });
+            questions.push({
+                id: 80, categoria: "Dinámica - Fuerzas",
+                pregunta: "Teórica: Si incrementamos el ángulo de inclinación de un plano sobre el cual descansa un bloque rígido, ¿cómo se ven afectadas las magnitudes de la fuerza normal y de la componente del peso paralela a la rampa?",
+                opciones: { A: "La fuerza normal disminuye progresivamente, mientras que la componente del peso paralela a la rampa se incrementa.", B: "Tanto la fuerza normal como la componente del peso paralela aumentan de forma proporcional.", C: "La fuerza normal aumenta y el peso paralelo permanece constante.", D: "Ambas fuerzas se anulan debido al equilibrio rotacional del plano." }, correcta: "A",
+                explicacion: "Al aumentar el ángulo \\( \\theta \\), \\( \\cos(\\theta) \\) disminuye (reduciendo la fuerza normal \\( N = m g \\cos\\theta \\)) y \\( \\sin(\\theta) \\) aumenta (incrementando la fuerza paralela de deslizamiento \\( F_{paralela} = m g \\sin\\theta \\))."
+            });
 
-                } else if (i <= 125) {
-                    q.categoria = "Dinámica - Fuerzas";
-                    const mass_val = 8 + (i - 110);
-                    const angle_deg = 30;
-                    const normal_force = (mass_val * GRAVITY * Math.cos(angle_deg * Math.PI / 180)).toFixed(2);
-                    
-                    if (i % 3 === 0) {
-                        const a_slope = 3.5;
-                        const angle_slope = (Math.asin(a_slope / GRAVITY) * 180 / Math.PI).toFixed(2);
-                        q.pregunta = `Un cuerpo de pruebas desliza libremente cuesta abajo por una rampa inclinada perfectamente lisa sin fricción. Si se registra una aceleración de caída constante de \\( a = ${a_slope.toFixed(1)} \\text{ m/s}^2 \\), halle el ángulo de inclinación de la rampa con respecto a la horizontal.`;
-                        q.opciones = {
-                            A: `\\( ${angle_slope}^\\circ \\)`,
-                            B: `\\( ${(angle_slope * 1.3).toFixed(2)}^\\circ \\)`,
-                            C: `\\( ${(angle_slope * 0.7).toFixed(2)}^\\circ \\)`,
-                            D: `\\( 45.00^\\circ \\)`
-                        };
-                        q.explicacion = `En una rampa perfectamente lisa, la fuerza que acelera el cuerpo es la componente paralela del peso: \\( m g \\sin\\theta = m a \\Rightarrow a = g \\sin\\theta \\). Despejando el ángulo: \\( \\theta = \\arcsin\\left(\\frac{a}{g}\\right) = \\arcsin\\left(\\frac{${a_slope.toFixed(1)}}{9.8}\\right) = ${angle_slope}^\\circ \\).`;
-                    } else if (i % 3 === 1) {
-                        q.pregunta = `Un bloque inerte de masa \\( m = ${mass_val} \\text{ kg} \\) reposa sobre una rampa lisa e inclinada que forma un ángulo estable de \\( 30^\\circ \\) con la horizontal. Determine el módulo de la fuerza normal de reacción que ejerce la rampa sobre el bloque.`;
-                        q.opciones = {
-                            A: `\\( ${normal_force} \\text{ N} \\)`,
-                            B: `\\( ${(normal_force * 1.25).toFixed(2)} \\text{ N} \\)`,
-                            C: `\\( ${(normal_force * 0.75).toFixed(2)} \\text{ N} \\)`,
-                            D: `\\( ${(mass_val * GRAVITY).toFixed(2)} \\text{ N} \\)`
-                        };
-                        q.explicacion = `Estableciendo el equilibrio de fuerzas perpendicular al plano inclinado: \\( N = m g \\cos\\theta = ${mass_val} \\cdot 9.8 \\cdot \\cos(30^\\circ) = ${normal_force} \\text{ N} \\).`;
-                    } else {
-                        const f_start = 50 + (i - 110) * 5;
-                        const m_block = 15;
-                        const mu_s_calc = (f_start / (m_block * GRAVITY)).toFixed(2);
-                        q.pregunta = `Un bloque metálico de masa \\( m = ${m_block} \\text{ kg} \\) descansa sobre una plataforma horizontal de concreto. Si se requiere aplicar una fuerza de arrastre horizontal mínima de \\( F = ${f_start} \\text{ N} \\) justo para iniciar su movimiento, despeje el coeficiente de rozamiento estático.`;
-                        q.opciones = {
-                            A: `\\( ${mu_s_calc} \\)`,
-                            B: `\\( ${(mu_s_calc * 1.3).toFixed(2)} \\)`,
-                            C: `\\( ${(mu_s_calc * 0.75).toFixed(2)} \\)`,
-                            D: `\\( 0.40 \\)`
-                        };
-                        q.explicacion = `La fuerza límite estática es: \\( F_{s,max} = \\mu_s N \\). En plano horizontal, \\( N = m g \\). Despejando el coeficiente: \\( \\mu_s = \\frac{F}{mg} = \\frac{${f_start}}{${m_block} \\cdot 9.8} = ${mu_s_calc} \\).`;
-                    }
+            // Llenar más preguntas de Fuerzas y Planos Inclinados (81-100)
+            for (let id = 81; id <= 100; id++) {
+                let m_val = 5 + (id - 81);
+                let ang_deg = 30;
+                let weight_par = (m_val * GRAVITY * Math.sin(ang_deg * Math.PI / 180)).toFixed(2);
+                questions.push({
+                    id: id, categoria: "Dinámica - Fuerzas",
+                    pregunta: `Un bloque inerte de masa \\( m = ${m_val} \\text{ kg} \\) desliza cuesta abajo por un plano inclinado perfectamente liso a un ángulo constante de \\( 30^\\circ \\). Determine el módulo de la componente del peso que es paralela al plano inclinado (fuerza de arrastre gravitatorio). (Considere \\( g = 9.8 \\text{ m/s²} \\)).`,
+                    opciones: {
+                        A: `${weight_par} N`,
+                        B: `${(weight_par * 1.5).toFixed(2)} N`,
+                        C: `${(weight_par * 0.5).toFixed(2)} N`,
+                        D: `${(m_val * GRAVITY).toFixed(2)} N`
+                    }, correcta: "A",
+                    explicacion: `La fuerza gravitatoria paralela que empuja al bloque plano abajo se calcula mediante la relación trigonométrica: \\( F_{p} = m \\cdot g \\cdot \\sin(\\theta) = ${m_val} \\cdot 9.8 \\cdot \\sin(30^\\circ) = ${weight_par} \\text{ N} \\).`
+                });
+            }
 
-                } else if (i <= 133) {
-                    q.categoria = "Trabajo Mecánico";
-                    const f_force = 30 + (i - 125) * 5;
-                    const w_joules = 300 + (i - 125) * 20;
-                    const d_desp = (w_joules / f_force).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        const w_grav = 120.0 + (i - 125);
-                        const m_obj = 4.0;
-                        const h_calc = (w_grav / (m_obj * GRAVITY)).toFixed(2);
-                        q.pregunta = `Un cuerpo de masa \\( m = ${m_obj} \\text{ kg} \\) cae de forma vertical en el vacío. Si la fuerza de la gravedad realiza un trabajo positivo de \\( W = ${w_grav} \\text{ J} \\) a lo largo de su caída libre, despeje el valor de la altura descendida.`;
-                        q.opciones = {
-                            A: `\\( ${h_calc} \\text{ m} \\)`,
-                            B: `\\( ${(h_calc * 1.3).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( ${(h_calc * 0.75).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( ${(parseFloat(h_calc) + 3.12).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = `El trabajo de la fuerza peso es: \\( W = m g h \\). Despejando la distancia recorrida: \\( h = \\frac{W}{mg} = \\frac{${w_grav}}{${m_obj} \\cdot 9.8} = ${h_calc} \\text{ m} \\).`;
-                    } else {
-                        q.pregunta = `Un operario arrastra un cajón aplicando una fuerza horizontal constante de \\( F = ${f_force} \\text{ N} \\) alineada con el movimiento. Si realiza un trabajo neto de \\( W = ${w_joules} \\text{ J} \\), halle la distancia horizontal recorrida por el cajón.`;
-                        q.opciones = {
-                            A: `\\( ${d_desp} \\text{ m} \\)`,
-                            B: `\\( ${(d_desp * 1.2).toFixed(2)} \\text{ m} \\)`,
-                            C: `\\( ${(d_desp * 0.8).toFixed(2)} \\text{ m} \\)`,
-                            D: `\\( ${(parseFloat(d_desp) + 4.15).toFixed(2)} \\text{ m} \\)`
-                        };
-                        q.explicacion = `Al ser la fuerza perfectamente colineal con el desplazamiento, aplicamos: \\( W = F \\cdot d \\Rightarrow d = \\frac{W}{F} = \\frac{${w_joules}}{${f_force}} = ${d_desp} \\text{ m} \\).`;
-                    }
+            // --- BLOQUE 3: TRABAJO, POTENCIA Y ENERGÍA (101 - 150) ---
+            // TRABAJO MECÁNICO (101-115)
+            questions.push({
+                id: 101, categoria: "Trabajo Mecánico",
+                pregunta: "Teórica: ¿Bajo qué condición física geométrica una fuerza no nula aplicada sobre una partícula móvil realiza un trabajo mecánico estrictamente nulo (cero Joules)?",
+                opciones: { A: "Cuando la dirección de la fuerza aplicada es perpendicular en todo momento al vector de desplazamiento de la partícula.", B: "Cuando la fuerza actúa en la misma dirección y sentido del desplazamiento.", C: "Cuando el desplazamiento se realiza a velocidad constante en el vacío.", D: "Cuando el sistema posee una energía cinética remanente nula." }, correcta: "A",
+                explicacion: "El trabajo es el producto escalar de fuerza y desplazamiento: \\( W = F \\cdot d \\cdot \\cos(\\theta) \\). Si son perpendiculares, \\( \\theta = 90^\\circ \\Rightarrow \\cos(90^\\circ) = 0 \\), por lo que el trabajo mecánico es nulo."
+            });
+            questions.push({
+                id: 102, categoria: "Trabajo Mecánico",
+                pregunta: "Un operario arrastra horizontalmente una caja aplicando una fuerza constante de \\( F = 40 \\text{ N} \\) que forma un ángulo de \\( 60^\\circ \\) con respecto a la horizontal. Halle el trabajo realizado al desplazar la caja una distancia de \\( d = 10 \\text{ m} \\).",
+                opciones: { A: "200.00 J", B: "400.00 J", C: "346.41 J", D: "100.00 J" }, correcta: "A",
+                explicacion: "El trabajo se calcula con la componente de la fuerza alineada con la dirección del desplazamiento: \\( W = F \\cdot d \\cdot \\cos(\\theta) = 40 \\cdot 10 \\cdot \\cos(60^\\circ) = 400 \\cdot 0.5 = 200.00 \\text{ J} \\)."
+            });
+            questions.push({
+                id: 103, categoria: "Trabajo Mecánico",
+                pregunta: "Un motor ejerce una fuerza de tracción paralela constante sobre un carro logrando un trabajo mecánico neto de \\( W = 450 \\text{ J} \\). Si el carro se desplaza una distancia de \\( d = 15 \\text{ m} \\), despeje la magnitud de dicha fuerza.",
+                opciones: { A: "30.00 N", B: "15.00 N", C: "45.00 N", D: "6750.00 N" }, correcta: "A",
+                explicacion: "Asumiendo que la fuerza es colineal con el desplazamiento: \\( W = F \\cdot d \\Rightarrow F = \\frac{W}{d} = \\frac{450}{15} = 30.00 \\text{ N} \\)."
+            });
+            questions.push({
+                id: 104, categoria: "Trabajo Mecánico",
+                pregunta: "Un bloque de piedra de masa \\( m = 4 \\text{ kg} \\) cae libremente desde una altura de \\( H = 5 \\text{ m} \\). Calcule el trabajo mecánico positivo que realiza la fuerza de gravedad sobre el bloque. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "196.00 J", B: "98.00 J", C: "392.00 J", D: "49.00 J" }, correcta: "A",
+                explicacion: "La gravedad actúa en la dirección del descenso: \\( W = F_{peso} \\cdot H = m g H = 4 \\cdot 9.8 \\cdot 5 = 196.00 \\text{ J} \\)."
+            });
+            questions.push({
+                id: 105, categoria: "Trabajo Mecánico",
+                pregunta: "Teórica: ¿Por qué la fuerza de rozamiento dinámico o cinético realiza siempre un trabajo de signo negativo sobre un bloque que desliza por una mesa?",
+                opciones: { A: "Porque el vector fuerza de fricción apunta en sentido contrario al vector velocidad y al vector desplazamiento del bloque (ángulo de 180°).", B: "Porque reduce la masa gravitatoria neta de las superficies.", C: "Porque disminuye la constante de rigidez molecular de los materiales.", D: "Porque la fuerza normal es perpendicular y anula el rozamiento dinámico." }, correcta: "A",
+                explicacion: "Al oponerse al movimiento, la fricción actúa a 180° del desplazamiento. El trabajo es \\( W = F \\cdot d \\cdot \\cos(180^\\circ) = -F \\cdot d \\) (trabajo negativo o disipativo)."
+            });
 
-                } else if (i <= 141) {
-                    q.categoria = "Potencia Mecánica";
-                    const p_watts = 600 + (i - 133) * 100;
-                    const h_lift = 6;
-                    const t_sec_lift = 8;
-                    const mass_lifted = ((p_watts * t_sec_lift) / (GRAVITY * h_lift)).toFixed(2);
-                    
-                    if (i % 2 === 0) {
-                        const f_res = 120.0 + (i - 133);
-                        const v_speed = 6.0;
-                        const p_inst = (f_res * v_speed).toFixed(2);
-                        q.pregunta = `Un bote a motor avanza a una rapidez constante de \\( v = ${v_speed.toFixed(1)} \\text{ m/s} \\) venciendo la resistencia del agua que ejerce una fuerza de arrastre de \\( F = ${f_res} \\text{ N} \\). Calcule la potencia instantánea útil que desarrolla su motor.`;
-                        q.opciones = {
-                            A: `\\( ${p_inst} \\text{ W} \\)`,
-                            B: `\\( ${(p_inst * 1.25).toFixed(2)} \\text{ W} \\)`,
-                            C: `\\( ${(p_inst * 0.75).toFixed(2)} \\text{ W} \\)`,
-                            D: `\\( ${(parseFloat(p_inst) / 746).toFixed(2)} \\text{ HP} \\)`
-                        };
-                        q.explicacion = `La potencia mecánica instantánea se obtiene multiplicando escalarmente la fuerza por la velocidad: \\( P = F \\cdot v = ${f_res} \\cdot ${v_speed.toFixed(1)} = ${p_inst} \\text{ W} \\).`;
-                    } else {
-                        q.pregunta = `Un elevador mecánico desarrolla una potencia útil constante de \\( P = ${p_watts} \\text{ W} \\). Si levanta de forma vertical una carga pesada a una altura de \\( h = ${h_lift} \\text{ m} \\) en un tiempo exacto de \\( t = ${t_sec_lift} \\text{ s} \\), despeje la masa de dicha carga.`;
-                        q.opciones = {
-                            A: `\\( ${mass_lifted} \\text{ kg} \\)`,
-                            B: `\\( ${(mass_lifted * 1.3).toFixed(2)} \\text{ kg} \\)`,
-                            C: `\\( ${(mass_lifted * 0.75).toFixed(2)} \\text{ kg} \\)`,
-                            D: `\\( ${(parseFloat(mass_lifted) + 35.5).toFixed(2)} \\text{ kg} \\)`
-                        };
-                        q.explicacion = `La potencia es la rapidez con la que se efectúa un trabajo: \\( P = \\frac{W}{t} = \\frac{m g h}{t} \\). Al despejar la masa obtenemos: \\( m = \\frac{P \\cdot t}{g \\cdot h} = \\frac{${p_watts} \\cdot ${t_sec_lift}}{9.8 \\cdot ${h_lift}} = ${mass_lifted} \\text{ kg} \\).`;
-                    }
+            // Llenar más preguntas de Trabajo (106-115)
+            for (let id = 106; id <= 115; id++) {
+                let f_pull = 20 + (id - 106) * 3;
+                let dist_run = 8;
+                let w_res = (f_pull * dist_run).toFixed(2);
+                questions.push({
+                    id: id, categoria: "Trabajo Mecánico",
+                    pregunta: `Un operario arrastra un carrito sobre un piso liso aplicando una fuerza de tracción horizontal constante de \\( F = ${f_pull} \\text{ N} \\). Si desplaza el carrito una distancia de \\( d = ${dist_run} \\text{ m} \\) de manera colineal, calcule el trabajo mecánico efectuado.`,
+                    opciones: {
+                        A: `${w_res} J`,
+                        B: `${(w_res * 1.25).toFixed(2)} J`,
+                        C: `${(w_res * 0.75).toFixed(2)} J`,
+                        D: `${(parseFloat(w_res) + 50.5).toFixed(2)} J`
+                    }, correcta: "A",
+                    explicacion: `Dado que la fuerza es colineal con la trayectoria de avance, el ángulo entre vectores es cero grados: \\( W = F \\cdot d = ${f_pull} \\cdot ${dist_run} = ${w_res} \\text{ J} \\).`
+                });
+            }
 
-                } else {
-                    q.categoria = "Energía Mecánica";
-                    const ke_joules = 100 + (i - 141) * 30;
-                    const v_ms_ke = 5;
-                    const mass_ke_desp = ((2 * ke_joules) / (v_ms_ke * v_ms_ke)).toFixed(2);
-                    
-                    if (i % 3 === 0) {
-                        q.pregunta = `Un proyectil viaja horizontalmente a una rapidez constante de \\( v = ${v_ms_ke} \\text{ m/s} \\). Si los instrumentos reportan que posee una energía cinética de \\( E_c = ${ke_joules} \\text{ J} \\), despeje la masa de dicho proyectil.`;
-                        q.opciones = {
-                            A: `\\( ${mass_ke_desp} \\text{ kg} \\)`,
-                            B: `\\( ${(mass_ke_desp * 1.35).toFixed(2)} \\text{ kg} \\)`,
-                            C: `\\( ${(mass_ke_desp * 0.65).toFixed(2)} \\text{ kg} \\)`,
-                            D: `\\( ${(ke_joules / v_ms_ke).toFixed(2)} \\text{ kg} \\)`
-                        };
-                        q.explicacion = `Despejamos la masa de la ecuación de energía cinética: \\( E_c = \\frac{1}{2} m v^2 \\Rightarrow m = \\frac{2 E_c}{v^2} = \\frac{2 \\cdot ${ke_joules}}{${v_ms_ke}^2} = ${mass_ke_desp} \\text{ kg} \\).`;
-                    } else if (i % 3 === 1) {
-                        const ee_pot = 5.0 + (i - 141) * 1.5;
-                        const comp_x = 0.20;
-                        const k_spring_desp = ((2 * ee_pot) / (comp_x * comp_x)).toFixed(2);
-                        q.pregunta = `Un resorte amortiguador se comprime horizontalmente una distancia de \\( x = ${comp_x} \\text{ m} \\) con respecto a su elongación natural, acumulando una energía potencial elástica de \\( E_e = ${ee_pot.toFixed(1)} \\text{ J} \\). Despeje la constante de rigidez elástica de este resorte.`;
-                        q.opciones = {
-                            A: `\\( ${k_spring_desp} \\text{ N/m} \\)`,
-                            B: `\\( ${(k_spring_desp * 1.2).toFixed(2)} \\text{ N/m} \\)`,
-                            C: `\\( ${(k_spring_desp * 0.8).toFixed(2)} \\text{ N/m} \\)`,
-                            D: `\\( ${(ee_pot / comp_x).toFixed(2)} \\text{ N/m} \\)`
-                        };
-                        q.explicacion = `La relación de energía potencial elástica es: \\( E_e = \\frac{1}{2} k x^2 \\). Al despejar la constante elástica del resorte obtenemos: \\( k = \\frac{2 E_e}{x^2} = \\frac{2 \\cdot ${ee_pot.toFixed(1)}}{${comp_x}^2} = ${k_spring_desp} \\text{ N/m} \\).`;
-                    } else {
-                        const m_drone = 2.5;
-                        const ee_drone = 40.0 + (i - 141) * 2;
-                        const v_drone_desp = Math.sqrt((2 * ee_drone) / m_drone).toFixed(2);
-                        q.pregunta = `Un dron científico de masa \\( m = ${m_drone} \\text{ kg} \\) realiza un vuelo horizontal estable. Si registra en sus sensores una energía cinética de \\( E_c = ${ee_drone} \\text{ J} \\), determine su rapidez de avance.`;
-                        q.opciones = {
-                            A: `\\( ${v_drone_desp} \\text{ m/s} \\)`,
-                            B: `\\( ${(v_drone_desp * 1.25).toFixed(2)} \\text{ m/s} \\)`,
-                            C: `\\( ${(v_drone_desp * 0.75).toFixed(2)} \\text{ m/s} \\)`,
-                            D: `\\( ${(parseFloat(v_drone_desp) + 5.15).toFixed(2)} \\text{ m/s} \\)`
-                        };
-                        q.explicacion = `Despejamos la rapidez de la ecuación clásica de energía cinética: \\( E_c = \\frac{1}{2} m v^2 \\Rightarrow v = \\sqrt{\\frac{2 E_c}{m}} = \\sqrt{\\frac{2 \\cdot ${ee_drone}}{${m_drone}}} = ${v_drone_desp} \\text{ m/s} \\).`;
-                    }
-                }
+            // POTENCIA MECÁNICA (116-125)
+            questions.push({
+                id: 116, categoria: "Potencia Mecánica",
+                pregunta: "Teórica: ¿Cuál es la definición física rigurosa del concepto de Potencia Mecánica e instantánea, y cuál es su unidad estándar en el Sistema Internacional?",
+                opciones: { A: "La rapidez con la que se efectúa o transfiere un trabajo en el tiempo; se mide en Watts (W) que equivalen a Joules por segundo.", B: "La fuerza acumulada en un cuerpo de masa inerte; se mide en Newtons por metro.", C: "La energía mecánica total contenida en un resorte elástico; se mide en Joules de fricción.", D: "La aceleración centrípeta desarrollada por un rotor; se mide en radianes por segundo." }, correcta: "A",
+                explicacion: "La potencia mide la tasa temporal con la que se realiza trabajo: \\( P = \\frac{dW}{dt} \\). En el Sistema Internacional, su unidad es el Watt \\( (1 \\text{ W} = 1 \\text{ J/s}) \\)."
+            });
+            questions.push({
+                id: 117, categoria: "Potencia Mecánica",
+                pregunta: "Un elevador de carga levanta un peso aplicando una fuerza vertical de \\( 3000 \\text{ N} \\) de manera estable a una velocidad constante de \\( v = 2 \\text{ m/s} \\). Calcule la potencia mecánica desarrollada.",
+                opciones: { A: "6000.00 W", B: "1500.00 W", C: "3000.00 W", D: "12000.00 W" }, correcta: "A",
+                explicacion: "La potencia instantánea se relaciona directamente con la velocidad mediante la expresión: \\( P = F \\cdot v = 3000 \\cdot 2 = 6000.00 \\text{ W} \\)."
+            });
+            questions.push({
+                id: 118, categoria: "Potencia Mecánica",
+                pregunta: "Un motor eléctrico realiza un trabajo mecánico de \\( W = 24000 \\text{ J} \\) en un intervalo exacto de \\( t = 8 \\text{ s} \\). Calcule la potencia media del motor.",
+                opciones: { A: "3000.00 W", B: "192000.00 W", C: "12000.00 W", D: "6000.00 W" }, correcta: "A",
+                explicacion: "La potencia promedio se calcula dividiendo el trabajo acumulado entre el tiempo transcurrido: \\( P = \\frac{W}{t} = \\frac{24000}{8} = 3000.00 \\text{ W} \\)."
+            });
+            questions.push({
+                id: 119, categoria: "Potencia Mecánica",
+                pregunta: "Una grúa de obra desarrolla una potencia de \\( P = 4900 \\text{ W} \\) para elevar verticalmente un bloque de hormigón a una altura constante de \\( h = 10 \\text{ m} \\) en un tiempo de \\( t = 10 \\text{ s} \\). Despeje la masa del bloque de hormigón. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "50.00 kg", B: "100.00 kg", C: "250.00 kg", D: "500.00 kg" }, correcta: "A",
+                explicacion: "La potencia es \\( P = \\frac{W}{t} = \\frac{mgh}{t} \\). Despejando la masa: \\( m = \\frac{P \\cdot t}{g \\cdot h} = \\frac{4900 \\cdot 10}{9.8 \\cdot 10} = \\frac{49000}{98} = 50.00 \\text{ kg} \\)."
+            });
+            questions.push({
+                id: 120, categoria: "Potencia Mecánica",
+                pregunta: "Teórica: ¿Qué representa físicamente la eficiencia o rendimiento mecánico \\( (\\eta) \\) de una máquina real, y por qué nunca puede ser igual o superior al 100% en condiciones reales?",
+                opciones: { A: "La relación entre la potencia útil de salida y la potencia de entrada suministrada; es menor al 100% por las pérdidas inevitables de energía disipada en forma de calor.", B: "La rapidez angular máxima que tolera un motor de inducción electromagnética.", C: "La tasa de deformación de los componentes de acero debido a la tracción.", D: "La potencia nominal de un resorte sometido a una fricción de vacío." }, correcta: "A",
+                explicacion: "La eficiencia real es menor al 100% debido a la Segunda Ley de la Termodinámica y la fricción, que transforman irreversiblemente parte del trabajo útil en calor disipado."
+            });
 
-                questions.push(q);
+            // Llenar más de Potencia (121-125)
+            for (let id = 121; id <= 125; id++) {
+                let p_req = 1000 + (id - 121) * 200;
+                let h_lift = 5;
+                let m_lift = 20;
+                let t_calc = ((m_lift * GRAVITY * h_lift) / p_req).toFixed(3);
+                questions.push({
+                    id: id, categoria: "Potencia Mecánica",
+                    pregunta: `Un motor con una potencia de \\( P = ${p_req} \\text{ W} \\) es utilizado para levantar una masa de \\( m = ${m_lift} \\text{ kg} \\) de manera vertical a una altura de \\( h = ${h_lift} \\text{ m} \\). Calcule el tiempo teórico necesario para realizar la elevación. (Considere \\( g = 9.8 \\text{ m/s²} \\)).`,
+                    opciones: {
+                        A: `${t_calc} s`,
+                        B: `${(t_calc * 1.5).toFixed(3)} s`,
+                        C: `${(t_calc * 0.5).toFixed(3)} s`,
+                        D: `${(parseFloat(t_calc) + 1.2).toFixed(3)} s`
+                    }, correcta: "A",
+                    explicacion: `La potencia útil es el trabajo de elevación dividido por el tiempo: \\( P = \\frac{W}{t} = \\frac{mgh}{t} \\). Despejando el tiempo obtenemos: \\( t = \\frac{mgh}{P} = \\frac{${m_lift} \\cdot 9.8 \\cdot ${h_lift}}{${p_req}} = ${t_calc} \\text{ s} \\).`
+                });
+            }
+
+            // ENERGÍA MECÁNICA Y CONSERVACIÓN (126-150)
+            questions.push({
+                id: 126, categoria: "Energía Mecánica",
+                pregunta: "Una esfera de metal posee una energía cinética de \\( E_c = 400 \\text{ J} \\) mientras avanza a una rapidez constante de \\( v = 10 \\text{ m/s} \\). Despeje la masa inercial de la esfera.",
+                opciones: { A: "8.00 kg", B: "4.00 kg", C: "2.00 kg", D: "16.00 kg" }, correcta: "A",
+                explicacion: "La energía cinética es \\( E_c = \\frac{1}{2}m v^2 \\). Despejando la masa: \\( m = \\frac{2 E_c}{v^2} = \\frac{2 \\cdot 400}{10^2} = \\frac{800}{100} = 8.00 \\text{ kg} \\)."
+            });
+            questions.push({
+                id: 127, categoria: "Energía Mecánica",
+                pregunta: "Teórica: De acuerdo al Teorema del Trabajo y la Energía Cinética (Teorema de las fuerzas vivas), ¿cómo se relaciona el trabajo neto realizado sobre una partícula con el estado de su energía mecánica?",
+                opciones: { A: "El trabajo neto realizado por las fuerzas aplicadas equivale exactamente a la variación de la energía cinética de la partícula.", B: "El trabajo neto es siempre igual al producto de la masa por la energía potencial acumulada.", C: "El trabajo de la gravedad anula exponencialmente la energía elástica del resorte.", D: "No se relacionan, el trabajo y la energía son independientes en sistemas mecánicos." }, correcta: "A",
+                explicacion: "El teorema establece que el trabajo de todas las fuerzas externas netas se invierte directamente en alterar la rapidez de la masa, variando su energía cinética: \\( W_{neto} = \\Delta E_c \\)."
+            });
+            questions.push({
+                id: 128, categoria: "Energía Mecánica",
+                pregunta: "Un bloque metálico acumula una energía potencial elástica de \\( E_e = 4 \\text{ J} \\) en un resorte amortiguador que se comprime una distancia de \\( x = 0.2 \\text{ m} \\). Despeje la constante de rigidez elástica de este resorte.",
+                opciones: { A: "200.00 N/m", B: "400.00 N/m", C: "100.00 N/m", D: "50.00 N/m" }, correcta: "A",
+                explicacion: "La relación de energía potencial elástica es: \\( E_e = \\frac{1}{2} k x^2 \\). Al despejar la constante elástica del resorte obtenemos: \\( k = \\frac{2 E_e}{x^2} = \\frac{2 \\cdot 4}{0.2^2} = \\frac{8}{0.04} = 200.00 \\text{ N/m} \\)."
+            });
+            questions.push({
+                id: 129, categoria: "Energía Mecánica",
+                pregunta: "Una masa suspendida de \\( m = 4 \\text{ kg} \\) acumula una energía potencial gravitatoria de \\( E_p = 196 \\text{ J} \\) con respecto al suelo. Despeje la altura a la que se encuentra suspendida. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                opciones: { A: "5.00 m", B: "10.00 m", C: "2.50 m", D: "20.00 m" }, correcta: "A",
+                explicacion: "La energía potencial es \\( E_p = m g h \\). Al despejar la altura: \\( h = \\frac{E_p}{m g} = \\frac{196}{4 \\cdot 9.8} = \\frac{196}{39.2} = 5.00 \\text{ m} \\)."
+            });
+            questions.push({
+                id: 130, categoria: "Energía Mecánica",
+                pregunta: "Teórica: ¿Qué distingue a una fuerza conservativa (como la gravedad o la elástica de un resorte) de una fuerza no conservativa o disipativa (como la de fricción viscosa del aire)?",
+                opciones: { A: "El trabajo realizado por una fuerza conservativa sobre un cuerpo cerrado es cero y depende exclusivamente de las posiciones inicial y final, no de la trayectoria recorrida.", B: "Las fuerzas conservativas aumentan la masa de los sistemas en el vacío.", C: "Las fuerzas disipativas anulan de manera instantánea el vector cantidad de movimiento orbital.", D: "El trabajo de las fuerzas conservativas depende estrictamente de la aceleración instantánea." }, correcta: "A",
+                explicacion: "En las fuerzas conservativas, el trabajo realizado es independiente del camino o trayectoria. En cambio, en las disipativas (fricción), el trabajo disipa la energía en forma de calor y depende de la longitud de la trayectoria."
+            });
+
+            // Llenar más preguntas de Energía con despejes analíticos (131-150)
+            for (let id = 131; id <= 150; id++) {
+                let m_part = 2;
+                let ec_part = 100 + (id - 131) * 10;
+                let v_part = Math.sqrt((2 * ec_part) / m_part).toFixed(2);
+                questions.push({
+                    id: id, categoria: "Energía Mecánica",
+                    pregunta: `Una muestra inercial de masa \\( m = ${m_part} \\text{ kg} \\) se proyecta horizontalmente sobre una superficie lisa. Si los sensores de velocidad reportan que el cuerpo posee una energía cinética estable de \\( E_c = ${ec_part} \\text{ J} \\), determine el módulo de la rapidez con la que se desplaza.`,
+                    opciones: {
+                        A: `${v_part} m/s`,
+                        B: `${(v_part * 1.35).toFixed(2)} m/s`,
+                        C: `${(v_part * 0.65).toFixed(2)} m/s`,
+                        D: `${(ec_part / m_part).toFixed(2)} m/s`
+                    }, correcta: "A",
+                    explicacion: `Despejamos la rapidez de la ecuación de energía cinética: \\( E_c = \\frac{1}{2} m v^2 \\Rightarrow v^2 = \\frac{2 E_c}{m} \\Rightarrow v = \\sqrt{\\frac{2 \\cdot ${ec_part}}{${m_part}}} = ${v_part} \\text{ m/s} \\).`
+                });
             }
         }
 
@@ -872,6 +873,7 @@
                 { originalKey: "D", text: q.opciones.D }
             ];
 
+            // Algoritmo Fisher-Yates
             for (let i = rawOptions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [rawOptions[i], rawOptions[j]] = [rawOptions[j], rawOptions[i]];
@@ -912,7 +914,7 @@
             questions.forEach((q, idx) => {
                 const btn = document.createElement("button");
                 btn.id = `matrix-btn-${idx}`;
-                btn.className = "cell-nav h-10 w-full rounded-xl flex items-center justify-center text-xs font-bold transition duration-200 border bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-400 cursor-pointer";
+                btn.className = "cell-nav h-11 w-full rounded-xl flex items-center justify-center text-xs font-bold transition duration-150 border bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-400 cursor-pointer";
                 btn.textContent = idx + 1;
                 btn.tabIndex = 0;
                 btn.addEventListener("click", () => {
@@ -1171,9 +1173,9 @@
             if (usedComodines["llamada"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
-            const tutorExplanation = `«Estimado estudiante, analizando los principios de la física de este reactivo, te sugiero despejar la variable del sistema planteado. Al operar adecuadamente, llegarás a la opción <strong>(${state.correctShuffledKey})</strong>. No olvides verificar el redondeo a dos decimales y el módulo de cada vector.»`;
+            const tutorExplanation = `«Estimado estudiante, analizando los principios de la física de este reactivo, te sugiero despejar la variable del sistema planteado de forma estructurada. Al operar adecuadamente, llegarás a la opción correcta que corresponde a la respuesta: <strong>${state.shuffledOptions[state.correctShuffledKey]}</strong>. ¡Ánimo!»`;
 
-            openModal("📞 Pista Pedagógica del Tutor", "Ayuda analítica", tutorExplanation);
+            openModal("📞 Sugerencia del Tutor", "Guía del Docente", tutorExplanation);
 
             usedComodines["llamada"] = true;
             updateComodinesUI();
@@ -1209,11 +1211,11 @@
 
             let displayHTML = `
                 <div class="space-y-4">
-                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución estadística simulada de la encuesta de aula:</p>
+                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución estadística estimada de la encuesta de aula:</p>
                     ${keys.map(key => `
                         <div>
                             <div class="flex justify-between text-xs font-bold mb-1">
-                                <span>Opción ${key}</span>
+                                <span>Opción ${key} (${state.shuffledOptions[key]})</span>
                                 <span>${stats[key]}%</span>
                             </div>
                             <div class="w-full bg-slate-100 h-3 rounded-xl overflow-hidden border border-slate-200/50">
@@ -1224,7 +1226,7 @@
                 </div>
             `;
 
-            openModal("📊 Sondeo de Estadística", "Resultados del grupo", displayHTML);
+            openModal("📊 Encuesta de Aula", "Resultados del Sondeo", displayHTML);
 
             usedComodines["publico"] = true;
             updateComodinesUI();
@@ -1268,6 +1270,166 @@
             document.getElementById("final-modal").classList.remove("hidden");
         }
 
+        async function initDatabaseConnection() {
+            const statusBadge = document.getElementById("db-status-badge");
+            const sessionDisplay = document.getElementById("session-id-display");
+            const headerSessionId = document.getElementById("header-session-id");
+            const headerDbSync = document.getElementById("header-db-sync-text");
+
+            let isDatabaseLoaded = false;
+
+            // Fallback inmediato bajo timeout en 120ms para una velocidad de previsualización récord
+            const connectionTimeout = setTimeout(() => {
+                if (!isDatabaseLoaded) {
+                    fallbackToLocalMode();
+                }
+            }, 120);
+
+            function fallbackToLocalMode() {
+                isDatabaseLoaded = true;
+                userId = generateSafeSessionId();
+                
+                if (statusBadge) {
+                    statusBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-500/10 text-slate-500 border border-slate-500/20";
+                    statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> Modo Local (Rápido y Seguro)`;
+                }
+                if (sessionDisplay) {
+                    sessionDisplay.textContent = `ID Local: ${userId}`;
+                    sessionDisplay.classList.remove("hidden");
+                }
+                if (headerSessionId) {
+                    headerSessionId.textContent = `Sesión: Local`;
+                }
+                if (headerDbSync) {
+                    headerDbSync.className = "text-slate-500 font-semibold flex items-center gap-1";
+                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span> Sin Conexión Nube`;
+                }
+            }
+
+            try {
+                const appIdVal = typeof __app_id !== 'undefined' ? __app_id : 'simulador-fisica-pro-v5';
+                appId = appIdVal;
+                
+                let firebaseConfig = null;
+                if (typeof __firebase_config !== 'undefined') {
+                    firebaseConfig = typeof __firebase_config === 'string' ? JSON.parse(__firebase_config) : __firebase_config;
+                }
+                
+                const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+                if (window.FirebaseSDK && firebaseConfig) {
+                    const { initializeApp: fInit, getAuth: fAuth, signInAnonymously: fAnon, signInWithCustomToken: fToken, getFirestore: fStore } = window.FirebaseSDK;
+                    
+                    const app = fInit(firebaseConfig);
+                    auth = fAuth(app);
+                    db = fStore(app);
+
+                    let userCredential;
+                    if (initialAuthToken) {
+                        userCredential = await fToken(auth, initialAuthToken);
+                    } else {
+                        userCredential = await fAnon(auth);
+                    }
+
+                    userId = userCredential.user.uid;
+                    isFirebaseActive = true;
+                    isDatabaseLoaded = true;
+                    clearTimeout(connectionTimeout);
+
+                    if (statusBadge) {
+                        statusBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
+                        statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sincronizado en la Nube`;
+                    }
+                    
+                    if (sessionDisplay) {
+                        sessionDisplay.textContent = `ID de Sesión: ${userId}`;
+                        sessionDisplay.classList.remove("hidden");
+                    }
+                    if (headerSessionId) {
+                        headerSessionId.textContent = `Sesión: ${userId}`;
+                    }
+
+                    await loadProgressFromDB();
+                } else {
+                    fallbackToLocalMode();
+                }
+            } catch (err) {
+                console.warn("Base de datos en modo local (Progreso en memoria):", err.message);
+                clearTimeout(connectionTimeout);
+                fallbackToLocalMode();
+            }
+        }
+
+        async function saveProgressToDB() {
+            if (!isFirebaseActive || !userId) return;
+            const headerDbSync = document.getElementById("header-db-sync-text");
+            try {
+                if (headerDbSync) {
+                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-amber-500 rounded-full animate-ping"></span> Guardando...`;
+                }
+                const { doc: fDoc, setDoc: fSet } = window.FirebaseSDK;
+                const progressRef = fDoc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
+                
+                await fSet(progressRef, {
+                    userAnswers: JSON.stringify(userAnswers),
+                    usedComodines: usedComodines,
+                    activeIndex: activeIndex,
+                    updatedAt: new Date().toISOString()
+                });
+
+                if (headerDbSync) {
+                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Sincronizado`;
+                }
+            } catch (error) {
+                console.error("Fallo al sincronizar base de datos:", error);
+                if (headerDbSync) {
+                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-rose-500 rounded-full"></span> Error de Sincronización`;
+                }
+            }
+        }
+
+        async function loadProgressFromDB() {
+            if (!isFirebaseActive || !userId) return;
+            try {
+                const { doc: fDoc, getDoc: fGet } = window.FirebaseSDK;
+                const progressRef = fDoc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
+                const docSnap = await fGet(progressRef);
+                
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.userAnswers) {
+                        userAnswers = JSON.parse(data.userAnswers);
+                    }
+                    if (data.usedComodines) {
+                        usedComodines = data.usedComodines;
+                    }
+                    if (typeof data.activeIndex === 'number') {
+                        activeIndex = data.activeIndex;
+                    }
+
+                    updateScoreAndProgress();
+                }
+            } catch (error) {
+                console.error("Fallo al descargar progreso:", error);
+            }
+        }
+
+        async function clearProgressInDB() {
+            if (!isFirebaseActive || !userId) return;
+            try {
+                const { doc: fDoc, setDoc: fSet } = window.FirebaseSDK;
+                const progressRef = fDoc(db, 'artifacts', appId, 'users', userId, 'progress', 'state');
+                await fSet(progressRef, {
+                    userAnswers: JSON.stringify({}),
+                    usedComodines: { "5050": false, "eliminar": false, "llamada": false, "publico": false },
+                    activeIndex: 0,
+                    updatedAt: new Date().toISOString()
+                });
+            } catch (error) {
+                console.error("Fallo al resetear almacenamiento remoto:", error);
+            }
+        }
+
         async function restartQuiz() {
             userAnswers = {};
             usedComodines = { "5050": false, "eliminar": false, "llamada": false, "publico": false };
@@ -1278,12 +1440,11 @@
             for (let i = 0; i < 150; i++) {
                 const matrixBtn = document.getElementById(`matrix-btn-${i}`);
                 if (matrixBtn) {
-                    matrixBtn.className = "cell-nav h-10 w-full rounded-xl flex items-center justify-center text-xs font-bold transition duration-200 border bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-400 cursor-pointer";
+                    matrixBtn.className = "cell-nav h-11 w-full rounded-xl flex items-center justify-center text-xs font-bold transition duration-150 border bg-slate-50 border-slate-200 text-slate-500 hover:border-slate-400 cursor-pointer";
                 }
             }
             
             updateScoreAndProgress();
-            
             await clearProgressInDB();
             loadQuestion(0);
         }
