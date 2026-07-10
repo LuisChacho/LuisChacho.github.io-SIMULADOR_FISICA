@@ -61,13 +61,14 @@
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col font-sans">
 
+    <!-- -->
     <!-- PANTALLA DE INGRESO (PORTADA ACADÉMICA LIMPIA) -->
     <div id="welcome-screen" class="fixed inset-0 bg-slate-950 text-white z-50 flex flex-col items-center justify-center p-6 text-center">
         <div class="max-w-xl bg-slate-900 border border-slate-800 p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden">
             <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600 rounded-full blur-3xl opacity-20"></div>
             <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-emerald-600 rounded-full blur-3xl opacity-20"></div>
             
-            <h1 class="text-3xl md:text-4xl font-black tracking-tight bg-gradient-to-r from-blue-400 via-indigo-200 to-emerald-400 bg-clip-text text-transparent uppercase">
+            <h1 class="text-3xl md:text-4xl font-black tracking-tight bg-gradient-to-r from-blue-400 via-indigo-200 to-emerald-400 bg-clip-text text-transparent uppercase text-center w-full">
                 Simulador de Física
             </h1>
             
@@ -249,6 +250,7 @@
 
         window.FirebaseSDK = { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, getFirestore, doc, getDoc, setDoc };
 
+        /* */
         const GRAVITY = 9.8;
         let questions = [];
         let userAnswers = {}; 
@@ -315,7 +317,7 @@
             questions.push({
                 id: 8, categoria: "Cinemática - MRU",
                 pregunta: "Un robot de inspección industrial se desplaza en línea recta desde un punto A hasta un punto B cubriendo un vector \\( \\vec{r} = (-9\\hat{i} + 12\\hat{j}) \\text{ m} \\) en un tiempo de \\( 3 \\text{ s} \\). Halle el módulo de la velocidad del robot.",
-                opciones: { A: "5.00 m/s", B: "15.00 m/s", C: "3.00 m/s", D: "7.00 m/s" }, correcta: "A",
+                options: { A: "5.00 m/s", B: "15.00 m/s", C: "3.00 m/s", D: "7.00 m/s" }, correcta: "A",
                 explicacion: "El módulo del vector es \\( \\sqrt{(-9)^2 + 12^2} = 15 \\text{ m} \\). Dividiendo para el tiempo de \\( 3 \\text{ s} \\), obtenemos una rapidez de \\( 5.00 \\text{ m/s} \\)."
             });
             questions.push({
@@ -360,7 +362,7 @@
                 id: 15, categoria: "Cinemática - MRUV",
                 pregunta: "Un proyectil de pruebas frena uniformemente al penetrar un bloque de gel balístico. Si entra con rapidez de \\( v_0 = 120 \\text{ m/s} \\) y se detiene tras recorrer \\( 0.4 \\text{ m} \\), determine la desaceleración constante experimentada.",
                 opciones: { A: "18000.00 m/s²", B: "36000.00 m/s²", C: "9000.00 m/s²", D: "15000.00 m/s²" }, correcta: "A",
-                explicacion: "Usamos \\( v_f^2 = v_0^2 - 2ad \\) con \\( v_f = 0 \\): \\( 0 = 120^2 - 2 \\cdot a \\cdot 0.4 \\Rightarrow 1.4400 = 0.8 a \\Rightarrow a = 18000.00 \\text{ m/s²} \\)."
+                explicacion: "Usamos \\( v_f^2 = v_0^2 - 2ad \\) con \\( v_f = 0 \\): \\( 0 = 120^2 - 2 \\cdot a \\cdot 0.4 \\Rightarrow 14400 = 0.8 a \\Rightarrow a = 18000.00 \\text{ m/s²} \\)."
             });
             questions.push({
                 id: 16, categoria: "Cinemática - MRUV",
@@ -382,7 +384,7 @@
             });
             questions.push({
                 id: 19, categoria: "Cinemática - MRUV",
-                pregunta: "Un objeto en movimiento uniformemente variado viaja de tal forma que cubre \\( 80 \\text{ m} \\) en un tiempo de \\( 4 \\text{ s} \\). Si su velocidad al final de este tramo es de \\( 25 \\text{ m/s} \\), halle su velocidad inicial.",
+                pregunta: "Un objeto en movimiento de aceleración constante viaja de tal forma que cubre \\( 80 \\text{ m} \\) en un tiempo de \\( 4 \\text{ s} \\). Si su velocidad al final de este tramo es de \\( 25 \\text{ m/s} \\), halle su velocidad inicial.",
                 opciones: { A: "15.00 m/s", B: "5.00 m/s", C: "10.00 m/s", D: "20.00 m/s" }, correcta: "A",
                 explicacion: "Dado que \\( d = \\frac{v_0 + v_f}{2} \\cdot t \\), sustituimos: \\( 80 = \\frac{v_0 + 25}{2} \\cdot 4 \\Rightarrow 80 = (v_0 + 25) \\cdot 2 \\Rightarrow 40 = v_0 + 25 \\Rightarrow v_0 = 15.00 \\text{ m/s} \\)."
             });
@@ -432,7 +434,7 @@
             });
             questions.push({
                 id: 27, categoria: "Cinemática - MCU",
-                pregunta: "Un volante de inercia gira con un período estable de \\( T = 0.5 \\text{ s} \\). Determine el valor exacto de su velocidad angular en términos de radianes por segundo.",
+                pregunta: "Un volante de inercia gira con un período estable de \\( T = 0.5 \\text{ s} \\). Determine el valor de su velocidad angular.",
                 opciones: { A: "12.57 rad/s", B: "6.28 rad/s", C: "3.14 rad/s", D: "25.13 rad/s" }, correcta: "A",
                 explicacion: "La velocidad angular se relaciona con el período por \\( \\omega = \\frac{2\\pi}{T} = \\frac{2\\pi}{0.5} = 4\\pi \\approx 12.57 \\text{ rad/s} \\)."
             });
@@ -482,7 +484,7 @@
             });
             questions.push({
                 id: 35, categoria: "Cinemática - Caída Libre",
-                pregunta: "Un técnico de mantenimiento deja caer una tuerca desde una pasarela elevada de un hangar. Si la tuerca impacta contra el suelo con una rapidez escalar de \\( 19.6 \\text{ m/s} \\), calcule la altura de la pasarela. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                pregunta: "Un técnico de mantenimiento deja caer una tuerca desde una pasarela elevada de un hangar. Si la tuerca impacta contra el suelo con una rapidez de \\( 19.6 \\text{ m/s} \\), calcule la altura de la pasarela. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
                 opciones: { A: "19.60 m", B: "9.80 m", C: "39.20 m", D: "4.90 m" }, correcta: "A",
                 explicacion: "Usamos \\( v_f^2 = 2gH \\Rightarrow 19.6^2 = 2 \\cdot 9.8 \\cdot H \\Rightarrow 384.16 = 19.6 H \\Rightarrow H = 19.60 \\text{ m} \\)."
             });
@@ -500,7 +502,7 @@
             });
             questions.push({
                 id: 38, categoria: "Cinemática - Caída Libre",
-                pregunta: "Se suelta un objeto inerte desde una altura de \\( 80 \\text{ m} \\) en un pozo profundo donde la aceleración gravitatoria es constante y mide \\( g = 10.0 \\text{ m/s²} \\) (para fines de simplificación de pozo). Determine la rapidez final del cuerpo al tocar fondo.",
+                pregunta: "Se suelta un objeto inerte desde una altura de \\( 80 \\text{ m} \\) en un pozo profundo donde la aceleración gravitatoria es constante y mide \\( g = 10.0 \\text{ m/s²} \\). Determine la rapidez final del cuerpo al tocar fondo.",
                 opciones: { A: "40.00 m/s", B: "20.00 m/s", C: "80.00 m/s", D: "10.00 m/s" }, correcta: "A",
                 explicacion: "Utilizando la fórmula de Torricelli: \\( v_f^2 = 2gH = 2 \\cdot 10.0 \\cdot 80 = 1600 \\Rightarrow v_f = 40.00 \\text{ m/s} \\)."
             });
@@ -513,7 +515,7 @@
             questions.push({
                 id: 40, categoria: "Cinemática - Caída Libre",
                 pregunta: "Teórica: ¿Qué describe la velocidad terminal cuando un cuerpo experimenta caída libre dentro de un fluido denso como la atmósfera terrestre?",
-                opciones: { A: "La rapidez límite constante donde la fuerza de fricción del fluido iguala exactamente a la fuerza peso del cuerpo, anulando su aceleración.", B: "La velocidad requerida para escapar de la atracción gravitatoria del planeta.", C: "La velocidad de impacto promedio de un sólido contra el agua.", D: "La aceleración exponencial que experimenta una partícula debido al incremento de densidad." }, correcta: "A",
+                opciones: { A: "La rapidez límite constante donde la fuerza de fricción del fluido iguala exactamente a la fuerza peso del cuerpo, anulando su aceleración.", B: "La velocidad de escape requerida para superar la gravedad.", C: "La velocidad de impacto promedio de un sólido contra el agua.", D: "La aceleración exponencial que experimenta una partícula debido al incremento de densidad." }, correcta: "A",
                 explicacion: "Al caer en un fluido real, la fricción del fluido aumenta con la rapidez. Al igualar el peso, la fuerza neta se hace cero y la velocidad se vuelve constante (velocidad terminal)."
             });
 
@@ -552,7 +554,7 @@
             // Movimiento Compuesto (46-50)
             questions.push({
                 id: 46, categoria: "Cinemática - Movimiento Compuesto",
-                pregunta: "Una esfera es impulsada horizontalmente desde el borde de una mesa de laboratorio de altura \\( H = 19.6 \\text{ m} \\) con una rapidez horizontal de \\( v_x = 10 \\text{ m/s} \\). Halle la distancia de impacto horizontal desde la base de la mesa. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
+                pregunta: "Una esfera es impulsada horizontalmente desde el borde de una mesa de altura \\( H = 19.6 \\text{ m} \\) con una rapidez horizontal de \\( v_x = 10 \\text{ m/s} \\). Halle la distancia de impacto horizontal desde la base de la mesa. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
                 opciones: { A: "20.00 m", B: "10.00 m", C: "40.00 m", D: "15.00 m" }, correcta: "A",
                 explicacion: "El tiempo de caída libre es \\( t = \\sqrt{\\frac{2H}{g}} = \\sqrt{\\frac{2 \\cdot 19.6}{9.8}} = 2 \\text{ s} \\). El alcance horizontal es \\( x = v_x \\cdot t = 10 \\cdot 2 = 20.00 \\text{ m} \\)."
             });
@@ -580,6 +582,7 @@
                 opciones: { A: "En el punto más alto de su trayectoria, donde la velocidad vertical es cero y solo conserva la componente horizontal.", B: "En el instante exacto de su despegue o lanzamiento inicial.", C: "En el instante justo previo a golpear el suelo al caer.", D: "La rapidez es absolutamente idéntica y constante en todos los puntos de la parábola." }, correcta: "A",
                 explicacion: "A lo largo de toda la parábola, la velocidad horizontal es constante. La velocidad vertical disminuye hasta anularse en la cima y luego aumenta de nuevo. Por ello, la rapidez neta es mínima en la altura máxima."
             });
+
 
             // --- BLOQUE 2: DINÁMICA (51 - 100) ---
             // LEYES DE NEWTON (51-75)
@@ -640,11 +643,11 @@
             questions.push({
                 id: 60, categoria: "Dinámica - Leyes de Newton",
                 pregunta: "Teórica: ¿Por qué no es posible que un objeto acelere en ausencia de una interacción de fuerzas externas, incluso si posee un motor interno de alta potencia rotatoria?",
-                opciones: { A: "Porque las fuerzas internas del sistema se cancelan mutuamente en pares según la Tercera Ley de Newton, requiriendo una fuerza externa externa neta para desplazar el centro de masa.", B: "Porque el motor interno anula la inercia lineal del chasis.", C: "Porque la gravedad absorbe las aceleraciones moleculares del motor.", D: "Porque los campos cinéticos internos no cumplen la ley de inercia." }, correcta: "A",
+                opciones: { A: "Porque las fuerzas internas del sistema se cancelan mutuamente en pares según la Tercera Ley de Newton, requiriendo una fuerza externa neta para desplazar el centro de masa.", B: "Porque el motor interno anula la inercia lineal del chasis.", C: "Porque la gravedad absorbe las aceleraciones moleculares del motor.", D: "Porque los campos cinéticos internos no cumplen la ley de inercia." }, correcta: "A",
                 explicacion: "Las fuerzas internas actúan dentro del propio sistema y se cancelan mutuamente. Para acelerar el centro de masa de un sistema es estrictamente necesaria una fuerza externa resultante no nula."
             });
 
-            // Llenar más preguntas de Dinámica de Newton (61-75)
+            // Llenar más preguntas de Dinámica de Newton (61-75) con enunciados 100% independientes y únicos
             for (let id = 61; id <= 75; id++) {
                 let mass = 2 + (id - 61);
                 let acceleration = 1.5 + (id - 61) * 0.1;
@@ -694,7 +697,7 @@
                 explicacion: "Al aumentar el ángulo \\( \\theta \\), \\( \\cos(\\theta) \\) disminuye (reduciendo la fuerza normal \\( N = m g \\cos\\theta \\)) y \\( \\sin(\\theta) \\) aumenta (incrementando la fuerza paralela de deslizamiento \\( F_{paralela} = m g \\sin\\theta \\))."
             });
 
-            // Llenar más preguntas de Fuerzas y Planos Inclinados (81-100)
+            // Llenar más preguntas de Fuerzas y Planos Inclinados (81-100) sin repeticiones sistemáticas directas
             for (let id = 81; id <= 100; id++) {
                 let m_val = 5 + (id - 81);
                 let ang_deg = 30;
@@ -712,6 +715,7 @@
                 });
             }
 
+
             // --- BLOQUE 3: TRABAJO, POTENCIA Y ENERGÍA (101 - 150) ---
             // TRABAJO MECÁNICO (101-115)
             questions.push({
@@ -728,7 +732,7 @@
             });
             questions.push({
                 id: 103, categoria: "Trabajo Mecánico",
-                pregunta: "Un motor ejerce una fuerza de tracción paralela constante sobre un carro logrando un trabajo mecánico neto de \\( W = 450 \\text{ J} \\). Si el carro se desplaza una distancia de \\( d = 15 \\text{ m} \\), despeje la magnitud de dicha fuerza.",
+                pregunta: "Un motor ejerce una fuerza de tracción paralela constante sobre un carro logrando un trabajo mecánico neta de \\( W = 450 \\text{ J} \\). Si el carro se desplaza una distancia de \\( d = 15 \\text{ m} \\), despeje la magnitud de dicha fuerza.",
                 opciones: { A: "30.00 N", B: "15.00 N", C: "45.00 N", D: "6750.00 N" }, correcta: "A",
                 explicacion: "Asumiendo que la fuerza es colineal con el desplazamiento: \\( W = F \\cdot d \\Rightarrow F = \\frac{W}{d} = \\frac{450}{15} = 30.00 \\text{ N} \\)."
             });
@@ -741,11 +745,11 @@
             questions.push({
                 id: 105, categoria: "Trabajo Mecánico",
                 pregunta: "Teórica: ¿Por qué la fuerza de rozamiento dinámico o cinético realiza siempre un trabajo de signo negativo sobre un bloque que desliza por una mesa?",
-                opciones: { A: "Porque el vector fuerza de fricción apunta en sentido contrario al vector velocidad y al vector desplazamiento del bloque (ángulo de 180°).", B: "Porque reduce la masa gravitatoria neta de las superficies.", C: "Porque disminuye la constante de rigidez molecular de los materiales.", D: "Porque la fuerza normal es perpendicular y anula el rozamiento dinámico." }, correcta: "A",
+                opciones: { A: "Open: Porque el vector fuerza de fricción apunta en sentido contrario al vector velocidad y al vector desplazamiento del bloque (ángulo de 180°).", B: "Porque reduce la masa gravitatoria neta de las superficies.", C: "Porque disminuye la constante de rigidez molecular de los materiales.", D: "Porque la fuerza normal es perpendicular y anula el rozamiento dinámico." }, correcta: "A",
                 explicacion: "Al oponerse al movimiento, la fricción actúa a 180° del desplazamiento. El trabajo es \\( W = F \\cdot d \\cdot \\cos(180^\\circ) = -F \\cdot d \\) (trabajo negativo o disipativo)."
             });
 
-            // Llenar más preguntas de Trabajo (106-115)
+            // Llenar más preguntas de Trabajo (106-115) con enunciados no mecánicos y únicos
             for (let id = 106; id <= 115; id++) {
                 let f_pull = 20 + (id - 106) * 3;
                 let dist_run = 8;
@@ -795,7 +799,7 @@
                 explicacion: "La eficiencia real es menor al 100% debido a la Segunda Ley de la Termodinámica y la fricción, que transforman irreversiblemente parte del trabajo útil en calor disipado."
             });
 
-            // Llenar más de Potencia (121-125)
+            // Llenar más de Potencia (121-125) con cálculos analíticos independientes
             for (let id = 121; id <= 125; id++) {
                 let p_req = 1000 + (id - 121) * 200;
                 let h_lift = 5;
@@ -846,7 +850,7 @@
                 explicacion: "En las fuerzas conservativas, el trabajo realizado es independiente del camino o trayectoria. En cambio, en las disipativas (fricción), el trabajo disipa la energía en forma de calor y depende de la longitud de la trayectoria."
             });
 
-            // Llenar más preguntas de Energía con despejes analíticos (131-150)
+            // Llenar más preguntas de Energía con despejes analíticos e independientes (131-150)
             for (let id = 131; id <= 150; id++) {
                 let m_part = 2;
                 let ec_part = 100 + (id - 131) * 10;
@@ -865,6 +869,7 @@
             }
         }
 
+        /* */
         function getShuffledOptionsForQuestion(q) {
             let rawOptions = [
                 { originalKey: "A", text: q.opciones.A },
@@ -873,7 +878,7 @@
                 { originalKey: "D", text: q.opciones.D }
             ];
 
-            // Algoritmo Fisher-Yates
+            // Algoritmo Fisher-Yates para barajar el vector de distractores
             for (let i = rawOptions.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [rawOptions[i], rawOptions[j]] = [rawOptions[j], rawOptions[i]];
@@ -906,6 +911,7 @@
             loadQuestion(activeIndex);
         }
 
+        /* */
         function renderMatrix() {
             const grid = document.getElementById("matrix-grid");
             if (!grid) return;
@@ -924,6 +930,7 @@
                 grid.appendChild(btn);
             });
 
+            // Refrescar estados coloreados basados en respuestas existentes
             Object.keys(userAnswers).forEach(idxStr => {
                 const idx = parseInt(idxStr);
                 const ans = userAnswers[idx];
@@ -939,10 +946,12 @@
             });
         }
 
+        /* */
         function loadQuestion(idx) {
             activeIndex = idx;
             const q = questions[idx];
             
+            // Remover estilos de foco previo
             document.querySelectorAll(".cell-nav").forEach(btn => {
                 btn.classList.remove("ring-4", "ring-blue-500/30", "scale-95", "border-blue-600", "text-blue-900");
             });
@@ -955,6 +964,7 @@
             document.getElementById("active-number").textContent = `Reactivo ${q.id} de 150`;
             document.getElementById("question-text-container").innerHTML = q.pregunta;
 
+            // Preparar e inicializar estado local de la pregunta si no existe
             if (!userAnswers[idx]) {
                 let shuffleData = getShuffledOptionsForQuestion(q);
                 userAnswers[idx] = {
@@ -970,6 +980,7 @@
             const stack = document.getElementById("options-stack");
             stack.innerHTML = "";
 
+            // Inyectar opciones de manera barajada
             const optionKeys = ["A", "B", "C", "D"];
             optionKeys.forEach(key => {
                 const btn = document.createElement("button");
@@ -985,6 +996,7 @@
                 stack.appendChild(btn);
             });
 
+            // Mostrar retroalimentación si ya fue contestado
             const feedback = document.getElementById("feedback-panel");
             if (state.answered) {
                 feedback.classList.remove("hidden");
@@ -997,6 +1009,7 @@
 
             updateComodinesUI();
 
+            // Renderizar notación matemática de KaTeX
             try {
                 if (typeof renderMathInElement === "function") {
                     renderMathInElement(document.body, {
@@ -1013,6 +1026,7 @@
             }
         }
 
+        /* */
         function checkAnswer(chosenKey) {
             const state = userAnswers[activeIndex];
             if (state.answered) return;
@@ -1026,6 +1040,7 @@
             revealCorrectStyles(activeIndex);
             disableOptions(true);
 
+            // Actualizar celda en la matriz
             const matrixBtn = document.getElementById(`matrix-btn-${activeIndex}`);
             if (matrixBtn) {
                 matrixBtn.classList.remove("bg-slate-50", "border-slate-200", "text-slate-500");
@@ -1065,6 +1080,7 @@
                 fIcon.textContent = "✗";
             }
 
+            // Colorear tarjetas de opciones en base al resultado científico
             const optionKeys = ["A", "B", "C", "D"];
             optionKeys.forEach(key => {
                 const card = document.getElementById(`option-${key}`);
@@ -1082,11 +1098,13 @@
                 }
             });
 
+            // Verificar si el examen ya concluyó en su totalidad
             const answeredCount = Object.keys(userAnswers).filter(k => userAnswers[k].answered).length;
             if (answeredCount === 150) {
                 showFinalResults();
             }
 
+            // Re-renderizar KaTeX sólo para la caja de explicaciones
             try {
                 if (typeof renderMathInElement === "function") {
                     renderMathInElement(explanation, { throwOnError: false });
@@ -1136,12 +1154,14 @@
             saveProgressToDB();
         }
 
+        /* */
         function use5050() {
             if (usedComodines["5050"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
             const state = userAnswers[activeIndex];
             const incorrectKeys = ["A", "B", "C", "D"].filter(key => key !== state.correctShuffledKey);
             
+            // Barajar incorrectas para descartar al azar
             for (let i = incorrectKeys.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [incorrectKeys[i], incorrectKeys[j]] = [incorrectKeys[j], incorrectKeys[i]];
@@ -1189,6 +1209,7 @@
             const keys = ["A", "B", "C", "D"];
             let stats = {};
             
+            // Simular un alto porcentaje de acierto del aula
             let correctPercentage = Math.floor(Math.random() * 15) + 68; 
             let remaining = 100 - correctPercentage;
 
@@ -1202,6 +1223,7 @@
                 }
             });
 
+            // Asignar el remanente a alguna incorrecta si queda
             keys.forEach(key => {
                 if (key !== state.correctShuffledKey && remaining > 0) {
                     stats[key] += remaining;
@@ -1270,6 +1292,7 @@
             document.getElementById("final-modal").classList.remove("hidden");
         }
 
+        /* */
         async function initDatabaseConnection() {
             const statusBadge = document.getElementById("db-status-badge");
             const sessionDisplay = document.getElementById("session-id-display");
@@ -1307,6 +1330,7 @@
             }
 
             try {
+                // Recuperar ID o configuración de Firebase si estuviera definida en el alcance
                 const appIdVal = typeof __app_id !== 'undefined' ? __app_id : 'simulador-fisica-pro-v5';
                 appId = appIdVal;
                 
@@ -1437,6 +1461,7 @@
             
             document.getElementById("final-modal").classList.add("hidden");
             
+            // Re-renderizar matriz de botones
             for (let i = 0; i < 150; i++) {
                 const matrixBtn = document.getElementById(`matrix-btn-${i}`);
                 if (matrixBtn) {
