@@ -134,7 +134,7 @@
                 <span class="flex items-center gap-1.5 text-rose-600"><span class="w-3 h-3 rounded bg-rose-500 block"></span> Incorrecta</span>
             </div>
 
-            <!-- Contenedor scrollable de la rejilla de reactivos (1 a 150) -->
+            <!-- Contenedor scrollable de la rejilla de reactivos (1 a 131) -->
             <div id="matrix-grid" class="grid grid-cols-5 gap-2 max-h-[380px] overflow-y-auto pr-1 flex-grow custom-scrollbar py-1">
                 <!-- Se inyecta por JS -->
             </div>
@@ -251,7 +251,6 @@
 
         window.FirebaseSDK = { initializeApp, getAuth, signInAnonymously, signInWithCustomToken, getFirestore, doc, getDoc, setDoc };
 
-        /* PARÁMETROS ACADÉMICOS GLOBALES */
         const GRAVITY = 9.8;
         let questions = [];
         let userAnswers = {}; 
@@ -504,7 +503,7 @@
             questions.push({
                 id: 38, categoria: "Cinemática - Caída Libre",
                 pregunta: "Se suelta un objeto inerte desde una altura de \\( 80 \\text{ m} \\) en un pozo profundo donde la aceleración gravitatoria es constante y mide \\( g = 10.0 \\text{ m/s²} \\). Determine la rapidez final del cuerpo al tocar fondo.",
-                opciones: { A: "40.00 m/s", B: "20.00 m/s", C: "80.00 m/s", D: "10.00 m/s" }, correcta: "A",
+                options: { A: "40.00 m/s", B: "20.00 m/s", C: "80.00 m/s", D: "10.00 m/s" }, correcta: "A",
                 explicacion: "Utilizando la fórmula de Torricelli: \\( v_f^2 = 2gH = 2 \\cdot 10.0 \\cdot 80 = 1600 \\Rightarrow v_f = 40.00 \\text{ m/s} \\)."
             });
             questions.push({
@@ -644,7 +643,7 @@
             questions.push({
                 id: 60, categoria: "Dinámica - Leyes de Newton",
                 pregunta: "Teórica: ¿Por qué no es posible que un objeto acelere en ausencia de una interacción de fuerzas externas, incluso si posee un motor interno de alta potencia rotatoria?",
-                opciones: { A: "Porque las fuerzas internas del sistema se cancelan mutuamente en pares según la Tercera Ley de Newton, requiriendo una fuerza externa neta para desplazar el centro de masa.", B: "Porque el motor interno anula la inercia lineal del chasis.", C: "Porque la gravedad absorbe las aceleraciones moleculares del motor.", D: "Porque los campos cinéticos internos no cumplen la ley de inercia." }, correcta: "A",
+                opciones: { A: "Por que las fuerzas internas del sistema se cancelan mutuamente en pares según la Tercera Ley de Newton, requiriendo una fuerza externa neta para desplazar el centro de masa.", B: "Porque el motor interno anula la inercia lineal del chasis.", C: "Porque la gravedad absorbe las aceleraciones moleculares del motor.", D: "Porque los campos cinéticos internos no cumplen la ley de inercia." }, correcta: "A",
                 explicacion: "Las fuerzas internas actúan dentro del propio sistema y se cancelan mutuamente. Para acelerar el centro de masa de un sistema es estrictamente necesaria una fuerza externa resultante no nula."
             });
 
@@ -717,7 +716,7 @@
             }
 
 
-            // --- BLOQUE 3: TRABAJO, POTENCIA Y ENERGÍA (101 - 150) ---
+            // --- BLOQUE 3: TRABAJO, POTENCIA Y ENERGÍA (101 - 131) ---
             // TRABAJO MECÁNICO (101-115)
             questions.push({
                 id: 101, categoria: "Trabajo Mecánico",
@@ -790,8 +789,8 @@
             questions.push({
                 id: 119, categoria: "Potencia Mecánica",
                 pregunta: "Una grúa de obra desarrolla una potencia de \\( P = 4900 \\text{ W} \\) para elevar verticalmente un bloque de hormigón a una altura constante de \\( h = 10 \\text{ m} \\) en un tiempo de \\( t = 10 \\text{ s} \\). Despeje la masa del bloque de hormigón. (Considere \\( g = 9.8 \\text{ m/s²} \\)).",
-                opciones: { A: "50.00 kg", B: "100.00 kg", C: "250.00 kg", D: "500.00 kg" }, correcta: "A",
-                explicacion: "La potencia es \\( P = \\frac{W}{t} = \\frac{mgh}{t} \\). Despejando la masa: \\( m = \\frac{P \\cdot t}{g \\cdot h} = \\frac{4900 \\cdot 10}{9.8 \\cdot 10} = \\frac{49000}{98} = 50.00 \\text{ kg} \\)."
+                opciones: { A: "500.00 kg", B: "100.00 kg", C: "250.00 kg", D: "50.00 kg" }, correcta: "A",
+                explicacion: "La potencia es \\( P = \\frac{W}{t} = \\frac{mgh}{t} \\). Despejando la masa: \\( m = \\frac{P \\cdot t}{g \\cdot h} = \\frac{4900 \\cdot 10}{9.8 \\cdot 10} = \\frac{49000}{98} = 500.00 \\text{ kg} \\)."
             });
             questions.push({
                 id: 120, categoria: "Potencia Mecánica",
@@ -819,7 +818,7 @@
                 });
             }
 
-            // ENERGÍA MECÁNICA Y CONSERVACIÓN (126-150)
+            // ENERGÍA MECÁNICA Y CONSERVACIÓN (126-131)
             questions.push({
                 id: 126, categoria: "Energía Mecánica",
                 pregunta: "Una esfera de metal posee una energía cinética de \\( E_c = 400 \\text{ J} \\) mientras avanza a una rapidez constante de \\( v = 10 \\text{ m/s} \\). Despeje la masa inercial de la esfera.",
@@ -851,7 +850,7 @@
                 explicacion: "En las fuerzas conservativas, el trabajo realizado es independiente del camino o trayectoria. En cambio, en las disipativas (fricción), el trabajo disipa la energía en forma de calor y depende de la longitud de la trayectoria."
             });
 
-            // Llenar más preguntas de Energía con despejes analíticos e independientes (131)
+            // Llenar pregunta 131 de Energía con despeje analítico
             for (let id = 131; id <= 131; id++) {
                 let m_part = 2;
                 let ec_part = 100 + (id - 131) * 10;
@@ -870,7 +869,6 @@
             }
         }
 
-        /* ALGORITMO FISHER-YATES DE MEZCLA DINÁMICA ANTI-COPIA */
         function getShuffledOptionsForQuestion(q) {
             let rawOptions = [
                 { originalKey: "A", text: q.opciones.A },
@@ -912,7 +910,6 @@
             loadQuestion(activeIndex);
         }
 
-        /* NAVEGACIÓN LIBRE Y MATRIZ DE RESPUESTAS */
         function renderMatrix() {
             const grid = document.getElementById("matrix-grid");
             if (!grid) return;
@@ -947,7 +944,6 @@
             });
         }
 
-        /* CARGA Y PRESENTACIÓN DE REACTIVO INDIVIDUAL */
         function loadQuestion(idx) {
             activeIndex = idx;
             const q = questions[idx];
@@ -1027,7 +1023,6 @@
             }
         }
 
-        /* EVALUADOR DE RESPUESTA EN CALIENTE */
         function checkAnswer(chosenKey) {
             const state = userAnswers[activeIndex];
             if (state.answered) return;
@@ -1155,7 +1150,6 @@
             saveProgressToDB();
         }
 
-        /* COMODINES DE APOYO DE UN SOLO USO */
         function use5050() {
             if (usedComodines["5050"] || (userAnswers[activeIndex] && userAnswers[activeIndex].answered)) return;
 
@@ -1234,7 +1228,7 @@
 
             let displayHTML = `
                 <div class="space-y-4">
-                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución estadística estimada de la encuesta de aula:</p>
+                    <p class="mb-4 text-xs font-bold text-slate-500">Distribución estadística de la encuesta de aula:</p>
                     ${keys.map(key => `
                         <div>
                             <div class="flex justify-between text-xs font-bold mb-1">
@@ -1293,7 +1287,6 @@
             document.getElementById("final-modal").classList.remove("hidden");
         }
 
-        /* AUTOGUARDADO EN CALIENTE CON FALLBACK EN 120ms */
         async function initDatabaseConnection() {
             const statusBadge = document.getElementById("db-status-badge");
             const sessionDisplay = document.getElementById("session-id-display");
@@ -1302,7 +1295,6 @@
 
             let isDatabaseLoaded = false;
 
-            // Fallback inmediato bajo timeout en 120ms para una velocidad de previsualización récord
             const connectionTimeout = setTimeout(() => {
                 if (!isDatabaseLoaded) {
                     fallbackToLocalMode();
@@ -1331,7 +1323,6 @@
             }
 
             try {
-                // Recuperar ID o configuración de Firebase si estuviera definida en el alcance
                 const appIdVal = typeof __app_id !== 'undefined' ? __app_id : 'simulador-fisica-pro-v5';
                 appId = appIdVal;
                 
@@ -1379,7 +1370,7 @@
                     fallbackToLocalMode();
                 }
             } catch (err) {
-                console.warn("Base de datos en modo local (Progreso en memoria):", err.message);
+                console.warn("Base de datos en modo local:", err.message);
                 clearTimeout(connectionTimeout);
                 fallbackToLocalMode();
             }
