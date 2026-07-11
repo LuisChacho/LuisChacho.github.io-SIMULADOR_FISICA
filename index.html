@@ -267,6 +267,42 @@
             return "session-" + Math.random().toString(36).substring(2, 11) + "-" + Date.now().toString(36);
         };
 
+        function saveLocalBackup() {
+            try {
+                sessionStorage.setItem("sim_phys_session_id", userId || "");
+                sessionStorage.setItem("sim_phys_user_answers", JSON.stringify(userAnswers));
+                sessionStorage.setItem("sim_phys_comodines", JSON.stringify(usedComodines));
+                sessionStorage.setItem("sim_phys_active_index", activeIndex.toString());
+            } catch (e) {
+                console.error("Error al guardar copia de seguridad local:", e);
+            }
+        }
+
+        function loadLocalBackup() {
+            try {
+                const cachedAnswers = sessionStorage.getItem("sim_phys_user_answers");
+                const cachedComodines = sessionStorage.getItem("sim_phys_comodines");
+                const cachedIndex = sessionStorage.getItem("sim_phys_active_index");
+                const cachedSessionId = sessionStorage.getItem("sim_phys_session_id");
+
+                if (cachedSessionId) {
+                    userId = cachedSessionId;
+                }
+                if (cachedAnswers) {
+                    userAnswers = JSON.parse(cachedAnswers);
+                }
+                if (cachedComodines) {
+                    usedComodines = JSON.parse(cachedComodines);
+                }
+                if (cachedIndex !== null) {
+                    activeIndex = parseInt(cachedIndex);
+                }
+                updateScoreAndProgress();
+            } catch (e) {
+                console.error("Error al restaurar copia de seguridad local:", e);
+            }
+        }
+
         function generateQuestionBank() {
             questions = [];
             
@@ -1299,15 +1335,17 @@
                 if (!isDatabaseLoaded) {
                     fallbackToLocalMode();
                 }
-            }, 120);
+            }, 3000); // 3000ms para dar margen real de sincronización sin generar bloqueos
 
             function fallbackToLocalMode() {
                 isDatabaseLoaded = true;
-                userId = generateSafeSessionId();
+                if (!userId) {
+                    userId = generateSafeSessionId();
+                }
                 
                 if (statusBadge) {
                     statusBadge.className = "inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-slate-500/10 text-slate-500 border border-slate-500/20";
-                    statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> Modo Local (Rápido y Seguro)`;
+                    statusBadge.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> Autoguardado Local Activo`;
                 }
                 if (sessionDisplay) {
                     sessionDisplay.textContent = `ID Local: ${userId}`;
@@ -1318,8 +1356,9 @@
                 }
                 if (headerDbSync) {
                     headerDbSync.className = "text-slate-500 font-semibold flex items-center gap-1";
-                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span> Sin Conexión Nube`;
+                    headerDbSync.innerHTML = `<span class="w-1.5 h-1.5 bg-slate-400 rounded-full"></span> Respaldado Localmente`;
                 }
+                saveLocalBackup();
             }
 
             try {
@@ -1370,13 +1409,14 @@
                     fallbackToLocalMode();
                 }
             } catch (err) {
-                console.warn("Base de datos en modo local:", err.message);
+                console.warn("Base de datos en modo local por excepción:", err.message);
                 clearTimeout(connectionTimeout);
                 fallbackToLocalMode();
             }
         }
 
         async function saveProgressToDB() {
+            saveLocalBackup(); // Siempre se hace un respaldo en caché local de sesión para soportar F5 instantáneo
             if (!isFirebaseActive || !userId) return;
             const headerDbSync = document.getElementById("header-db-sync-text");
             try {
@@ -1424,6 +1464,7 @@
                     }
 
                     updateScoreAndProgress();
+                    saveLocalBackup(); // Sincroniza la caché local
                 }
             } catch (error) {
                 console.error("Fallo al descargar progreso:", error);
@@ -1431,6 +1472,13 @@
         }
 
         async function clearProgressInDB() {
+            try {
+                sessionStorage.removeItem("sim_phys_session_id");
+                sessionStorage.removeItem("sim_phys_user_answers");
+                sessionStorage.removeItem("sim_phys_comodines");
+                sessionStorage.removeItem("sim_phys_active_index");
+            } catch (e) {}
+
             if (!isFirebaseActive || !userId) return;
             try {
                 const { doc: fDoc, setDoc: fSet } = window.FirebaseSDK;
@@ -1468,6 +1516,7 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             generateQuestionBank();
+            loadLocalBackup(); // Carga de forma asíncrona inmediata antes de cualquier intento de conexión
             initDatabaseConnection();
 
             document.getElementById("btn-start-quiz").addEventListener("click", startQuiz);
